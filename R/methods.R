@@ -29,3 +29,10 @@ add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("terrain")){
   ol$x$xyz_url <- parse_to_json(xyz_url)
   ol
 }
+
+#' @export
+#'
+add_earthquakes <- function(ol){
+  ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
+  ol
+}

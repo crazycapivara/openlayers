@@ -44,6 +44,19 @@ HTMLWidgets.widget({
           );
         }
 
+        // add earthquakes
+        if(x.earthquakes_url){
+          var earthquakes = new ol.layer.Vector({
+            //title: 'Earthquakes',
+            source: new ol.source.Vector({
+              url: x.earthquakes_url,
+              format: new ol.format.GeoJSON()
+            })
+          });
+
+        map.addLayer(earthquakes);
+        }
+
       },
 
       resize: function(width, height) {
