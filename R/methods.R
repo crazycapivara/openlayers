@@ -12,7 +12,14 @@ set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
 
 #' @export
 #'
-add_tiles <- function(ol){
+add_osm_tiles <- function(ol){
   ol$x$tiles <- parse_to_json(TRUE)
+  ol
+}
+
+#' @export
+#'
+add_xyz_tiles <- function(ol, xyz_url = "http://{1-4}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"){
+  ol$x$xyz_url <- parse_to_json(xyz_url)
   ol
 }

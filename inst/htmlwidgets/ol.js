@@ -18,6 +18,7 @@ HTMLWidgets.widget({
         // TODO: code to render the widget, e.g.
         //el.innerText = x.message;
 
+        // set view
         if(x.view){
           map.setView(
             new ol.View({
@@ -27,9 +28,19 @@ HTMLWidgets.widget({
           );
         }
 
+        // add osm tiles
         if(x.tiles){
           map.addLayer(
             new ol.layer.Tile({source: new ol.source.OSM()})
+          );
+        }
+
+        // add xyz tiles
+        if(x.xyz_url){
+          map.addLayer(
+            new ol.layer.Tile({
+              source: new ol.source.XYZ({url: x.xyz_url})
+            })
           );
         }
 
