@@ -8,7 +8,9 @@
 ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list()
+  x = list(
+    view = NULL
+  )
 
   # create widget
   htmlwidgets::createWidget(
