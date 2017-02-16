@@ -2,11 +2,11 @@
 % Please edit documentation in R/ol.R
 \name{ol}
 \alias{ol}
-\title{<Add Title>}
+\title{Create OpenLayers map widget}
 \usage{
 ol(width = NULL, height = NULL, elementId = NULL)
 }
 \description{
-<Add Description>
+Create OpenLayers map widget
 }
 
