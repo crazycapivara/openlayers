@@ -1,6 +1,4 @@
-#' <Add Title>
-#'
-#' <Add Description>
+#' Create OpenLayers map widget
 #'
 #' @import htmlwidgets
 #'
@@ -8,9 +6,7 @@
 ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list(
-    view = NULL
-  )
+  x = list()
 
   # create widget
   htmlwidgets::createWidget(

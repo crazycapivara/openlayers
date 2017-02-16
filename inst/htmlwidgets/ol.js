@@ -33,15 +33,18 @@ HTMLWidgets.widget({
         if(x.view){
           map.setView(
             new ol.View({
-              center: ol.proj.fromLonLat([37.41, 8.82]),
-              zoom: 4
+              //center: ol.proj.fromLonLat([37.41, 8.82]),
+              center: ol.proj.fromLonLat([x.view.lon, x.view.lat]),
+              zoom: x.view.zoom
             })
           );
         }
 
-        map.addLayer(
+        if(x.tiles){
+          map.addLayer(
             new ol.layer.Tile({source: new ol.source.OSM()})
-        );
+          );
+        }
 
       },
 
