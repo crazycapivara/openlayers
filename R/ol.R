@@ -5,12 +5,10 @@
 #' @import htmlwidgets
 #'
 #' @export
-ol <- function(message, width = NULL, height = NULL, elementId = NULL) {
+ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list(
-    message = message
-  )
+  x = list()
 
   # create widget
   htmlwidgets::createWidget(
