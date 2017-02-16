@@ -3,6 +3,7 @@
 export("%>%")
 export(add_osm_tiles)
 export(add_xyz_tiles)
+export(get_stamen_xyz_url)
 export(ol)
 export(olOutput)
 export(renderOl)

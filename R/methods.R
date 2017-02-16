@@ -1,9 +1,11 @@
-get_stamen__xyz_url <- function(type_ = "toner"){
-  sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", type_)
-}
-
 parse_to_json <- function(data){
   jsonlite::toJSON(data, auto_unbox = TRUE)
+}
+
+#' @export
+#'
+get_stamen_xyz_url <- function(type_ = "toner"){
+  sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", type_)
 }
 
 #' @export
@@ -23,7 +25,7 @@ add_osm_tiles <- function(ol){
 
 #' @export
 #'
-add_xyz_tiles <- function(ol, xyz_url = get_stamen__xyz_url("terrain")){
+add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("terrain")){
   ol$x$xyz_url <- parse_to_json(xyz_url)
   ol
 }
