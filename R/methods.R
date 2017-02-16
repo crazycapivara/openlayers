@@ -13,7 +13,7 @@ set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
 #' @export
 #'
 add_osm_tiles <- function(ol){
-  ol$x$tiles <- parse_to_json(TRUE)
+  ol$x$osm_tiles <- parse_to_json(TRUE)
   ol
 }
 

@@ -29,7 +29,7 @@ HTMLWidgets.widget({
         }
 
         // add osm tiles
-        if(x.tiles){
+        if(x.osm_tiles){
           map.addLayer(
             new ol.layer.Tile({source: new ol.source.OSM()})
           );
