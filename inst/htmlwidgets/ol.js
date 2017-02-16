@@ -8,16 +8,18 @@ HTMLWidgets.widget({
 
     // TODO: define shared variables for this instance
     var map = new ol.Map({
-      target: el.id,
+      target: el.id
+      /*,
       layers: [
         new ol.layer.Tile({
           source: new ol.source.OSM()
         })
-      ],
+      ]*/
+      /*,
       view: new ol.View({
         center: ol.proj.fromLonLat([37.41, 8.82]),
         zoom: 4
-      })
+      })*/
     });
 
     return {
@@ -26,7 +28,20 @@ HTMLWidgets.widget({
 
         // TODO: code to render the widget, e.g.
         //el.innerText = x.message;
-        map;
+        x.view = true;
+
+        if(x.view){
+          map.setView(
+            new ol.View({
+              center: ol.proj.fromLonLat([37.41, 8.82]),
+              zoom: 4
+            })
+          );
+        }
+
+        map.addLayer(
+            new ol.layer.Tile({source: new ol.source.OSM()})
+        );
 
       },
 
