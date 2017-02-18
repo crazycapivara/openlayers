@@ -18,6 +18,7 @@ HTMLWidgets.widget({
 
         // TODO: code to render the widget, e.g.
         //el.innerText = x.message;
+        console.log(x.func(10));
 
         // set view
         if(x.view){

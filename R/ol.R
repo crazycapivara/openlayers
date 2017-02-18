@@ -6,7 +6,7 @@
 ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list()
+  x = list(func = htmlwidgets::JS("function(a){return a * 4}"))
 
   # create widget
   htmlwidgets::createWidget(
