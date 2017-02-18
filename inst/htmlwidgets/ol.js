@@ -9,6 +9,7 @@ HTMLWidgets.widget({
     // TODO: define shared variables for this instance
     var map = new ol.Map({
       target: el.id
+      //renderer: 'canvas'
     });
 
     return {
@@ -20,6 +21,7 @@ HTMLWidgets.widget({
 
         // set view
         if(x.view){
+          console.log(x.view);
           map.setView(
             new ol.View({
               center: ol.proj.fromLonLat([x.view.lon, x.view.lat]),
