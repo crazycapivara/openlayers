@@ -36,3 +36,10 @@ add_earthquakes <- function(ol){
   ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
   ol
 }
+
+#' @export
+#'
+add_geojson_dsn <- function(ol, dsn){
+  ol$x$dsn <- dsn
+  ol
+}

@@ -48,12 +48,26 @@ HTMLWidgets.widget({
         }
 
         // add earthquakes
+        // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
         if(x.earthquakes_url){
           map.addLayer(
             new ol.layer.Vector({
               //title: 'Earthquakes',
               source: new ol.source.Vector({
                 url: x.earthquakes_url,
+                format: new ol.format.GeoJSON()
+              })
+            })
+          );
+        }
+
+        // add geojson
+        if(x.dsn){
+          console.log(JSON.stringify(x.dsn));
+          map.addLayer(
+            new ol.layer.Vector({
+              source: new ol.source.Vector({
+                url: x.dsn,
                 format: new ol.format.GeoJSON()
               })
             })
