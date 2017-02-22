@@ -7,10 +7,34 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     // TODO: define shared variables for this instance
+    var geojsonObject = {
+        'type': 'FeatureCollection',
+        'crs': {
+          'type': 'name',
+          'properties': {
+            'name': 'EPSG:3857'
+          }
+        },
+        'features': [{
+          'type': 'Feature',
+          'geometry': {
+            'type': 'Point',
+            'coordinates': [0, 0]
+          }
+        }, {
+          'type': 'Feature',
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': [[4e6, -2e6], [8e6, 2e6]]
+          }
+        }]
+      };
+
     var map = new ol.Map({
       target: el.id
       //renderer: 'canvas'
     });
+    //var map = new ol.Map(el);
 
     return {
 
@@ -64,11 +88,20 @@ HTMLWidgets.widget({
         // add geojson
         if(x.dsn){
           console.log(JSON.stringify(x.dsn));
+          x.dsn = JSON.parse(x.dsn);
+          console.log(x.dsn);
+          console.log(geojsonObject);
           map.addLayer(
             new ol.layer.Vector({
               source: new ol.source.Vector({
-                url: x.dsn,
-                format: new ol.format.GeoJSON()
+                //defaultProjection :'EPSG:4326',
+                //projection: 'EPSG:3857',
+                //projection: "EPSG:4326",
+                //url: x.dsn,
+                //format: new ol.format.GeoJSON()
+                features: (new ol.format.GeoJSON()).readFeatures(
+                  x.dsn, {dataProjection: "",featureProjection: "EPSG:3857"})
+                //features: (new ol.format.GeoJSON()).readFeatures(geojsonObject)
               })
             })
           );
