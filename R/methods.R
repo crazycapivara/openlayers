@@ -43,3 +43,13 @@ add_geojson_dsn <- function(ol, dsn){
   ol$x$dsn <- dsn
   ol
 }
+
+#' @export
+#'
+add_geojson <- function(ol, geojson = NULL, filename = NULL){
+  if(is.null(geojson)){
+    geojson <- readLines(filename) %>% paste0(collapse = "\n")
+  }
+  ol$x$geojson <- geojson
+  ol
+}

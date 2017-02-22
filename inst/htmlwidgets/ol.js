@@ -107,6 +107,18 @@ HTMLWidgets.widget({
           );
         }
 
+        if(x.geojson){
+          var format = new ol.format.GeoJSON();
+          var dataSource = new ol.source.Vector({
+            features: format.readFeatures(x.geojson, {
+                dataProjection: "",
+                featureProjection: "EPSG:3857"
+              }
+            )
+          });
+          map.addLayer(new ol.layer.Vector({source: dataSource}));
+        }
+
       },
 
       resize: function(width, height) {
