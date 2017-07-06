@@ -11,7 +11,7 @@ ol <- function(width = NULL, height = NULL, elementId = NULL) {
   # create widget
   htmlwidgets::createWidget(
     name = 'ol',
-    x,
+    structure(x),
     width = width,
     height = height,
     package = 'openlayers',
