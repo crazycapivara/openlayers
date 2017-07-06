@@ -9,4 +9,3 @@ ol(width = NULL, height = NULL, elementId = NULL)
 \description{
 Create OpenLayers map widget
 }
-

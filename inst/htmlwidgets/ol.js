@@ -44,6 +44,7 @@ HTMLWidgets.widget({
         //el.innerText = x.message;
         console.log(x.func(10));
 
+
         // set view
         if(x.view){
           console.log(x.view);
@@ -57,8 +58,22 @@ HTMLWidgets.widget({
 
         // add osm tiles
         if(x.osm_tiles){
+          console.log("OSM");
           map.addLayer(
             new ol.layer.Tile({source: new ol.source.OSM()})
+          );
+        }
+
+        // add stamen tiles
+        if(x.stamen_tiles){
+          console.log("STAMEN!");
+          map.addLayer(
+            new ol.layer.Tile({
+            source: new ol.source.Stamen({
+              layer: 'watercolor'
+            })
+          })
+
           );
         }
 

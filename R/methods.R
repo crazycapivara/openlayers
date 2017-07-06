@@ -25,6 +25,13 @@ add_osm_tiles <- function(ol){
 
 #' @export
 #'
+add_stamen_tiles <- function(ol){
+  ol$x$stamen_tiles <- TRUE
+  ol
+}
+
+#' @export
+#'
 add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("terrain")){
   ol$x$xyz_url <- xyz_url
   ol
