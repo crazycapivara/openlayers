@@ -31,7 +31,11 @@ HTMLWidgets.widget({
       };
 
     var map = new ol.Map({
-      target: el.id
+      target: el.id,
+      view: new ol.View({
+        center: [0, 0],
+        zoom: 2
+      })
       //renderer: 'canvas'
     });
     //var map = new ol.Map(el);
