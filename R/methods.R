@@ -55,7 +55,7 @@ add_geojson_dsn <- function(ol, dsn){
 #'
 add_geojson <- function(ol, geojson = NULL, filename = NULL){
   if(is.null(geojson)){
-    geojson <- readLines(filename) %>% paste0(collapse = "\n")
+    geojson <- readr::read_file(filename)
   }
   ol$x$geojson <- geojson
   ol
