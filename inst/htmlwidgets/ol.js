@@ -147,6 +147,7 @@ HTMLWidgets.widget({
               })
             })
           );
+          map.getView().fit(dataSource.getExtent());
         }
 
       },
