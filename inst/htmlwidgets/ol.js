@@ -130,7 +130,7 @@ HTMLWidgets.widget({
         if(x.geojson){
           var format = new ol.format.GeoJSON();
           var dataSource = new ol.source.Vector({
-            features: format.readFeatures(x.geojson, {
+            features: format.readFeatures(x.geojson.data, {
                 // TODO: get projection from data source
                 dataProjection: "",
                 featureProjection: "EPSG:3857"
@@ -142,8 +142,9 @@ HTMLWidgets.widget({
               opacity: 1.0,
               source: dataSource,
               style: new ol.style.Style({
-                fill: new ol.style.Fill({color: "rgba(0, 0, 255, 0.5)"})
-                ,stroke: false //new ol.style.Stroke({color: "olive", width: 1, opacity: 0.8})
+                //fill: new ol.style.Fill({color: "rgba(0, 0, 255, 0.5)"}),
+                fill: new ol.style.Fill({color: x.geojson.style.fill_color}),
+                stroke: false //new ol.style.Stroke({color: "olive", width: 1, opacity: 0.8})
               })
             })
           );
