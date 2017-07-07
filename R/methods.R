@@ -25,8 +25,8 @@ add_osm_tiles <- function(ol){
 
 #' @export
 #'
-add_stamen_tiles <- function(ol){
-  ol$x$stamen_tiles <- TRUE
+add_stamen_tiles <- function(ol, layer = "watercolor"){
+  ol$x$stamen_tiles <- layer
   ol
 }
 

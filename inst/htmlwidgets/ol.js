@@ -74,7 +74,7 @@ HTMLWidgets.widget({
           map.addLayer(
             new ol.layer.Tile({
             source: new ol.source.Stamen({
-              layer: 'watercolor'
+              layer: x.stamen_tiles
             })
           })
 
