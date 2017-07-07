@@ -126,10 +126,12 @@ HTMLWidgets.widget({
           );
         }
 
+        // add geojson layer to map
         if(x.geojson){
           var format = new ol.format.GeoJSON();
           var dataSource = new ol.source.Vector({
             features: format.readFeatures(x.geojson, {
+                // TODO: get projection from data source
                 dataProjection: "",
                 featureProjection: "EPSG:3857"
               }
@@ -137,11 +139,11 @@ HTMLWidgets.widget({
           });
           map.addLayer(
             new ol.layer.Vector({
-              opacity: 0.3,
+              opacity: 1.0,
               source: dataSource,
               style: new ol.style.Style({
-                fill: new ol.style.Fill({color: "#ff9900", opacity: 1.0}),
-                stroke: new ol.style.Stroke({color: "olive", width: 5, opacity: 0.8})
+                fill: new ol.style.Fill({color: "rgba(0, 0, 255, 0.5)"})
+                ,stroke: false //new ol.style.Stroke({color: "olive", width: 1, opacity: 0.8})
               })
             })
           );
