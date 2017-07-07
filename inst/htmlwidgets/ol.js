@@ -135,7 +135,16 @@ HTMLWidgets.widget({
               }
             )
           });
-          map.addLayer(new ol.layer.Vector({source: dataSource}));
+          map.addLayer(
+            new ol.layer.Vector({
+              opacity: 0.3,
+              source: dataSource,
+              style: new ol.style.Style({
+                fill: new ol.style.Fill({color: "#ff9900", opacity: 1.0}),
+                stroke: new ol.style.Stroke({color: "olive", width: 5, opacity: 0.8})
+              })
+            })
+          );
         }
 
       },
