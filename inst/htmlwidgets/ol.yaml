@@ -1,7 +1,7 @@
 # (uncomment to add a dependency)
 dependencies:
   - name: ol
-    version: 4.0.1
-    src: "htmlwidgets/lib/openlayers-4.0.1"
+    version: 4.2.0
+    src: "htmlwidgets/lib/openlayers-4.2.0"
     script: ol.js
     stylesheet: ol.css
