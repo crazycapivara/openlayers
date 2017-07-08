@@ -36,6 +36,16 @@ HTMLWidgets.widget({
       });
     }
 
+    function getIconStyle(){
+      return new ol.style.Icon(/** @type {olx.style.IconOptions} */({
+        //anchor: [0.5, 46],
+        //anchorXUnits: 'fraction',
+        //anchorYUnits: 'pixels',
+        //src: "https://openlayers.org/en/v4.2.0/examples/data/icon.png"
+        src: "lib/ol-4.2.0/images/marker-icon.png"
+      }));
+    }
+
     // TODO: define shared variables for this instance
     var geojsonObject = {
         'type': 'FeatureCollection',
@@ -76,18 +86,14 @@ HTMLWidgets.widget({
 
         // TODO: code to render the widget, e.g.
         //el.innerText = x.message;
-        console.log(x.func(10));
-
 
         // set view
-        if(x.view){
-          console.log(x.view);
-          map.setView(
-            new ol.View({
-              center: ol.proj.fromLonLat([x.view.lon, x.view.lat]),
-              zoom: x.view.zoom
-            })
-          );
+        if(x.view) {
+          debugLog(x.view);
+          map.setView(new ol.View({
+            center: ol.proj.fromLonLat([x.view.lon, x.view.lat]),
+            zoom: x.view.zoom
+          }));
         }
 
         if(x.scale_line) {
@@ -97,44 +103,38 @@ HTMLWidgets.widget({
         }
 
         // add osm tiles
-        if(x.osm_tiles){
+        if(x.osm_tiles) {
           debugLog("OSM!");
-          map.addLayer(
-            new ol.layer.Tile({source: new ol.source.OSM()})
-          );
+          map.addLayer(new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }));
         }
 
         // add stamen tiles
-        if(x.stamen_tiles){
+        if(x.stamen_tiles) {
           debugLog("STAMEN!");
-          map.addLayer(
-            new ol.layer.Tile({
-              source: new ol.source.Stamen({layer: x.stamen_tiles})
-            })
-          );
+          map.addLayer(new ol.layer.Tile({
+            source: new ol.source.Stamen({layer: x.stamen_tiles})
+          }));
         }
 
         // add xyz tiles
-        if(x.xyz_url){
-          map.addLayer(
-            new ol.layer.Tile({
-              source: new ol.source.XYZ({url: x.xyz_url})
-            })
-          );
+        if(x.xyz_url) {
+          map.addLayer(new ol.layer.Tile({
+            source: new ol.source.XYZ({url: x.xyz_url})
+          }));
         }
 
         // add earthquakes
         // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
-        if(x.earthquakes_url){
-          map.addLayer(
-            new ol.layer.Vector({
-              //title: 'Earthquakes',
-              source: new ol.source.Vector({
-                url: x.earthquakes_url,
-                format: new ol.format.GeoJSON()
-              })
+        if(x.earthquakes_url) {
+          map.addLayer(new ol.layer.Vector({
+            //title: 'Earthquakes',
+            source: new ol.source.Vector({
+              url: x.earthquakes_url,
+              format: new ol.format.GeoJSON()
             })
-          );
+          }));
         }
 
         // add geojson vector layer from file, OBSOLETE!?
@@ -165,30 +165,29 @@ HTMLWidgets.widget({
           var format = new ol.format.GeoJSON();
           var dataSource = new ol.source.Vector({
             features: format.readFeatures(x.geojson.data, {
-                // TODO: get projection from data source
-                dataProjection: "",
-                featureProjection: "EPSG:3857"
-              }
-            )
+              // TODO: get projection from data source
+              dataProjection: "",
+              featureProjection: "EPSG:3857"
+            })
           });
 
           var stroke =  getStrokeStyle(x.geojson.style.stroke);
           var fill = getFillStyle(x.geojson.style.fill);
 
           var style = new ol.style.Style({
-            image: getCircleStyle(x.geojson.style.radius, stroke, fill),
+            image: x.geojson.style.marker ? getIconStyle() :
+              getCircleStyle(x.geojson.style.radius, stroke, fill),
+            //image: getIconStyle(),
             stroke: stroke,
             fill: fill
           });
 
-          map.addLayer(
-            new ol.layer.Vector({
-              // TODO: set main opacity via parameter
-              //opacity: 1.0,
-              source: dataSource,
-              style: style
-            })
-          );
+          map.addLayer(new ol.layer.Vector({
+            // TODO: set main opacity via parameter
+            //opacity: 1.0,
+            source: dataSource,
+            style: style
+          }));
 
           map.getView().fit(dataSource.getExtent());
         }

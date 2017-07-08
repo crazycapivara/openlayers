@@ -12,6 +12,14 @@ ol_style <- function(){
 
 #' @export
 #'
+marker <- function(){
+  list(
+    marker = TRUE
+  )
+}
+
+#' @export
+#'
 set_fill <- function(style, color = "rgba(0, 0, 255, 0.5)"){
   style$fill = list(color = color)
   style
