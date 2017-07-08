@@ -60,3 +60,10 @@ add_geojson <- function(ol, geojson = NULL, filename = NULL, style = ol_style())
   ol$x$geojson <- list(data = geojson, style = style)
   ol
 }
+
+#' @export
+#'
+add_scale_line <- function(ol, units = "metric"){
+  ol$x$scale_line = list(units = units)
+  ol
+}

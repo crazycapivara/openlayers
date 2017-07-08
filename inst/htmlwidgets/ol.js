@@ -90,6 +90,12 @@ HTMLWidgets.widget({
           );
         }
 
+        if(x.scale_line) {
+          map.addControl(new ol.control.ScaleLine({
+            units: x.scale_line.units
+          }));
+        }
+
         // add osm tiles
         if(x.osm_tiles){
           debugLog("OSM!");
