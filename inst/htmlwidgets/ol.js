@@ -28,6 +28,14 @@ HTMLWidgets.widget({
       }) : false;
     }
 
+    function getCircleStyle(radius, stroke, fill){
+      return new ol.style.Circle({
+        stroke: stroke,
+        fill: fill,
+        radius: radius ? radius : 10
+      });
+    }
+
     // TODO: define shared variables for this instance
     var geojsonObject = {
         'type': 'FeatureCollection',
@@ -158,15 +166,19 @@ HTMLWidgets.widget({
             )
           });
 
+          var stroke =  getStrokeStyle(x.geojson.style.stroke);
+          var fill = getFillStyle(x.geojson.style.fill);
+
           var style = new ol.style.Style({
-            stroke: getStrokeStyle(x.geojson.style.stroke),
-            fill: getFillStyle(x.geojson.style.fill)
+            image: getCircleStyle(x.geojson.style.radius, stroke, fill),
+            stroke: stroke,
+            fill: fill
           });
 
           map.addLayer(
             new ol.layer.Vector({
               // TODO: set main opacity via parameter
-              opacity: 1.0,
+              //opacity: 1.0,
               source: dataSource,
               style: style
             })

@@ -19,6 +19,13 @@ set_fill <- function(style, color = "rgba(0, 0, 255, 0.5)"){
 
 #' @export
 #'
+set_radius <- function(style, radius){
+  style$radius = radius
+  style
+}
+
+#' @export
+#'
 disable_stroke <- function(style){
   style$stroke = FALSE
   style
