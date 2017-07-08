@@ -46,14 +46,14 @@ add_earthquakes <- function(ol){
 
 #' @export
 #'
-add_geojson_dsn <- function(ol, dsn){
-  ol$x$dsn <- dsn
+add_geojson_ds <- function(ol, url, style = default_style()){
+  ol$x$ds <- list(url = url, style = style)
   ol
 }
 
 #' @export
 #'
-add_geojson <- function(ol, geojson = NULL, filename = NULL, style = ol_style()){
+add_geojson <- function(ol, geojson = NULL, filename = NULL, style = default_style()){
   if(is.null(geojson)){
     geojson <- readr::read_file(filename)
   }

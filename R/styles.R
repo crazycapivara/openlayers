@@ -1,6 +1,6 @@
 #' @export
 #'
-ol_style <- function(){
+default_style <- function(){
   list(
     fill = FALSE,
     stroke = list(

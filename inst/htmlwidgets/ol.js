@@ -10,26 +10,27 @@ HTMLWidgets.widget({
     var defaultRadius = 10;
 
     // functions
-    function debugLog(msg){
-      if(debug){
+    function debugLog(msg) {
+      if (debug) {
         console.log(msg);
       }
     }
 
-    function getStrokeStyle(stroke){
+    /* style functions */
+    function getStrokeStyle(stroke) {
       return stroke ? new ol.style.Stroke({
         color: stroke.color,
         width: stroke.width
-      }) : false;
+      }) : null;
     }
 
-    function getFillStyle(fill){
+    function getFillStyle(fill) {
       return fill ? new ol.style.Fill({
         color: fill.color
-      }) : false;
+      }) : null;
     }
 
-    function getCircleStyle(radius, stroke, fill){
+    function getCircleStyle(radius, stroke, fill) {
       return new ol.style.Circle({
         stroke: getStrokeStyle(stroke),
         fill: getFillStyle(fill),
@@ -37,17 +38,27 @@ HTMLWidgets.widget({
       });
     }
 
-    function getIconStyle(){
+    function getIconStyle() {
       return new ol.style.Icon(/** @type {olx.style.IconOptions} */({
         //anchor: [0.5, 46],
         //anchorXUnits: 'fraction',
         //anchorYUnits: 'pixels',
         //src: "https://openlayers.org/en/v4.2.0/examples/data/icon.png"
+        //TODO: use base64 images or try to 'guess' path
         src: "lib/ol-4.2.0/images/marker-icon.png"
       }));
     }
 
-    // TODO: define shared variables for this instance
+    function getStyle(_style) {
+      return new ol.style.Style({
+        image: _style.marker ? getIconStyle() :
+          getCircleStyle(_style.radius, _style.stroke, _style.fill),
+        stroke: getStrokeStyle(_style.stroke),
+        fill: getFillStyle(_style.fill)
+      });
+    }
+
+    // TODO: OBSOLETE!?
     var geojsonObject = {
         'type': 'FeatureCollection',
         'crs': {
@@ -84,7 +95,6 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-        // TODO: code to render the widget, e.g.
         //el.innerText = x.message;
 
         // set view
@@ -114,6 +124,7 @@ HTMLWidgets.widget({
         // add stamen tiles
         if(x.stamen_tiles) {
           debugLog("STAMEN!");
+          debugLog(x.stamen_tiles);
           map.addLayer(new ol.layer.Tile({
             source: new ol.source.Stamen({layer: x.stamen_tiles})
           }));
@@ -138,25 +149,24 @@ HTMLWidgets.widget({
           }));
         }
 
-        // add geojson vector layer from file, OBSOLETE!?
-        if(x.dsn){
-          console.log(JSON.stringify(x.dsn));
-          x.dsn = JSON.parse(x.dsn);
-          console.log(x.dsn);
-          console.log(geojsonObject);
-          map.addLayer(
-            new ol.layer.Vector({
-              source: new ol.source.Vector({
-                //defaultProjection :'EPSG:4326',
-                //projection: 'EPSG:3857',
-                //projection: "EPSG:4326",
-                //url: x.dsn,
-                //format: new ol.format.GeoJSON()
-                features: (new ol.format.GeoJSON()).readFeatures(
-                  x.dsn, {dataProjection: "",featureProjection: "EPSG:3857"})
+        // add geojson vector layer from url (or file)
+        // TODO: check whether file will also works (path issue? RMarkdown may work!)
+        if(x.ds){
+          debugLog(x.ds);
+
+          map.addLayer(new ol.layer.Vector({
+            source: new ol.source.Vector({
+              url: x.ds.url,
+              format: new ol.format.GeoJSON()
+              /*
+              features: (new ol.format.GeoJSON()).readFeatures(x.ds.filename, {
+                dataProjection: "",
+                featureProjection: "EPSG:3857"
               })
-            })
-          );
+              */
+            }),
+            style: getStyle(x.ds.style)
+          }));
         }
 
         // add geojson vector layer to map
@@ -172,25 +182,17 @@ HTMLWidgets.widget({
             })
           });
 
-          var _style = x.geojson.style;
-
-          var style = new ol.style.Style({
-            image: x.geojson.style.marker ? getIconStyle() :
-              getCircleStyle(_style.radius, _style.stroke, _style.fill),
-            stroke: getStrokeStyle(_style.stroke),
-            fill: getFillStyle(_style.fill)
-          });
-
           map.addLayer(new ol.layer.Vector({
             // TODO: set main opacity via parameter
             //opacity: 1.0,
             source: dataSource,
-            style: style
+            style: getStyle(x.geojson.style)
           }));
 
           map.getView().fit(dataSource.getExtent());
         }
 
+      // END renderValue
       },
 
       resize: function(width, height) {
