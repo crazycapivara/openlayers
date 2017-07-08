@@ -6,7 +6,15 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
+    var debug = true;
+
     // functions
+    function debugLog(msg){
+      if(debug){
+        console.log(msg);
+      }
+    }
+
     function getStrokeStyle(stroke){
       return stroke ? new ol.style.Stroke({
         color: stroke.color,
@@ -76,7 +84,7 @@ HTMLWidgets.widget({
 
         // add osm tiles
         if(x.osm_tiles){
-          console.log("OSM");
+          debugLog("OSM!");
           map.addLayer(
             new ol.layer.Tile({source: new ol.source.OSM()})
           );
@@ -84,14 +92,11 @@ HTMLWidgets.widget({
 
         // add stamen tiles
         if(x.stamen_tiles){
-          console.log("STAMEN!");
+          debugLog("STAMEN!");
           map.addLayer(
             new ol.layer.Tile({
-            source: new ol.source.Stamen({
-              layer: x.stamen_tiles
+              source: new ol.source.Stamen({layer: x.stamen_tiles})
             })
-          })
-
           );
         }
 
@@ -118,7 +123,7 @@ HTMLWidgets.widget({
           );
         }
 
-        // add geojson
+        // add geojson vector layer from file, OBSOLETE!?
         if(x.dsn){
           console.log(JSON.stringify(x.dsn));
           x.dsn = JSON.parse(x.dsn);
@@ -134,14 +139,15 @@ HTMLWidgets.widget({
                 //format: new ol.format.GeoJSON()
                 features: (new ol.format.GeoJSON()).readFeatures(
                   x.dsn, {dataProjection: "",featureProjection: "EPSG:3857"})
-                //features: (new ol.format.GeoJSON()).readFeatures(geojsonObject)
               })
             })
           );
         }
 
-        // add geojson layer to map
-        if(x.geojson){
+        // add geojson vector layer to map
+        if(x.geojson) {
+          debugLog(x.geojson.style);
+
           var format = new ol.format.GeoJSON();
           var dataSource = new ol.source.Vector({
             features: format.readFeatures(x.geojson.data, {
@@ -152,20 +158,20 @@ HTMLWidgets.widget({
             )
           });
 
+          var style = new ol.style.Style({
+            stroke: getStrokeStyle(x.geojson.style.stroke),
+            fill: getFillStyle(x.geojson.style.fill)
+          });
+
           map.addLayer(
             new ol.layer.Vector({
+              // TODO: set main opacity via parameter
               opacity: 1.0,
               source: dataSource,
-              style: new ol.style.Style({
-                //fill: new ol.style.Fill({color: "rgba(0, 0, 255, 0.5)"}),
-                //fill: new ol.style.Fill({color: x.geojson.style.fill.color}),
-
-                stroke: getStrokeStyle(x.geojson.style.stroke),
-                fill: getFillStyle(x.geojson.style.fill)
-                //stroke: new ol.style.Stroke({color: x.geojson.style.stroke.color, width: x.geojson.style.stroke.width})
-              })
+              style: style
             })
           );
+
           map.getView().fit(dataSource.getExtent());
         }
 
