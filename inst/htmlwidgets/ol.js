@@ -7,6 +7,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     var debug = true;
+    var defaultRadius = 10;
 
     // functions
     function debugLog(msg){
@@ -30,9 +31,9 @@ HTMLWidgets.widget({
 
     function getCircleStyle(radius, stroke, fill){
       return new ol.style.Circle({
-        stroke: stroke,
-        fill: fill,
-        radius: radius ? radius : 10
+        stroke: getStrokeStyle(stroke),
+        fill: getFillStyle(fill),
+        radius: radius ? radius : defaultRadius
       });
     }
 
@@ -78,7 +79,6 @@ HTMLWidgets.widget({
       })
       //renderer: 'canvas'
     });
-    //var map = new ol.Map(el);
 
     return {
 
@@ -96,6 +96,7 @@ HTMLWidgets.widget({
           }));
         }
 
+        // add scale line to map
         if(x.scale_line) {
           map.addControl(new ol.control.ScaleLine({
             units: x.scale_line.units
@@ -171,15 +172,13 @@ HTMLWidgets.widget({
             })
           });
 
-          var stroke =  getStrokeStyle(x.geojson.style.stroke);
-          var fill = getFillStyle(x.geojson.style.fill);
+          var _style = x.geojson.style;
 
           var style = new ol.style.Style({
             image: x.geojson.style.marker ? getIconStyle() :
-              getCircleStyle(x.geojson.style.radius, stroke, fill),
-            //image: getIconStyle(),
-            stroke: stroke,
-            fill: fill
+              getCircleStyle(_style.radius, _style.stroke, _style.fill),
+            stroke: getStrokeStyle(_style.stroke),
+            fill: getFillStyle(_style.fill)
           });
 
           map.addLayer(new ol.layer.Vector({
