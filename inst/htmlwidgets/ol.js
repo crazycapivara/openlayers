@@ -6,6 +6,20 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
+    // functions
+    function getStrokeStyle(stroke){
+      return stroke ? new ol.style.Stroke({
+        color: stroke.color,
+        width: stroke.width
+      }) : false;
+    }
+
+    function getFillStyle(fill){
+      return fill ? new ol.style.Fill({
+        color: fill.color
+      }) : false;
+    }
+
     // TODO: define shared variables for this instance
     var geojsonObject = {
         'type': 'FeatureCollection',
@@ -137,14 +151,18 @@ HTMLWidgets.widget({
               }
             )
           });
+
           map.addLayer(
             new ol.layer.Vector({
               opacity: 1.0,
               source: dataSource,
               style: new ol.style.Style({
                 //fill: new ol.style.Fill({color: "rgba(0, 0, 255, 0.5)"}),
-                fill: new ol.style.Fill({color: x.geojson.style.fill_color}),
-                stroke: false //new ol.style.Stroke({color: "olive", width: 1, opacity: 0.8})
+                //fill: new ol.style.Fill({color: x.geojson.style.fill.color}),
+
+                stroke: getStrokeStyle(x.geojson.style.stroke),
+                fill: getFillStyle(x.geojson.style.fill)
+                //stroke: new ol.style.Stroke({color: x.geojson.style.stroke.color, width: x.geojson.style.stroke.width})
               })
             })
           );

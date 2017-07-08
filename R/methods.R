@@ -53,10 +53,10 @@ add_geojson_dsn <- function(ol, dsn){
 
 #' @export
 #'
-add_geojson <- function(ol, geojson = NULL, filename = NULL, fill = "rgba(0, 0, 255, 0.5)"){
+add_geojson <- function(ol, geojson = NULL, filename = NULL, style = ol_style()){
   if(is.null(geojson)){
     geojson <- readr::read_file(filename)
   }
-  ol$x$geojson <- list(data = geojson, style = list(fill_color = fill))
+  ol$x$geojson <- list(data = geojson, style = style)
   ol
 }
