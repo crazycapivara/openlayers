@@ -82,6 +82,14 @@ HTMLWidgets.widget({
         }]
       };
 
+    // main methods
+    var methods = {
+      "debugLog": debugLog,
+      "addStamenTiles": function(args){
+        console.log("add geojson to map" + args.layer);
+      }
+    };
+
     var map = new ol.Map({
       target: el.id,
       view: new ol.View({
@@ -96,6 +104,8 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         //el.innerText = x.message;
+        //debugLog(window);
+        methods["debugLog"]("debugLogger");
 
         // set view
         if(x.view) {
@@ -190,6 +200,13 @@ HTMLWidgets.widget({
           }));
 
           map.getView().fit(dataSource.getExtent());
+        }
+
+        //console.log(x.calls);
+        for (var i = 0; i < x.calls.length; i++) {
+          var call = x.calls[i];
+          debugLog(call);
+          methods[call.method](call.args);
         }
 
       // END renderValue

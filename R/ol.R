@@ -6,7 +6,7 @@
 ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list(vector_layers = list())
+  x = list(calls = list())
 
   # create widget
   htmlwidgets::createWidget(
