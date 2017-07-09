@@ -85,8 +85,8 @@ HTMLWidgets.widget({
     // main methods
     var methods = {
       "debugLog": debugLog,
-      "addStamenTiles": function(args){
-        console.log("add geojson to map" + args.layer);
+      "addStamenTiles": function(layer) {
+        console.log("add stamen tiles to map, layer = " + layer);
       }
     };
 
@@ -202,11 +202,13 @@ HTMLWidgets.widget({
           map.getView().fit(dataSource.getExtent());
         }
 
-        //console.log(x.calls);
+        // execute calls
+        debugLog(x.calls);
+
         for (var i = 0; i < x.calls.length; i++) {
           var call = x.calls[i];
           debugLog(call);
-          methods[call.method](call.args);
+          methods[call.method].apply(this, call.args);
         }
 
       // END renderValue

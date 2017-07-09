@@ -27,11 +27,7 @@ add_osm_tiles <- function(ol){
 #'
 add_stamen_tiles <- function(ol, layer = "watercolor"){
   ol$x$stamen_tiles <- layer
-  # ---
-  #n <- length(ol$x$calls)
-  #ol$x$calls[[n+1]] <- list(method = "addGeojson", args = list(layer = "watercolor"))
-  # ---
-  ol <- invoke_method(ol, "addStamenTiles", list(layer = layer))
+  ol <- invoke_method(ol, "addStamenTiles", layer)
   ol
 }
 
