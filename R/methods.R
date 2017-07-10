@@ -1,3 +1,4 @@
+# TODO: obsolete ? REMOVE!
 parse_to_json <- function(data){
   jsonlite::toJSON(data, auto_unbox = TRUE)
 }
@@ -11,24 +12,19 @@ get_stamen_xyz_url <- function(type_ = "toner"){
 #' @export
 #'
 set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
-  ol$x$view <- list(lon = lon, lat = lat, zoom = zoom) #%>%
-    #parse_to_json()
-  ol
+  invoke_method(ol, "setView", lon, lat, zoom)
 }
 
 #' @export
 #'
 add_osm_tiles <- function(ol){
-  ol$x$osm_tiles <- TRUE
-  ol
+  invoke_method(ol, "addOSMTiles")
 }
 
 #' @export
 #'
 add_stamen_tiles <- function(ol, layer = "watercolor"){
-  ol$x$stamen_tiles <- layer
-  ol <- invoke_method(ol, "addStamenTiles", layer)
-  ol
+  invoke_method(ol, "addStamenTiles", layer)
 }
 
 #' @export

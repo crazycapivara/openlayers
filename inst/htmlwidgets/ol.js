@@ -1,3 +1,25 @@
+var methods = {};
+
+methods.setView = function(lon, lat, zoom) {
+  this.setView(new ol.View({
+    center: ol.proj.fromLonLat([lon, lat]),
+    zoom: zoom
+  }));
+};
+
+// TODO: implement base addTiles method!
+methods.addStamenTiles = function(layer) {
+  this.addLayer(new ol.layer.Tile({
+    source: new ol.source.Stamen({layer: layer})
+  }));
+};
+
+methods.addOSMTiles = function(layer) {
+  this.addLayer(new ol.layer.Tile({
+    source: new ol.source.OSM({})
+  }));
+};
+
 HTMLWidgets.widget({
 
   name: 'ol',
@@ -83,7 +105,7 @@ HTMLWidgets.widget({
         }]
       };
 
-    // main methods
+    // OBSOLETE: main methods, defined above!
     var methods = {
       "debugLog": debugLog,
       "addStamenTiles": function(layer) {
@@ -91,6 +113,7 @@ HTMLWidgets.widget({
       }
     };
 
+    // TODO: apply setView func instead of setting here
     var map = new ol.Map({
       target: el.id,
       view: new ol.View({
@@ -106,9 +129,8 @@ HTMLWidgets.widget({
 
         //el.innerText = x.message;
         //debugLog(window);
-        methods["debugLog"]("debugLogger");
 
-        // set view
+        // OBSOLETE: set view
         if(x.view) {
           debugLog(x.view);
           map.setView(new ol.View({
@@ -124,7 +146,7 @@ HTMLWidgets.widget({
           }));
         }
 
-        // add osm tiles
+        // OBSOLETE: add osm tiles
         if(x.osm_tiles) {
           debugLog("OSM!");
           map.addLayer(new ol.layer.Tile({
@@ -132,7 +154,7 @@ HTMLWidgets.widget({
           }));
         }
 
-        // add stamen tiles
+        // OBSOLETE: add stamen tiles
         if(x.stamen_tiles) {
           debugLog("STAMEN!");
           debugLog(x.stamen_tiles);
@@ -204,12 +226,14 @@ HTMLWidgets.widget({
         }
 
         // execute calls
+        debugLog("all calls:");
         debugLog(x.calls);
 
         for (var i = 0; i < x.calls.length; i++) {
           var call = x.calls[i];
+          debugLog("current call:");
           debugLog(call);
-          methods[call.method].apply(this, call.args);
+          window.methods[call.method].apply(map, call.args);
         }
 
       // END renderValue
