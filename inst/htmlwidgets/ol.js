@@ -43,9 +43,9 @@ HTMLWidgets.widget({
         //anchor: [0.5, 46],
         //anchorXUnits: 'fraction',
         //anchorYUnits: 'pixels',
-        //src: "https://openlayers.org/en/v4.2.0/examples/data/icon.png"
+        src: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
         //TODO: use base64 images or try to 'guess' path
-        src: "lib/ol-4.2.0/images/marker-icon.png"
+        //src: "lib/ol-4.2.0/images/marker-icon.png"
       }));
     }
 
@@ -189,7 +189,7 @@ HTMLWidgets.widget({
             style: getStyle(x.geojson.style)
           }));
 
-          map.getView().fit(dataSource.getExtent());
+          map.getView().fit(dataSource.getExtent(), {maxZoom: 16});
         }
 
       // END renderValue
