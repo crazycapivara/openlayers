@@ -1,3 +1,24 @@
+var olOptions = {};
+
+olOptions.maxZoomFit = 16;
+olOptions.defaultRadius = 10;
+
+var styleThat = function(style) {
+  stroke = style.stroke ? new ol.style.Stroke(style.stroke) : null;
+  fill = style.fill ? new ol.style.Fill(style.fill) : null;
+  image = new ol.style.Circle({
+    stroke: stroke,
+    fill: fill,
+    radius: style.radius || olOptions.defaultRadius
+  });
+
+  return new ol.style.Style({
+    image: image,
+    stroke: stroke,
+    fill: fill
+  });
+};
+
 var methods = {};
 
 methods.setView = function(lon, lat, zoom) {
@@ -22,6 +43,7 @@ methods.addOSMTiles = function() {
 
 methods.addGeojson = function(data, style) {
   console.log("please add geojson");
+
   var format = new ol.format.GeoJSON();
 
   var dataSource = new ol.source.Vector({
@@ -32,15 +54,19 @@ methods.addGeojson = function(data, style) {
     })
   });
 
-  this.addLayer(new ol.layer.Vector({
-    // TODO: set opacity via parameter in R
-    //opacity: 1.0,
-    //style: getStyle(style),
-    source: dataSource
-  }));
+  // TODO: set opacity via parameter in R
+  var layer = new ol.layer.Vector({
+    source: dataSource,
+    opacity: 1.0
+  });
+  if (style) {
+    layer.setStyle(styleThat(style));
+  }
+  this.addLayer(layer);
 
+  // TODO: fit should be optional
   this.getView().fit(dataSource.getExtent(), {
-    maxZoom: 16
+    maxZoom: olOptions.maxZoomFit
   });
 };
 
@@ -84,6 +110,7 @@ HTMLWidgets.widget({
       });
     }
 
+    // TODO: move to global style func!
     function getIconStyle() {
       return new ol.style.Icon(/** @type {olx.style.IconOptions} */({
         //anchor: [0.5, 46],
@@ -226,7 +253,8 @@ HTMLWidgets.widget({
           }));
         }
 
-        // add geojson vector layer to map
+        // OBSOLETE: add geojson vector layer to map
+        // TODO: implement marker option in global style func!
         if(x.geojson) {
           debugLog(x.geojson.style);
 

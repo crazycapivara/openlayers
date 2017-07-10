@@ -1,5 +1,6 @@
 #' @export
 #'
+## TODO: rename to style_that!? and add parameter fill = TRUE?
 default_style <- function(){
   list(
     fill = FALSE,
