@@ -60,6 +60,15 @@ add_geojson <- function(ol, geojson = NULL, filename = NULL, style = default_sty
 
 #' @export
 #'
+add_geojson_ <- function(ol, data = NULL, filename = NULL, style = default_style()){
+  if(is.null(data)){
+    data <- readr::read_file(filename)
+  }
+  invoke_method(ol, "addGeojson", data, style)
+}
+
+#' @export
+#'
 add_scale_line <- function(ol, units = "metric"){
   ol$x$scale_line = list(units = units)
   ol

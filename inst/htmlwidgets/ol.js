@@ -14,10 +14,34 @@ methods.addStamenTiles = function(layer) {
   }));
 };
 
-methods.addOSMTiles = function(layer) {
+methods.addOSMTiles = function() {
   this.addLayer(new ol.layer.Tile({
-    source: new ol.source.OSM({})
+    source: new ol.source.OSM()
   }));
+};
+
+methods.addGeojson = function(data, style) {
+  console.log("please add geojson");
+  var format = new ol.format.GeoJSON();
+
+  var dataSource = new ol.source.Vector({
+    features: format.readFeatures(data, {
+      // TODO: get projection from data source
+      dataProjection: "",
+      featureProjection: "EPSG:3857"
+    })
+  });
+
+  this.addLayer(new ol.layer.Vector({
+    // TODO: set opacity via parameter in R
+    //opacity: 1.0,
+    //style: getStyle(style),
+    source: dataSource
+  }));
+
+  this.getView().fit(dataSource.getExtent(), {
+    maxZoom: 16
+  });
 };
 
 HTMLWidgets.widget({
