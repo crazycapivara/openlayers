@@ -1,3 +1,39 @@
+##' @export
+##'
+. <- function(...) list(...)
+
+# NEW style approach
+# usage: style <- stroke() + fill()
+
+#' @export
+#'
+`+.style` <- function(lhs, rhs) {
+  c(lhs, rhs)
+}
+
+#' @export
+#'
+stroke <- function(color = "green", width = 2){
+  stroke_ <- list(stroke = list(
+    color = color,
+    width = width
+  ))
+  class(stroke_) <- c("list", "style")
+  stroke_
+}
+
+#' @export
+#'
+fill <- function(color = "rgba(0, 0, 255, 0.5)"){
+  fill_ = list(fill = list(
+    color = color
+  ))
+  class(fill_) <- c("list", "style")
+  fill_
+}
+
+# ---------------
+
 #' @export
 #'
 ## TODO: rename to style_that!? and add parameter fill = TRUE?
