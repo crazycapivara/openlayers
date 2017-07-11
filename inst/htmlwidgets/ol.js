@@ -3,6 +3,18 @@ var olOptions = {};
 olOptions.maxZoomFit = 16;
 olOptions.defaultRadius = 10;
 
+// example style func using quakes dataset
+var styleFunc = function(feature, resolution) {
+  console.log(feature.getKeys(), feature.get("mag"));
+  return new ol.style.Style({
+    text: new ol.style.Text({
+      text: String(feature.get("mag")),
+      //stroke: new ol.style.Stroke({width: 2}),
+      scale: 1.5
+    })
+  });
+};
+
 var markerThat = function(style) {
   return new ol.style.Style({
     image: new ol.style.Icon({
@@ -54,6 +66,7 @@ methods.addGeojson = function(data, style) {
 
   var format = new ol.format.GeoJSON();
 
+  // TODO: iterate over features and set id
   var dataSource = new ol.source.Vector({
     features: format.readFeatures(data, {
       // TODO: get projection from data source
@@ -67,6 +80,7 @@ methods.addGeojson = function(data, style) {
     source: dataSource,
     opacity: 1.0
   });
+  //layer.setStyle(styleFunc);
   if (style) {
     _style = style.marker ? markerThat(style) : styleThat(style);
     layer.setStyle(_style);
