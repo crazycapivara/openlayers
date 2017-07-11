@@ -3,6 +3,14 @@ var olOptions = {};
 olOptions.maxZoomFit = 16;
 olOptions.defaultRadius = 10;
 
+var markerThat = function(style) {
+  return new ol.style.Style({
+    image: new ol.style.Icon({
+      src: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
+    })
+  });
+};
+
 var styleThat = function(style) {
   stroke = style.stroke ? new ol.style.Stroke(style.stroke) : null;
   fill = style.fill ? new ol.style.Fill(style.fill) : null;
@@ -60,7 +68,8 @@ methods.addGeojson = function(data, style) {
     opacity: 1.0
   });
   if (style) {
-    layer.setStyle(styleThat(style));
+    _style = style.marker ? markerThat(style) : styleThat(style);
+    layer.setStyle(_style);
   }
   this.addLayer(layer);
 
@@ -88,7 +97,7 @@ HTMLWidgets.widget({
       }
     }
 
-    /* style functions */
+    /* OBSOLETE: see above, style functions */
     function getStrokeStyle(stroke) {
       return stroke ? new ol.style.Stroke({
         color: stroke.color,
