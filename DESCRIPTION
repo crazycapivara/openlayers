@@ -1,6 +1,6 @@
 Package: openlayers
 Title: An R Interface to OpenLayers
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Description: Wraps the javascript library OpenLayers.
 Depends:
@@ -11,7 +11,8 @@ Imports:
     magrittr,
     readr
 Suggests:
-    geojsonio
+    geojsonio,
+    sf
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
