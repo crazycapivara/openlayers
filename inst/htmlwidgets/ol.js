@@ -3,6 +3,15 @@ var olOptions = {};
 olOptions.maxZoomFit = 16;
 olOptions.defaultRadius = 10;
 
+var utils = {};
+
+utils.setFeatureIds = function() {
+  for(var i = 0; i < this.length; i++) {
+    console.log("feature: " + i);
+    this[i].setId(i);
+  }
+};
+
 // example style func using quakes dataset
 var styleFunc = function(feature, resolution) {
   console.log(feature.getKeys(), feature.get("mag"));
@@ -65,14 +74,15 @@ methods.addGeojson = function(data, style) {
   console.log("please add geojson");
 
   var format = new ol.format.GeoJSON();
-
-  // TODO: iterate over features and set id
+  var features = format.readFeatures(data, {
+    // TODO: get projection from data source
+    dataProjection: "",
+    featureProjection: "EPSG:3857"
+  });
+  utils.setFeatureIds.call(features);
+  //console.log("Test feature id: " + features[4].getId());
   var dataSource = new ol.source.Vector({
-    features: format.readFeatures(data, {
-      // TODO: get projection from data source
-      dataProjection: "",
-      featureProjection: "EPSG:3857"
-    })
+    features: features
   });
 
   // TODO: set opacity via parameter in R
