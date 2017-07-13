@@ -92,7 +92,8 @@ methods.addGeojson = function(data, style) {
   });
   //layer.setStyle(styleFunc);
   if (style) {
-    _style = style.marker ? markerThat(style) : styleThat(style);
+    _style = typeof(style) == "function" ? style : styleThat(style);
+    //_style = style.marker ? markerThat(style) : styleThat(style);
     layer.setStyle(_style);
   }
   this.addLayer(layer);

@@ -1,3 +1,11 @@
+#' @export
+#'
+style_function <- function(filename) {
+  readr::read_file(filename) %>%
+    htmlwidgets::JS()
+}
+
+
 ##' @export
 ##'
 . <- function(...) list(...)
