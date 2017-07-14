@@ -1,6 +1,6 @@
 #' @export
 #'
-style_function <- function(filename) {
+js_style_function <- function(filename) {
   readr::read_file(filename) %>%
     htmlwidgets::JS()
 }
@@ -21,7 +21,7 @@ style_function <- function(filename) {
 
 #' @export
 #'
-stroke <- function(color = "green", width = 2){
+stroke_style <- function(color = "green", width = 2){
   stroke_ <- list(stroke = list(
     color = color,
     width = width
@@ -32,12 +32,30 @@ stroke <- function(color = "green", width = 2){
 
 #' @export
 #'
-fill <- function(color = "rgba(0, 0, 255, 0.5)"){
+fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
   fill_ = list(fill = list(
     color = color
   ))
   class(fill_) <- c("list", "style")
   fill_
+}
+
+#' @export
+#'
+circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 10){
+  list(circle = c(
+    stroke,
+    fill,
+    radius = radius
+  ))
+}
+
+#' @export
+#'
+marker_style <- function(src = NULL){
+  list(marker = list(
+    src = src
+  ))
 }
 
 # ---------------
