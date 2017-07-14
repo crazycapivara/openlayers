@@ -59,6 +59,19 @@ marker_style <- function(src = NULL){
   ))
 }
 
+#' @export
+#'
+style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
+  stroke <- stroke_style(stroke_color, stroke_width)
+  if(!is.null(fill_color)){
+    fill <- fill_style(fill_color)
+  } else{
+    fill = NULL
+  }
+  circle <- circle_style(stroke, fill, radius)
+  c(stroke, fill, circle)
+}
+
 # ---------------
 
 ##' @export
