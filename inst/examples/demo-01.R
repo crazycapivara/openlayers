@@ -6,9 +6,15 @@ data <- geojsonio::geojson_json(quakes[1:10, ])
 ol() %>% add_osm_tiles() %>% add_geojson_(data)
 
 # custom style
-style <- stroke(color = "green", width = 2) + fill()
+style <- stroke_style(color = "green", width = 2) + fill_style()
 
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = style)
 
 # markers
-ol() %>% add_osm_tiles() %>% add_geojson_(data, style = marker())
+icon <- "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
+icon = "http://www.osgeo.org/sites/all/themes/osgeo/logo.png"
+ol() %>% add_osm_tiles() %>% add_geojson_(data, style = marker_style(icon))
+
+# use cutom js function
+js_func <- "inst/javascript/style_function.js"
+ol() %>% add_osm_tiles() %>% add_geojson_(data, style = js_style_function(js_func))
