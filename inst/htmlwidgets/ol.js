@@ -2,6 +2,8 @@ var olOptions = {};
 
 olOptions.maxZoomFit = 16;
 olOptions.defaultRadius = 10;
+// TODO: use base64, see below
+olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
 
 var utils = {};
 
@@ -12,7 +14,7 @@ utils.setFeatureIds = function() {
   }
 };
 
-// example style func using quakes dataset
+// OBSOLETE: example style func using quakes dataset
 var styleFunc = function(feature, resolution) {
   console.log(feature.getKeys(), feature.get("mag"));
   return new ol.style.Style({
@@ -22,6 +24,33 @@ var styleFunc = function(feature, resolution) {
       scale: 1.5
     })
   });
+};
+
+// new setting styles func
+var styleIt = function(style) {
+  _style = new ol.style.Style();
+  if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
+
+  if (style.fill) _style.setFill(new ol.style.Fill(style.fill));
+
+  // TODO: use helper func
+  if (style.circle) {
+    console.log(style.circle);
+    _style.setImage(new ol.style.Circle({
+      stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
+      fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
+      radius: style.circle.radius
+    }));
+  }
+
+  // TODO: use helper func
+  if (style.marker) {
+    _style.setImage(new ol.style.Icon({
+      src: style.marker.src || olOptions.defaultMarkerIcon
+    }));
+  }
+
+  return _style;
 };
 
 var markerThat = function(style) {
@@ -92,7 +121,8 @@ methods.addGeojson = function(data, style) {
   });
   //layer.setStyle(styleFunc);
   if (style) {
-    _style = typeof(style) == "function" ? style : styleThat(style);
+    _style = typeof(style) == "function" ? style : styleIt(style);
+    //_style = typeof(style) == "function" ? style : styleThat(style);
     //_style = style.marker ? markerThat(style) : styleThat(style);
     layer.setStyle(_style);
   }
