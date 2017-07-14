@@ -5,39 +5,40 @@ js_style_function <- function(filename) {
     htmlwidgets::JS()
 }
 
-
 ##' @export
 ##'
 . <- function(...) list(...)
 
 # NEW style approach
-# usage: style <- stroke() + fill()
+# usage: style <- stroke_style() + fill_style()
 
 #' @export
 #'
-`+.style` <- function(lhs, rhs) {
+`%+%` <- function(lhs, rhs) {
+  c(lhs, rhs)
+}
+
+##' @export
+##'
+`+.list` <- function(lhs, rhs) {
   c(lhs, rhs)
 }
 
 #' @export
 #'
 stroke_style <- function(color = "green", width = 2){
-  stroke_ <- list(stroke = list(
+  list(stroke = list(
     color = color,
     width = width
   ))
-  class(stroke_) <- c("list", "style")
-  stroke_
 }
 
 #' @export
 #'
 fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
-  fill_ = list(fill = list(
+  list(fill = list(
     color = color
   ))
-  class(fill_) <- c("list", "style")
-  fill_
 }
 
 #' @export
@@ -60,9 +61,9 @@ marker_style <- function(src = NULL){
 
 # ---------------
 
-#' @export
-#'
-## TODO: rename to style_that!? and add parameter fill = TRUE?
+##' @export
+##'
+## OBSOLETE: rename to style_that!? and add parameter fill = TRUE?
 default_style <- function(){
   list(
     fill = FALSE,
@@ -73,30 +74,32 @@ default_style <- function(){
   )
 }
 
-#' @export
-#'
+##' @export
+##'
+## OBSOLETE
 marker <- function(){
   list(
     marker = TRUE
   )
 }
 
-#' @export
-#'
+## OBSOLETE: all funcs below
+##' @export
+##'
 set_fill <- function(style, color = "rgba(0, 0, 255, 0.5)"){
   style$fill = list(color = color)
   style
 }
 
-#' @export
-#'
+##' @export
+##'
 set_radius <- function(style, radius){
   style$radius = radius
   style
 }
 
-#' @export
-#'
+##' @export
+##'
 disable_stroke <- function(style){
   style$stroke = FALSE
   style
