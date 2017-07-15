@@ -12,22 +12,32 @@ js_style_function <- function(filename) {
 # NEW style approach
 # usage: style <- stroke_style() + fill_style()
 
+set_style_class <- function(x){
+  class(x) <- c("list", "style")
+  x
+}
+
+style_ <- function(...) {
+  list(...) %>% set_style_class()
+}
+
+## TODO: decide whether to use %+% or + via style class
 #' @export
 #'
 `%+%` <- function(lhs, rhs) {
   c(lhs, rhs)
 }
 
-##' @export
-##'
-`+.list` <- function(lhs, rhs) {
-  c(lhs, rhs)
+#' @export
+#'
+`+.style` <- function(lhs, rhs) {
+  c(lhs, rhs) %>% set_style_class()
 }
 
 #' @export
 #'
 stroke_style <- function(color = "green", width = 2){
-  list(stroke = list(
+  style_(stroke = list(
     color = color,
     width = width
   ))
@@ -36,7 +46,7 @@ stroke_style <- function(color = "green", width = 2){
 #' @export
 #'
 fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
-  list(fill = list(
+  style_(fill = list(
     color = color
   ))
 }
@@ -44,7 +54,7 @@ fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
 #' @export
 #'
 circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 10){
-  list(circle = c(
+  style_(circle = c(
     stroke,
     fill,
     radius = radius
@@ -54,7 +64,7 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 #' @export
 #'
 marker_style <- function(src = NULL){
-  list(marker = list(
+  style_(marker = list(
     src = src
   ))
 }
