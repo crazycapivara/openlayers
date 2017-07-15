@@ -9,10 +9,11 @@ ol() %>% add_osm_tiles() %>% add_geojson_(data)
 style <- stroke_style(color = "green", width = 2) %+% fill_style()
 style <- c(stroke_style(color = "green", width = 2), fill_style())
 style <- style_that(fill_color = "green")
-style <- style_that()
+style <- style_that(stroke_width = 5)
 style <- stroke_style()
 
-ol() %>% add_osm_tiles() %>% add_geojson_(filename = "inst/geojson/nc.geojson", style = style)
+ol() %>% add_osm_tiles() %>% add_geojson_(filename = "inst/geojson/nc.geojson",
+                                          style = style, opacity = 0.5)
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = style)
 
 # markers

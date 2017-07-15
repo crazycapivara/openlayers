@@ -61,11 +61,11 @@ add_geojson <- function(ol, geojson = NULL, filename = NULL, style = default_sty
 
 #' @export
 #'
-add_geojson_ <- function(ol, data = NULL, filename = NULL, style = NULL){
+add_geojson_ <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
   if(is.null(data)){
     data <- readr::read_file(filename)
   }
-  invoke_method(ol, "addGeojson", data, style)
+  invoke_method(ol, "addGeojson", data, style, opacity)
 }
 
 #' @export

@@ -99,7 +99,7 @@ methods.addOSMTiles = function() {
   }));
 };
 
-methods.addGeojson = function(data, style) {
+methods.addGeojson = function(data, style, opacity) {
   console.log("please add geojson");
 
   var format = new ol.format.GeoJSON();
@@ -117,7 +117,7 @@ methods.addGeojson = function(data, style) {
   // TODO: set opacity via parameter in R
   var layer = new ol.layer.Vector({
     source: dataSource,
-    opacity: 1.0
+    opacity: opacity
   });
   //layer.setStyle(styleFunc);
   if (style) {
