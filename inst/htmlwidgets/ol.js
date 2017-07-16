@@ -27,6 +27,7 @@ var styleFunc = function(feature, resolution) {
 };
 
 // new setting styles func
+// TODO: pass resolution paremeter to show style only for a given resolution
 var styleIt = function(style) {
   return function(feature, resolution) {
     _style = new ol.style.Style();
@@ -40,7 +41,6 @@ var styleIt = function(style) {
       _style.setImage(new ol.style.Circle({
         stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
         fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
-        //radius: style.circle.radius
         radius: style.circle.radius[feature.getId()] || style.circle.radius
       }));
     }
@@ -64,6 +64,7 @@ var styleIt = function(style) {
   };
 };
 
+// OBSOLETE
 var markerThat = function(style) {
   return new ol.style.Style({
     image: new ol.style.Icon({
@@ -72,6 +73,7 @@ var markerThat = function(style) {
   });
 };
 
+// OBSOLETE: use func above
 var styleThat = function(style) {
   stroke = style.stroke ? new ol.style.Stroke(style.stroke) : null;
   fill = style.fill ? new ol.style.Fill(style.fill) : null;
