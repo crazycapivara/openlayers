@@ -57,7 +57,7 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
   style_(circle = c(
     stroke,
     fill,
-    radius = radius
+    list(radius = radius)
   ))
 }
 

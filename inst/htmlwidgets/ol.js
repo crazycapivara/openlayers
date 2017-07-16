@@ -40,7 +40,8 @@ var styleIt = function(style) {
       _style.setImage(new ol.style.Circle({
         stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
         fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
-        radius: style.circle.radius
+        //radius: style.circle.radius
+        radius: style.circle.radius[feature.getId()] || style.circle.radius
       }));
     }
 
