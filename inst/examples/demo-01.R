@@ -21,6 +21,11 @@ style <- stroke_style() + fill_style() + text_style(property = "NAME")
 ol() %>% add_osm_tiles() %>% add_geojson_(filename = "inst/geojson/nc.geojson",
                                           style = style, opacity = 0.5)
 
+nc_ <- geojsonio::geojson_json(nc)
+nc_centers <- geojsonio::geojson_json(st_centroid(nc))
+ol() %>% add_osm_tiles() %>% add_geojson_(nc_) %>%
+  add_geojson_(nc_centers, style = text_style(property = "NAME", scale = 2))
+
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = 15)) %>%
   add_geojson_(data2, style = circle_style(fill = fill_style(color = "red")))
 
