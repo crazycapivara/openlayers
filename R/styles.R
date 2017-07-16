@@ -71,6 +71,15 @@ marker_style <- function(src = NULL){
 
 #' @export
 #'
+text_style <- function(text = NULL, property = NULL){
+  style_(text = list(
+    text = text,
+    property = property
+  ))
+}
+
+#' @export
+#'
 style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
   stroke <- stroke_style(stroke_color, stroke_width)
   if(!is.null(fill_color)){

@@ -52,6 +52,13 @@ var styleIt = function(style) {
       }));
     }
 
+    if (style.text) {
+      _style.setText(new ol.style.Text({
+        text: style.text.property ? String(feature.get(style.text.property)) :
+          style.text.text[feature.getId()] || style.text.text
+      }));
+    }
+
     return _style;
   };
 };

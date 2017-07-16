@@ -25,6 +25,14 @@ ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = 15
 radius = seq(10, 55, 5)
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = radius))
 
+style = circle_style(radius = radius)
+
+text = as.character(quakes[1:10, ]$mag)
+style = circle_style(radius = radius) + text_style(text)
+style = circle_style(radius = radius) + text_style(property = "stations")
+
+ol() %>% add_osm_tiles() %>% add_geojson_(data, style = style)
+
 # markers
 icon <- "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
 icon = "http://www.osgeo.org/sites/all/themes/osgeo/logo.png"
