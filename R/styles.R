@@ -69,10 +69,11 @@ marker_style <- function(src = NULL){
 
 #' @export
 #'
-text_style <- function(text = NULL, property = NULL){
+text_style <- function(text = NULL, property = NULL, scale = 1.5){
   style_(text = list(
     text = text,
-    property = property
+    property = property,
+    scale = scale
   ))
 }
 
