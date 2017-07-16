@@ -1,6 +1,8 @@
 library(openlayers)
 
 data <- geojsonio::geojson_json(quakes[1:10, ])
+data2 <- geojsonio::geojson_json(quakes[21:25, ])
+
 
 # default style
 ol() %>% add_osm_tiles() %>% add_geojson_(data)
@@ -15,7 +17,13 @@ style <- stroke_style() + fill_style()
 
 ol() %>% add_osm_tiles() %>% add_geojson_(filename = "inst/geojson/nc.geojson",
                                           style = style, opacity = 0.5)
-ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = 15))
+
+ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = 15)) %>%
+  add_geojson_(data2, style = circle_style(fill = fill_style(color = "red")))
+
+# pass radius array
+radius = seq(10, 55, 5)
+ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = radius))
 
 # markers
 icon <- "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
