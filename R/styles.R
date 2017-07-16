@@ -5,8 +5,7 @@ js_style_function <- function(filename) {
     htmlwidgets::JS()
 }
 
-##' @export
-##'
+## OBSOLETE!
 . <- function(...) list(...)
 
 # NEW style approach
@@ -22,8 +21,7 @@ style_ <- function(...) {
 }
 
 ## TODO: decide whether to use %+% or + via style class
-#' @export
-#'
+##
 `%+%` <- function(lhs, rhs) {
   c(lhs, rhs)
 }
@@ -89,50 +87,4 @@ style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = N
   }
   circle <- circle_style(stroke, fill, radius)
   c(stroke, fill, circle)
-}
-
-# ---------------
-
-##' @export
-##'
-## OBSOLETE: rename to style_that!? and add parameter fill = TRUE?
-default_style <- function(){
-  list(
-    fill = FALSE,
-    stroke = list(
-      color = "blue",
-      width = 5
-    )
-  )
-}
-
-##' @export
-##'
-## OBSOLETE
-marker <- function(){
-  list(
-    marker = TRUE
-  )
-}
-
-## OBSOLETE: all funcs below
-##' @export
-##'
-set_fill <- function(style, color = "rgba(0, 0, 255, 0.5)"){
-  style$fill = list(color = color)
-  style
-}
-
-##' @export
-##'
-set_radius <- function(style, radius){
-  style$radius = radius
-  style
-}
-
-##' @export
-##'
-disable_stroke <- function(style){
-  style$stroke = FALSE
-  style
 }

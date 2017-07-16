@@ -3,6 +3,8 @@ library(openlayers)
 data <- geojsonio::geojson_json(quakes[1:10, ])
 data2 <- geojsonio::geojson_json(quakes[21:25, ])
 
+library(sf)
+nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
 
 # default style
 ol() %>% add_osm_tiles() %>% add_geojson_(data)
@@ -14,6 +16,7 @@ style <- style_that(fill_color = "green")
 style <- style_that(stroke_width = 5)
 style <- stroke_style()
 style <- stroke_style() + fill_style()
+style <- stroke_style() + fill_style() + text_style(property = "NAME")
 
 ol() %>% add_osm_tiles() %>% add_geojson_(filename = "inst/geojson/nc.geojson",
                                           style = style, opacity = 0.5)
