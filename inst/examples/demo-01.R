@@ -29,6 +29,8 @@ ol() %>% add_osm_tiles() %>% add_geojson_(nc_) %>%
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = 15)) %>%
   add_geojson_(data2, style = circle_style(fill = fill_style(color = "red")))
 
+ol() %>% add_osm_tiles() %>% add_geojson_(nc_, style = stroke_style() + fill_style(color = substr(rainbow(100), 1, 7)))
+
 # pass radius array
 radius = seq(10, 55, 5)
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = circle_style(radius = radius))

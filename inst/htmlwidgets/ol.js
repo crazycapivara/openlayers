@@ -15,7 +15,8 @@ utils.setFeatureIds = function() {
 };
 
 utils.getStyleOption = function(feature, style, option) {
-  return style[option][feature.getId()] || style[option];
+  //console.log(feature.getId(), style[option], style[option][feature.getId()]);
+  return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
 };
 
 // OBSOLETE: example style func using quakes dataset
@@ -37,7 +38,12 @@ var styleIt = function(style) {
     _style = new ol.style.Style();
     if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
 
-    if (style.fill) _style.setFill(new ol.style.Fill(style.fill));
+    //if (style.fill) _style.setFill(new ol.style.Fill(style.fill));
+    if (style.fill) {
+      _style.setFill(new ol.style.Fill({
+        color: utils.getStyleOption(feature, style.fill, "color")
+      }));
+    }
 
     // TODO: use helper func
     if (style.circle) {
