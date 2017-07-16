@@ -14,6 +14,10 @@ utils.setFeatureIds = function() {
   }
 };
 
+utils.getStyleOption = function(feature, style, option) {
+  return style[option][feature.getId()] || style[option];
+};
+
 // OBSOLETE: example style func using quakes dataset
 var styleFunc = function(feature, resolution) {
   console.log(feature.getKeys(), feature.get("mag"));
@@ -41,7 +45,8 @@ var styleIt = function(style) {
       _style.setImage(new ol.style.Circle({
         stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
         fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
-        radius: style.circle.radius[feature.getId()] || style.circle.radius
+        //radius: style.circle.radius[feature.getId()] || style.circle.radius
+        radius: utils.getStyleOption(feature, style.circle, "radius")
       }));
     }
 
@@ -55,7 +60,8 @@ var styleIt = function(style) {
     if (style.text) {
       _style.setText(new ol.style.Text({
         text: style.text.property ? String(feature.get(style.text.property)) :
-          (style.text.text[feature.getId()] || style.text.text),
+          //(style.text.text[feature.getId()] || style.text.text),
+          utils.getStyleOption(feature, style.text, "text"),
         scale: style.text.scale
       }));
     }
