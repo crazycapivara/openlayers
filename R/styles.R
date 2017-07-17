@@ -32,6 +32,10 @@ style_ <- function(...) {
   c(lhs, rhs) %>% set_style_class()
 }
 
+#' @rdname style_methods
+#'
+#' @param width stroke width in pixels
+#'
 #' @export
 #'
 stroke_style <- function(color = "green", width = 2){
@@ -41,6 +45,8 @@ stroke_style <- function(color = "green", width = 2){
   ))
 }
 
+#' @rdname style_methods
+#'
 #' @export
 #'
 fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
@@ -49,6 +55,12 @@ fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
   ))
 }
 
+#' @rdname style_methods
+#'
+#' @param radius radius in pixels
+#' @param stroke stroke style or \code{NULL} (do not stroke)
+#' @param fill fill style or \code{NULL} (do not fill)
+#'
 #' @export
 #'
 circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 10){
@@ -59,6 +71,10 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
   ))
 }
 
+#' @rdname style_methods
+#'
+#' @param src icon url or \code{NULL} (use default icon)
+#'
 #' @export
 #'
 marker_style <- function(src = NULL){
