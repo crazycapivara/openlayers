@@ -21,10 +21,12 @@ utils.setFeatureIds = function() {
 };
 
 // OBSOLETE: use freakyStyle stuff below instead
+/*
 utils.getStyleOption = function(feature, style, option) {
   //console.log(feature.getId(), style[option], style[option][feature.getId()]);
   return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
 };
+*/
 
 // help(ers) as an homage to the Beatles
 var helpMe = {};
