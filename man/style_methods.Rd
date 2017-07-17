@@ -5,8 +5,10 @@
 \alias{fill_style}
 \alias{circle_style}
 \alias{marker_style}
+\alias{icon_style}
+\alias{text_style}
 \alias{style_methods}
-\title{Style methods}
+\title{Create styles}
 \usage{
 stroke_style(color = "green", width = 2)
 
@@ -15,6 +17,10 @@ fill_style(color = "rgba(0, 0, 255, 0.5)")
 circle_style(stroke = stroke_style(), fill = fill_style(), radius = 10)
 
 marker_style(src = NULL)
+
+icon_style(src = NULL)
+
+text_style(text = NULL, property = NULL, scale = 1.5)
 }
 \arguments{
 \item{color}{stroke or fill color}
@@ -28,9 +34,23 @@ marker_style(src = NULL)
 \item{radius}{radius in pixels}
 
 \item{src}{icon url or \code{NULL} (use default icon)}
+
+\item{text}{text content, ignored in case \code{property} parameter is set}
+
+\item{property}{feature property used as text content}
+
+\item{scale}{text scale}
+}
+\value{
+style object
 }
 \description{
-style methods corresponding to ol style classes
+Style methods to create style objects corresponding to
+\href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
+}
+\note{
+\code{color} (in \code{fill_style}), \code{radius} amd \code{text} can be single values applied to all features
+  or vectors of length equal to the number of features
 }
 \examples{
   style = stroke_style() + fill_style()

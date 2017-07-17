@@ -83,6 +83,18 @@ marker_style <- function(src = NULL){
   ))
 }
 
+#' @rdname style_methods
+#'
+#' @export
+#'
+icon_style <- marker_style
+
+#' @rdname style_methods
+#'
+#' @param text text content, ignored in case \code{property} parameter is set
+#' @param property feature property used as text content
+#' @param scale text scale
+#'
 #' @export
 #'
 text_style <- function(text = NULL, property = NULL, scale = 1.5){
