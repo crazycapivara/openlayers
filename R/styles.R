@@ -104,7 +104,8 @@ text_style <- function(text = NULL, property = NULL, scale = 1.5){
   ))
 }
 
-#' @export
+## TODO: OBSOLETE? remove func or add docs and export it
+#' export
 #'
 style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
   stroke <- stroke_style(stroke_color, stroke_width)
@@ -114,5 +115,5 @@ style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = N
     fill = NULL
   }
   circle <- circle_style(stroke, fill, radius)
-  c(stroke, fill, circle)
+  stroke + fill + circle
 }
