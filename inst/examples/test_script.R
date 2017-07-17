@@ -27,9 +27,12 @@ ol() %>% add_osm_tiles() %>% add_xyz_tiles(url_, opacity = 0.3) %>%
 colors <- substr(rainbow(100), 1, 7)
 ol() %>% add_xyz_tiles(url_) %>% add_geojson(nc_json, style = fill_style(color = colors))
 
-# multiple radii
+# circle markers
 ol() %>% add_xyz_tiles(url_) %>% add_geojson(qu_json)
 
+ol() %>% add_xyz_tiles(url_) %>% add_geojson(qu_json, style = icon_style())
+
+# multiple radii
 colors <- substr(rainbow(10), 1, 7)
 style <- circle_style(radius = seq(10, 55, 5), fill = fill_style(colors))
 ol() %>% add_xyz_tiles(url_) %>% add_geojson(qu_json, style = style, opacity = 0.5)
