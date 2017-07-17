@@ -49,18 +49,7 @@ add_geojson_ds <- function(ol, url, style = default_style()){
 
 #' @export
 #'
-# OBSOLETE, use func below!
-add_geojson <- function(ol, geojson = NULL, filename = NULL, style = default_style()){
-  if(is.null(geojson)){
-    geojson <- readr::read_file(filename)
-  }
-  ol$x$geojson <- list(data = geojson, style = style)
-  ol
-}
-
-#' @export
-#'
-add_geojson_ <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
+add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
   if(is.null(data)){
     data <- readr::read_file(filename)
   }
