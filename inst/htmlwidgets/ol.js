@@ -19,6 +19,19 @@ utils.getStyleOption = function(feature, style, option) {
   return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
 };
 
+// style helpers as a homage to the RHCP
+freakyStyley = {};
+
+freakyStyley.getOptionValue = function(feature, style, option) {
+  return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
+};
+
+freakyStyley.getFill = function(feature, fill) {
+  return fill ? new ol.style.Fill({
+    color: this.getOptionValue(feature, fill, "color")
+  }) : null;
+};
+
 // OBSOLETE: example style func using quakes dataset
 var styleFunc = function(feature, resolution) {
   console.log(feature.getKeys(), feature.get("mag"));
@@ -50,7 +63,9 @@ var styleIt = function(style) {
       console.log(style.circle);
       _style.setImage(new ol.style.Circle({
         stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
-        fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
+        //fill: style.circle.fill ? new ol.style.Fill(style.circle.fill) : null,
+        //fill: style.circle.fill ? freakyStyley.getFill(feature, style.circle.fill) : null,
+        fill: freakyStyley.getFill(feature, style.circle.fill),
         //radius: style.circle.radius[feature.getId()] || style.circle.radius
         radius: utils.getStyleOption(feature, style.circle, "radius")
       }));
