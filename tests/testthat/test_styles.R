@@ -12,3 +12,12 @@ test_that("combine styles", {
   expect_equal(stroke_width, 3)
   expect_equal(fill_color, "red")
 })
+
+test_that("check class", {
+  # when
+  style <- fill_style() + stroke_style()
+  # then
+  class_ <- class(style)
+  # ---
+  expect_equal(class_, c("list", "style"))
+})

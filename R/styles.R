@@ -12,8 +12,7 @@ js_style_function <- function(filename) {
 # usage: style <- stroke_style() + fill_style()
 
 set_style_class <- function(x){
-  class(x) <- c("list", "style")
-  x
+  structure(x, class = c("list", "style"))
 }
 
 style_ <- function(...) {
