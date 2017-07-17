@@ -31,11 +31,11 @@ utils.getStyleOption = function(feature, style, option) {
 // help(ers) as an homage to the Beatles
 var helpMe = {};
 
-helpMe.getTileLayer = function(source, opacity){
-  return new ol.layer.Tile({
+helpMe.addTileLayer = function(map, source, opacity){
+  map.addLayer(new ol.layer.Tile({
     source: source,
     opacity: opacity || 1
-  });
+  }));
 };
 
 // style helpers as a homage to the RHCP
@@ -52,6 +52,7 @@ freakyStyley.getFill = function(feature, fill) {
 };
 
 // OBSOLETE: example style func using quakes dataset
+/*
 var styleFunc = function(feature, resolution) {
   console.log(feature.getKeys(), feature.get("mag"));
   return new ol.style.Style({
@@ -62,6 +63,7 @@ var styleFunc = function(feature, resolution) {
     })
   });
 };
+*/
 
 // new setting styles func
 // TODO: pass resolution paremeter to show style only for a given resolution
@@ -116,6 +118,7 @@ var styleIt = function(style) {
 };
 
 // OBSOLETE
+/*
 var markerThat = function(style) {
   return new ol.style.Style({
     image: new ol.style.Icon({
@@ -123,8 +126,10 @@ var markerThat = function(style) {
     })
   });
 };
+*/
 
 // OBSOLETE: use func above
+/*
 var styleThat = function(style) {
   stroke = style.stroke ? new ol.style.Stroke(style.stroke) : null;
   fill = style.fill ? new ol.style.Fill(style.fill) : null;
@@ -140,6 +145,7 @@ var styleThat = function(style) {
     fill: fill
   });
 };
+*/
 
 var methods = {};
 
@@ -150,7 +156,7 @@ methods.setView = function(lon, lat, zoom) {
   }));
 };
 
-// TODO: implement base addTiles method!
+// TODO: use 'helpMe.addTileLayer' method!
 methods.addStamenTiles = function(layer) {
   this.addLayer(new ol.layer.Tile({
     source: new ol.source.Stamen({layer: layer})
@@ -164,13 +170,8 @@ methods.addOSMTiles = function() {
 };
 
 methods.addXYZTiles = function(xyz_url, opacity) {
-  /*
-  this.addLayer(new ol.layer.Tile({
-    source: new ol.source.XYZ({url: xyz_url}),
-    opacity: opacity || 1
-  }));
-  */
-  this.addLayer(helpMe.getTileLayer(new ol.source.XYZ({url: xyz_url}), opacity));
+  source = new ol.source.XYZ({url: xyz_url});
+  helpMe.addTileLayer(this, source, opacity);
 };
 
 methods.addGeojson = function(data, style, opacity) {
