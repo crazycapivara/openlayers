@@ -59,3 +59,9 @@ ol() %>% add_osm_tiles() %>% add_geojson_(data, style = marker_style(icon))
 # use cutom js function
 js_func <- "inst/javascript/style_function.js"
 ol() %>% add_osm_tiles() %>% add_geojson_(data, style = js_style_function(js_func))
+
+# use url
+url_ = "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson"
+ol() %>% add_osm_tiles() %>%
+  add_geojson_(filename = url_, style = fill_style(color = substr(rainbow(100), 1, 7)) + text_style(property = "name"))
+

@@ -352,7 +352,7 @@ HTMLWidgets.widget({
           }));
         }
 
-        // add xyz tiles
+        // OBSOLETE: add xyz tiles
         if(x.xyz_url) {
           map.addLayer(new ol.layer.Tile({
             source: new ol.source.XYZ({url: x.xyz_url})
