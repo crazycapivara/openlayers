@@ -13,6 +13,7 @@ olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/ico
 // TODO: Move funcs to help
 var utils = {};
 
+// TODO: use map parameter here instead of 'this', only use 'this' in 'methods'
 utils.setFeatureIds = function() {
   for(var i = 0; i < this.length; i++) {
     console.log("feature: " + i);
@@ -163,6 +164,7 @@ methods.addStamenTiles = function(layer) {
   }));
 };
 
+// TODO: use 'helpMe.addTileLayer' method!
 methods.addOSMTiles = function() {
   this.addLayer(new ol.layer.Tile({
     source: new ol.source.OSM()
@@ -183,6 +185,7 @@ methods.addGeojson = function(data, style, opacity) {
     dataProjection: "",
     featureProjection: "EPSG:3857"
   });
+  // TODO: mv setFeatureIds to 'helpMe'
   utils.setFeatureIds.call(features);
   //console.log("Test feature id: " + features[4].getId());
   var dataSource = new ol.source.Vector({
@@ -194,11 +197,9 @@ methods.addGeojson = function(data, style, opacity) {
     source: dataSource,
     opacity: opacity
   });
-  //layer.setStyle(styleFunc);
+
   if (style) {
     _style = typeof(style) == "function" ? style : styleIt(style);
-    //_style = typeof(style) == "function" ? style : styleThat(style);
-    //_style = style.marker ? markerThat(style) : styleThat(style);
     layer.setStyle(_style);
   }
   this.addLayer(layer);
@@ -217,10 +218,10 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var debug = true;
-    var defaultRadius = 10;
+    // TODO: mv to window namespace if needed!
+    var debug = true; // should be passed via 'ol_options' in R
+    //var defaultRadius = 10;
 
-    // functions
     function debugLog(msg) {
       if (debug) {
         console.log(msg);
@@ -228,19 +229,24 @@ HTMLWidgets.widget({
     }
 
     /* OBSOLETE: see above, style functions */
+    /*
     function getStrokeStyle(stroke) {
       return stroke ? new ol.style.Stroke({
         color: stroke.color,
         width: stroke.width
       }) : null;
     }
+    */
 
+    /*
     function getFillStyle(fill) {
       return fill ? new ol.style.Fill({
         color: fill.color
       }) : null;
     }
+    */
 
+    /*
     function getCircleStyle(radius, stroke, fill) {
       return new ol.style.Circle({
         stroke: getStrokeStyle(stroke),
@@ -248,8 +254,9 @@ HTMLWidgets.widget({
         radius: radius ? radius : defaultRadius
       });
     }
+    */
 
-    // TODO: move to global style func!
+    // TODO: move base64 src to separate file!
     function getIconStyle() {
       return new ol.style.Icon(/** @type {olx.style.IconOptions} */({
         //anchor: [0.5, 46],
@@ -262,6 +269,7 @@ HTMLWidgets.widget({
       }));
     }
 
+    /*
     function getStyle(_style) {
       return new ol.style.Style({
         image: _style.marker ? getIconStyle() :
@@ -270,8 +278,10 @@ HTMLWidgets.widget({
         fill: getFillStyle(_style.fill)
       });
     }
+    */
 
     // TODO: OBSOLETE!?
+    /*
     var geojsonObject = {
         'type': 'FeatureCollection',
         'crs': {
@@ -294,14 +304,17 @@ HTMLWidgets.widget({
           }
         }]
       };
+    */
 
     // OBSOLETE: main methods, defined above!
+    /*
     var methods = {
       "debugLog": debugLog,
       "addStamenTiles": function(layer) {
         console.log("add stamen tiles to map, layer = " + layer);
       }
     };
+    */
 
     // TODO: apply setView func instead of setting here
     var map = new ol.Map({
@@ -321,6 +334,7 @@ HTMLWidgets.widget({
         //debugLog(window);
 
         // OBSOLETE: set view
+        /*
         if(x.view) {
           debugLog(x.view);
           map.setView(new ol.View({
@@ -328,6 +342,7 @@ HTMLWidgets.widget({
             zoom: x.view.zoom
           }));
         }
+        */
 
         // add scale line to map
         if(x.scale_line) {
@@ -337,14 +352,17 @@ HTMLWidgets.widget({
         }
 
         // OBSOLETE: add osm tiles
+        /*
         if(x.osm_tiles) {
           debugLog("OSM!");
           map.addLayer(new ol.layer.Tile({
             source: new ol.source.OSM()
           }));
         }
+        */
 
         // OBSOLETE: add stamen tiles
+        /*
         if(x.stamen_tiles) {
           debugLog("STAMEN!");
           debugLog(x.stamen_tiles);
@@ -352,13 +370,16 @@ HTMLWidgets.widget({
             source: new ol.source.Stamen({layer: x.stamen_tiles})
           }));
         }
+        */
 
         // OBSOLETE: add xyz tiles
+        /*
         if(x.xyz_url) {
           map.addLayer(new ol.layer.Tile({
             source: new ol.source.XYZ({url: x.xyz_url})
           }));
         }
+        */
 
         // add earthquakes
         // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
@@ -374,6 +395,7 @@ HTMLWidgets.widget({
 
         // add geojson vector layer from url (or file)
         // TODO: check whether file will also works (path issue? RMarkdown may work!)
+        // TODO: mv to 'addGeojson method' via optional url parameter!?
         if(x.ds){
           debugLog(x.ds);
 
@@ -388,12 +410,13 @@ HTMLWidgets.widget({
               })
               */
             }),
-            style: getStyle(x.ds.style)
+            //style: getStyle(x.ds.style)
           }));
         }
 
         // OBSOLETE: add geojson vector layer to map
         // TODO: implement marker option in global style func!
+        /*
         if(x.geojson) {
           debugLog(x.geojson.style);
 
@@ -415,6 +438,7 @@ HTMLWidgets.widget({
 
           map.getView().fit(dataSource.getExtent(), {maxZoom: 16});
         }
+        */
 
         // execute calls
         debugLog("all calls:");
