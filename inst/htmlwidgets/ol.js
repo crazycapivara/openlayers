@@ -1,3 +1,8 @@
+// define ol to use strict mode
+var ol = window.ol;
+
+"use strict";
+
 var olOptions = {};
 
 olOptions.maxZoomFit = 16;
@@ -5,6 +10,7 @@ olOptions.defaultRadius = 10;
 // TODO: use base64, see below
 olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
 
+// TODO: Move funcs to help
 var utils = {};
 
 utils.setFeatureIds = function() {
@@ -14,13 +20,24 @@ utils.setFeatureIds = function() {
   }
 };
 
+// OBSOLETE: use freakyStyle stuff below instead
 utils.getStyleOption = function(feature, style, option) {
   //console.log(feature.getId(), style[option], style[option][feature.getId()]);
   return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
 };
 
+// help(ers) as an homage to the Beatles
+var helpMe = {};
+
+helpMe.getTileLayer = function(source, opacity){
+  return new ol.layer.Tile({
+    source: source,
+    opacity: opacity || 1
+  });
+};
+
 // style helpers as a homage to the RHCP
-freakyStyley = {};
+var freakyStyley = {};
 
 freakyStyley.getOptionValue = function(feature, style, option) {
   return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
@@ -52,11 +69,14 @@ var styleIt = function(style) {
     if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
 
     //if (style.fill) _style.setFill(new ol.style.Fill(style.fill));
+    if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
+    /*
     if (style.fill) {
       _style.setFill(new ol.style.Fill({
         color: utils.getStyleOption(feature, style.fill, "color")
       }));
     }
+    */
 
     // TODO: use helper func
     if (style.circle) {
@@ -67,7 +87,8 @@ var styleIt = function(style) {
         //fill: style.circle.fill ? freakyStyley.getFill(feature, style.circle.fill) : null,
         fill: freakyStyley.getFill(feature, style.circle.fill),
         //radius: style.circle.radius[feature.getId()] || style.circle.radius
-        radius: utils.getStyleOption(feature, style.circle, "radius")
+        //radius: utils.getStyleOption(feature, style.circle, "radius")
+        radius: freakyStyley.getOptionValue(feature, style.circle, "radius")
       }));
     }
 
@@ -82,8 +103,9 @@ var styleIt = function(style) {
       _style.setText(new ol.style.Text({
         text: style.text.property ? String(feature.get(style.text.property)) :
           //(style.text.text[feature.getId()] || style.text.text),
-          utils.getStyleOption(feature, style.text, "text"),
-        scale: style.text.scale
+          //utils.getStyleOption(feature, style.text, "text"),
+          freakyStyley.getOptionValue(feature, style.text, "text"),
+        scale: style.text.scale || 1
       }));
     }
 
@@ -137,6 +159,16 @@ methods.addOSMTiles = function() {
   this.addLayer(new ol.layer.Tile({
     source: new ol.source.OSM()
   }));
+};
+
+methods.addXYZTiles = function(xyz_url, opacity) {
+  /*
+  this.addLayer(new ol.layer.Tile({
+    source: new ol.source.XYZ({url: xyz_url}),
+    opacity: opacity || 1
+  }));
+  */
+  this.addLayer(helpMe.getTileLayer(new ol.source.XYZ({url: xyz_url}), opacity));
 };
 
 methods.addGeojson = function(data, style, opacity) {

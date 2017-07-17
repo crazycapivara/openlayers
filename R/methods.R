@@ -29,9 +29,8 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 
 #' @export
 #'
-add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("terrain")){
-  ol$x$xyz_url <- xyz_url
-  ol
+add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("watercolor"), opacity = 0.5){
+  invoke_method(ol, "addXYZTiles", xyz_url, opacity)
 }
 
 #' @export
