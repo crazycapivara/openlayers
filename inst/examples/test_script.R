@@ -41,5 +41,6 @@ style <- style + text_style(property = "stations")
 ol() %>% add_xyz_tiles(url_) %>% add_geojson(qu_json, style = style, opacity = 0.5)
 
 # use geojson url
+colors <- substr(rainbow(176), 1, 7)
 geojson_url = "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson"
-ol() %>% add_xyz_tiles(url_) %>% add_geojson(filename = geojson_url)
+ol() %>% add_xyz_tiles(url_) %>% add_geojson(filename = geojson_url, style = fill_style(colors))
