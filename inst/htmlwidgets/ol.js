@@ -11,15 +11,17 @@ olOptions.defaultRadius = 10;
 olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
 
 // TODO: Move funcs to help
-var utils = {};
+//var utils = {};
 
 // TODO: use map parameter here instead of 'this', only use 'this' in 'methods'
+/*
 utils.setFeatureIds = function() {
   for(var i = 0; i < this.length; i++) {
     console.log("feature: " + i);
     this[i].setId(i);
   }
 };
+*/
 
 // OBSOLETE: use freakyStyle stuff below instead
 /*
@@ -37,6 +39,19 @@ helpMe.addTileLayer = function(map, source, opacity){
     source: source,
     opacity: opacity || 1
   }));
+};
+
+helpMe.setFeatureIds = function(features) {
+  features.forEach(function(feature, i) {
+    console.log("new feature: " + i);
+    feature.setId(i);
+  });
+  /*
+  for(var i = 0; i < features.length; i++) {
+    console.log("feature: " + i);
+    features[i].setId(i);
+  }
+  */
 };
 
 // style helpers as a homage to the RHCP
@@ -186,8 +201,9 @@ methods.addGeojson = function(data, style, opacity) {
     featureProjection: "EPSG:3857"
   });
   // TODO: mv setFeatureIds to 'helpMe'
-  utils.setFeatureIds.call(features);
-  //console.log("Test feature id: " + features[4].getId());
+  //utils.setFeatureIds.call(features);
+  helpMe.setFeatureIds(features);
+  console.log("Test feature id: " + features[4].getId());
   var dataSource = new ol.source.Vector({
     features: features
   });
