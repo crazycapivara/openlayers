@@ -133,6 +133,16 @@ var styleIt = function(style) {
   };
 };
 
+// use this function to apply style depending on resolution
+var _styleIt = function(style) {
+  var res_test = 4000;
+  console.log("using _styleIt!");
+  //return styleIt(style);
+  return function(feature, resolution) {
+    return resolution < res_test ? styleIt(style)(feature, resolution) : null;
+  };
+};
+
 // OBSOLETE
 /*
 var markerThat = function(style) {
@@ -203,7 +213,7 @@ methods.addGeojson = function(data, style, opacity) {
   // TODO: mv setFeatureIds to 'helpMe'
   //utils.setFeatureIds.call(features);
   helpMe.setFeatureIds(features);
-  console.log("Test feature id: " + features[4].getId());
+  //console.log("Test feature id: " + features[4].getId());
   var dataSource = new ol.source.Vector({
     features: features
   });
@@ -224,6 +234,8 @@ methods.addGeojson = function(data, style, opacity) {
   this.getView().fit(dataSource.getExtent(), {
     maxZoom: olOptions.maxZoomFit
   });
+  console.log("zoom", this.getView().getZoom());
+  console.log("resolution", this.getView().getResolution());
 };
 
 HTMLWidgets.widget({
