@@ -42,9 +42,8 @@ add_earthquakes <- function(ol){
 
 #' @export
 #'
-add_geojson_ds <- function(ol, url, style = default_style()){
-  ol$x$ds <- list(url = url, style = style)
-  ol
+add_geojson_ds <- function(ol, url){
+  invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
 #' @export

@@ -134,6 +134,8 @@ methods.addGeojson = function(data, style, opacity) {
     features: features
   });
 
+  //console.log("try this one", dataSource.getFeatures());
+
   var layer = new ol.layer.Vector({
     source: dataSource,
     opacity: opacity
@@ -152,6 +154,20 @@ methods.addGeojson = function(data, style, opacity) {
 
   console.log("zoom", this.getView().getZoom());
   console.log("resolution", this.getView().getResolution());
+};
+
+// TODO: check how to set feature ids
+methods.addGeojsonFromUrl = function(url) {
+  var dataSource = new ol.source.Vector({
+    url: url,
+    format: new ol.format.GeoJSON()
+  });
+
+  var layer = new ol.layer.Vector({
+    source: dataSource,
+  });
+
+  this.addLayer(layer);
 };
 
 HTMLWidgets.widget({
@@ -205,21 +221,6 @@ HTMLWidgets.widget({
               url: x.earthquakes_url,
               format: new ol.format.GeoJSON()
             })
-          }));
-        }
-
-        // add geojson vector layer from url (or file)
-        // TODO: check whether file will also works (path issue? RMarkdown may work!)
-        // TODO: mv to 'addGeojson method' via optional url parameter!?
-        if(x.ds){
-          debugLog(x.ds);
-
-          map.addLayer(new ol.layer.Vector({
-            source: new ol.source.Vector({
-              url: x.ds.url,
-              format: new ol.format.GeoJSON()
-            }),
-            //style: getStyle(x.ds.style)
           }));
         }
 
