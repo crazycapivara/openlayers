@@ -76,7 +76,12 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 #'
 #' @export
 #'
+## https://github.com/openstreetmap/map-icons/
 marker_style <- function(src = NULL){
+  if(is.null(src)){
+    src <- system.file("icons/marker_icon", package = getPackageName()) %>%
+      readr::read_file()
+  }
   style_(marker = list(
     src = src
   ))
@@ -102,6 +107,10 @@ text_style <- function(text = NULL, property = NULL, scale = 1.5){
     property = property,
     scale = scale
   ))
+}
+
+style_array <- function(style, resolution, default_style = NULL){
+  stop("needs to be implemented, just do it")
 }
 
 ## TODO: OBSOLETE? remove func or add docs and export it
