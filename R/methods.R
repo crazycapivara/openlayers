@@ -107,6 +107,10 @@ add_mouse_position <- function(ol, projection = "EPSG:4326"){
   ol
 }
 
+#' @name controls
+#'
+#' @param collapsed start the overview map collapsed?
+#'
 #' @export
 #'
 add_overview_map <- function(ol, collapsed = TRUE){

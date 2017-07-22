@@ -5,11 +5,15 @@
 \alias{add_scale_line}
 \alias{controls}
 \alias{add_mouse_position}
+\alias{controls}
+\alias{add_overview_map}
 \title{Add controls to map}
 \usage{
 add_scale_line(ol, units = "metric")
 
 add_mouse_position(ol, projection = "EPSG:4326")
+
+add_overview_map(ol, collapsed = TRUE)
 }
 \arguments{
 \item{ol}{map widget}
@@ -18,6 +22,8 @@ add_mouse_position(ol, projection = "EPSG:4326")
 \code{degrees}, \code{imperial}, \code{nautical}, \code{metric} and \code{us}}
 
 \item{projection}{projection used to display coordinates}
+
+\item{collapsed}{start the overview map collapsed?}
 }
 \description{
 Add controls to map
