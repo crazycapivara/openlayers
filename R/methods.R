@@ -5,8 +5,10 @@
 
 #' @export
 #'
-get_stamen_xyz_url <- function(type_ = "toner"){
-  sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", type_)
+## TODO: obsolete, because stamen tiles can be added via 'add_stamen_tiles'
+## only useful, because 'https' does not show up in RStudio
+get_stamen_xyz_url <- function(layer = "toner"){
+  sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
 #' @export
@@ -35,6 +37,7 @@ add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("watercolor"), opacit
 
 #' @export
 #'
+## TODO: obsolete ? remove!
 add_earthquakes <- function(ol){
   ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
   ol
