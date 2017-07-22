@@ -3,7 +3,7 @@
 An R Interface to OpenLayers
 ============================
 
-[OpenLayers](https://openlayers.org/) is an open-source JavaScript library "making it easy to put a dynamic map in any web page". The goal of the openlayers R package is to make this functionalty available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still an early beta version (check [NEWS](NEWS.md) file for available functionality). Under the hood it wraps OpenLayers v4.2.0.
+[OpenLayers](https://openlayers.org/) is an open-source JavaScript library *making it easy to put a dynamic map in any web page*. The goal of the openlayers R package is to make this functionalty available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still a beta version (check [NEWS](NEWS.md) file for available functionality). Under the hood it wraps OpenLayers v4.2.0.
 
 Installation
 ------------
@@ -31,7 +31,7 @@ ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
 ol()  %>% add_stamen_tiles() %>%
   add_geojson(
     geojsonio::geojson_json(quakes[1:10, ]),
-    style = marker()
+    style = marker_style()
   )
 
 library(sf)
@@ -45,4 +45,4 @@ ol() %>% add_stamen_tiles("terrain") %>%
 Documentation
 -------------
 
-The documentation is still under development.
+The documentation is still under development, so that some function docs are missing.
