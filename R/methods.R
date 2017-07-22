@@ -92,6 +92,14 @@ add_scale_line <- function(ol, units = "metric"){
   ol
 }
 
+#' @name controls
+#'
+#' @param projection projection used to display coordinates
+#'
+#' @examples \dontrun{
+#'   ol() %>% add_osm_tiles() %>% add_mouse_position("EPSG:3857")
+#' }
+#'
 #' @export
 #'
 add_mouse_position <- function(ol, projection = "EPSG:4326"){

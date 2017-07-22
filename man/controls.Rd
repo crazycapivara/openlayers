@@ -3,15 +3,21 @@
 \name{controls}
 \alias{controls}
 \alias{add_scale_line}
+\alias{controls}
+\alias{add_mouse_position}
 \title{Add controls to map}
 \usage{
 add_scale_line(ol, units = "metric")
+
+add_mouse_position(ol, projection = "EPSG:4326")
 }
 \arguments{
 \item{ol}{map widget}
 
 \item{units}{units, supported values are
 \code{degrees}, \code{imperial}, \code{nautical}, \code{metric} and \code{us}}
+
+\item{projection}{projection used to display coordinates}
 }
 \description{
 Add controls to map
@@ -19,6 +25,10 @@ Add controls to map
 \examples{
 \dontrun{
   ol() \%>\% add_scale_line()
+}
+
+\dontrun{
+  ol() \%>\% add_osm_tiles() \%>\% add_mouse_position("EPSG:3857")
 }
 
 }
