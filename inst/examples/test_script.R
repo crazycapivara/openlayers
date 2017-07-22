@@ -20,7 +20,7 @@ ol() %>% add_osm_tiles() %>% add_xyz_tiles(url_, opacity = 0.3)
 ol() %>% add_osm_tiles() %>% add_xyz_tiles(url_, opacity = 0.3) %>%
   add_geojson(nc_json)
 
-ol() %>% add_osm_tiles() %>% add_xyz_tiles(url_, opacity = 0.3) %>%
+ol() %>% add_xyz_tiles(url_, opacity = 0.3) %>%
   add_geojson(nc_json, style = fill_style() + stroke_style(width = 1.5))
 
 # multiple colors
