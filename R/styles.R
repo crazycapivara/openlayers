@@ -113,7 +113,7 @@ style_array <- function(style, resolution, default_style = NULL){
   stop("needs to be implemented, just do it")
 }
 
-## TODO: OBSOLETE? remove func or add docs and export it
+## TODO: OBSOLETE ? remove func or add docs and export it
 #' export
 #'
 style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
