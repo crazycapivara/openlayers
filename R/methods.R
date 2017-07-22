@@ -71,6 +71,8 @@ add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity 
   invoke_method(ol, "addGeojson", data, style, opacity)
 }
 
+## Controls ##
+
 #' Add controls to map
 #'
 #' @name controls
@@ -87,5 +89,12 @@ add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity 
 #'
 add_scale_line <- function(ol, units = "metric"){
   ol$x$scale_line = list(units = units)
+  ol
+}
+
+#' @export
+#'
+add_mouse_position <- function(ol, projection = "EPSG:4326"){
+  ol$x$mouse_position = list(projection = projection)
   ol
 }

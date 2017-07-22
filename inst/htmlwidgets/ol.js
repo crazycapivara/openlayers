@@ -198,6 +198,14 @@ HTMLWidgets.widget({
       //renderer: 'canvas'
     });
 
+    /*
+    var mousePositionControl = new ol.control.MousePosition({
+      coordinateFormat: ol.coordinate.createStringXY(4),
+      projection: "EPSG:4326"
+    });
+    map.addControl(mousePositionControl);
+    */
+
     return {
 
       renderValue: function(x) {
@@ -206,9 +214,16 @@ HTMLWidgets.widget({
         //debugLog(window);
 
         // add scale line to map
-        if(x.scale_line) {
+        if (x.scale_line) {
           map.addControl(new ol.control.ScaleLine({
             units: x.scale_line.units
+          }));
+        }
+
+        if (x.mouse_position) {
+          map.addControl(new ol.control.MousePosition({
+            coordinateFormat: ol.coordinate.createStringXY(4),
+            projection: x.mouse_position.projection || "EPSG:4326"
           }));
         }
 
