@@ -13,3 +13,13 @@
   - `style <- marker()`
 * Added `invoke_method` function to store javascript method calls in `ol`-object
 * Added support for multiple vector layers and tile layers
+
+# openlayers 0.2.1
+
+* Added appendix `_style` to all style functions
+  - `style <- stroke_style(color = "blue") + fill_style(color = "yellow")`
+* Added possibility to pass vectors of length equal to the number of features to style functions
+  - `style <- fill_style(color = c("green", "blue", "red"))`
+* Added documentation to all style functions and some other functions
+* Added opacity parameter to `add_geojson` function
+* Added R tests for style functions
