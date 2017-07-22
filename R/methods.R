@@ -46,10 +46,23 @@ add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
+#' Add vector layer to map
+#'
+#' @param ol map widget
+#' @param data geojson, ignored if \code{filename} is given
+#' @param filename filename to read geojson from
+#' @param style style object or \code{NULL} (use default style)
+#' @param opacity layer opacity
+#'
+#' @examples \dontrun{
+#'   geojson <- geojsonio::geojson_json(quakes[1:10, ])
+#'   ol() %>% add_geojson(geojson)
+#' }
+#'
 #' @export
 #'
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
-  if(is.null(data)){
+  if(!is.null(filename)){
     data <- readr::read_file(filename)
   }
   invoke_method(ol, "addGeojson", data, style, opacity)
