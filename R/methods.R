@@ -1,7 +1,7 @@
 # TODO: obsolete ? REMOVE!
-parse_to_json <- function(data){
-  jsonlite::toJSON(data, auto_unbox = TRUE)
-}
+#parse_to_json <- function(data){
+#  jsonlite::toJSON(data, auto_unbox = TRUE)
+#}
 
 #' @export
 #'
@@ -55,6 +55,18 @@ add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity 
   invoke_method(ol, "addGeojson", data, style, opacity)
 }
 
+#' Add controls to map
+#'
+#' @name controls
+#'
+#' @param ol map widget
+#' @param units units, supported values are
+#'   \code{degrees}, \code{imperial}, \code{nautical}, \code{metric} and \code{us}
+#'
+#' @examples \dontrun{
+#'   ol() %>% add_scale_line()
+#' }
+#'
 #' @export
 #'
 add_scale_line <- function(ol, units = "metric"){
