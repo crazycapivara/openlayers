@@ -219,6 +219,12 @@ HTMLWidgets.widget({
           }));
         }
 
+        if (x.overview_map) {
+          map.addControl(new ol.control.OverviewMap({
+            collapsed: x.overview_map.collapsed
+          }));
+        }
+
         // add earthquakes
         // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
         if(x.earthquakes_url) {

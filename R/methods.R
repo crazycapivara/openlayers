@@ -106,3 +106,10 @@ add_mouse_position <- function(ol, projection = "EPSG:4326"){
   ol$x$mouse_position = list(projection = projection)
   ol
 }
+
+#' @export
+#'
+add_overview_map <- function(ol, collapsed = TRUE){
+  ol$x$overview_map = list(collapsed = collapsed)
+  ol
+}
