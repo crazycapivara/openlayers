@@ -79,7 +79,7 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 ## https://github.com/openstreetmap/map-icons/
 marker_style <- function(src = NULL){
   if(is.null(src)){
-    src <- system.file("icons/marker_icon", package = packageName()) %>%
+    src <- system.file("icons/marker_icon", package = utils::packageName()) %>%
       readr::read_file()
   }
   style_(marker = list(
