@@ -6,6 +6,13 @@
 \usage{
 ol(width = NULL, height = NULL, elementId = NULL)
 }
+\arguments{
+\item{width}{map width}
+
+\item{height}{map height}
+
+\item{elementId}{explicit element id (usually not needed)}
+}
 \description{
 Create OpenLayers map widget
 }

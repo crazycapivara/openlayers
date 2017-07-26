@@ -1,5 +1,9 @@
 #' Create OpenLayers map widget
 #'
+#' @param width map width
+#' @param height map height
+#' @param elementId explicit element id (usually not needed)
+#'
 #' @import htmlwidgets
 #'
 #' @export
