@@ -11,6 +11,13 @@ get_stamen_xyz_url <- function(layer = "toner"){
   sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
+#' Set the view of the map (geographical center and zoom).
+#'
+#' @param ol map widget
+#' @param lon longitude of center
+#' @param lat latitude of center
+#' @param zoom zoom level
+#'
 #' @export
 #'
 set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
