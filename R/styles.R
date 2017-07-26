@@ -114,8 +114,6 @@ style_array <- function(style, resolution, default_style = NULL){
 }
 
 ## TODO: OBSOLETE ? remove func or add docs and export it
-#' export
-#'
 style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
   stroke <- stroke_style(stroke_color, stroke_width)
   if(!is.null(fill_color)){
