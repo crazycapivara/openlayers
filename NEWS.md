@@ -23,3 +23,7 @@
 * Added documentation to all style functions and some other functions
 * Added opacity parameter to `add_geojson` function
 * Added R tests for style functions
+
+# openlayers 0.2.2
+
+* Added missing function docs
