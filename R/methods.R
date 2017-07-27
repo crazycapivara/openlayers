@@ -11,6 +11,22 @@ get_stamen_xyz_url <- function(layer = "toner"){
   sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
+#' Get cartodb XYZ url.
+#'
+#' check \url{https://carto.com/location-data-services/basemaps/}
+#'
+#' @param layer cartodb layer name
+#'
+#' @return cartodb url for given layer
+#'
+#' @export
+#'
+## need to add atribution:
+## attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+get_cartodb_xyz_url <- function(layer = "dark_all"){
+  sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
+}
+
 #' Set the view of the map (geographical center and zoom).
 #'
 #' @param ol map widget
@@ -24,25 +40,45 @@ set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
   invoke_method(ol, "setView", lon, lat, zoom)
 }
 
+#' Add tile layers to map.
+#'
+#' @name add_tiles
+#'
+#' @param ol map widget
+#'
+NULL
+
+#' @describeIn add_tiles Add osm tiles.
+#'
 #' @export
 #'
 add_osm_tiles <- function(ol){
   invoke_method(ol, "addOSMTiles")
 }
 
+#' @describeIn add_tiles Add stamen tiles.
+#'
+#' @param layer stamen layer name
+#'
 #' @export
 #'
 add_stamen_tiles <- function(ol, layer = "watercolor"){
   invoke_method(ol, "addStamenTiles", layer)
 }
 
+#' @describeIn add_tiles Add custom tiles.
+#'
+#' @param xyz_url xyz url
+#' @param opacity layer opacity
+#'
 #' @export
 #'
-add_xyz_tiles <- function(ol, xyz_url = get_stamen_xyz_url("watercolor"), opacity = 0.5){
+## "https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, opacity)
 }
 
-#' @export
+#'
 #'
 ## TODO: obsolete ? remove!
 add_earthquakes <- function(ol){
@@ -56,7 +92,7 @@ add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
-#' Add vector layer to map
+#' Add vector layer to map.
 #'
 #' @param ol map widget
 #' @param data geojson, ignored if \code{filename} is given
