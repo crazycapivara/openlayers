@@ -73,14 +73,19 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #' @param attribution attribution (character vector)
 #' @param opacity layer opacity
 #'
+#' @examples \dontrun{
+#'   xyz_url <- get_cartodb_xyz_url()
+#'   attribution <- cartodb_attribution()
+#'   ol() %>% add_xyz_tiles(xyz_url, attribution)
+#' }
+#'
 #' @export
 #'
-## "https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), attribution = cartodb_attribution(), opacity = 1){
+add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
 }
 
-## TODO: obsolete ? remove!
+# TODO: obsolete ? remove : export
 add_earthquakes <- function(ol){
   ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
   ol

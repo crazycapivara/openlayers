@@ -11,8 +11,7 @@ add_osm_tiles(ol)
 
 add_stamen_tiles(ol, layer = "watercolor")
 
-add_xyz_tiles(ol, xyz_url = get_cartodb_xyz_url(),
-  attribution = cartodb_attribution(), opacity = 1)
+add_xyz_tiles(ol, xyz_url, attribution = NULL, opacity = 1)
 }
 \arguments{
 \item{ol}{map widget}
@@ -37,3 +36,11 @@ Add tile layers to map.
 \item \code{add_xyz_tiles}: Add custom tiles.
 }}
 
+\examples{
+\dontrun{
+  xyz_url <- get_cartodb_xyz_url()
+  attribution <- cartodb_attribution()
+  ol() \%>\% add_xyz_tiles(xyz_url, attribution)
+}
+
+}
