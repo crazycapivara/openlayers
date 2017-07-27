@@ -47,4 +47,4 @@ ol() %>% add_stamen_tiles("terrain") %>%
 Documentation
 -------------
 
-The documentation is still under development, so that some function docs are missing.
+A detailed documentation of the package is still under development, but all functions are documented, so that you can use the build in help functionality of R.
