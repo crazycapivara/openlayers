@@ -81,8 +81,8 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #' @export
 #'
 ## "https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), opacity = 1){
-  invoke_method(ol, "addXYZTiles", xyz_url, opacity)
+add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), attribution = carto_db_attribution(), opacity = 1){
+  invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
 }
 
 ## TODO: obsolete ? remove!

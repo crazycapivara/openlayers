@@ -114,8 +114,11 @@ methods.addOSMTiles = function() {
   }));
 };
 
-methods.addXYZTiles = function(xyz_url, opacity) {
-  source = new ol.source.XYZ({url: xyz_url});
+methods.addXYZTiles = function(xyz_url, attribution, opacity) {
+  source = new ol.source.XYZ({
+    url: xyz_url,
+    attributions: attribution || null
+  });
   helpMe.addTileLayer(this, source, opacity);
 };
 
