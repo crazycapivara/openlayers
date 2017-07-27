@@ -11,7 +11,8 @@ add_osm_tiles(ol)
 
 add_stamen_tiles(ol, layer = "watercolor")
 
-add_xyz_tiles(ol, xyz_url = get_cartodb_xyz_url(), opacity = 1)
+add_xyz_tiles(ol, xyz_url = get_cartodb_xyz_url(),
+  attribution = cartodb_attribution(), opacity = 1)
 }
 \arguments{
 \item{ol}{map widget}
@@ -19,6 +20,8 @@ add_xyz_tiles(ol, xyz_url = get_cartodb_xyz_url(), opacity = 1)
 \item{layer}{stamen layer name}
 
 \item{xyz_url}{xyz url}
+
+\item{attribution}{attribution (character vector)}
 
 \item{opacity}{layer opacity}
 }

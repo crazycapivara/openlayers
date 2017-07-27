@@ -28,10 +28,13 @@ get_cartodb_xyz_url <- function(layer = "dark_all"){
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
 }
 
+#' Cartodb attribution.
+#'
 #' @export
 #'
-carto_db_attribution <- function(){
-  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+cartodb_attribution <- function(){
+  c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
+    '&copy;<a href="https://carto.com/attribution">CARTO</a>')
 }
 
 #' Set the view of the map (geographical center and zoom).
@@ -76,12 +79,13 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #' @describeIn add_tiles Add custom tiles.
 #'
 #' @param xyz_url xyz url
+#' @param attribution attribution (character vector)
 #' @param opacity layer opacity
 #'
 #' @export
 #'
 ## "https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), attribution = carto_db_attribution(), opacity = 1){
+add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), attribution = cartodb_attribution(), opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
 }
 
