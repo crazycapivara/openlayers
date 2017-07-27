@@ -1,14 +1,7 @@
-# TODO: obsolete ? REMOVE!
-#parse_to_json <- function(data){
-#  jsonlite::toJSON(data, auto_unbox = TRUE)
-#}
-
-#' @export
-#'
 ## TODO: obsolete, because stamen tiles can be added via 'add_stamen_tiles'
 ## only useful, because 'https' does not show up in RStudio
 get_stamen_xyz_url <- function(layer = "toner"){
-  sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
+  sprintf("http://{a-c}.tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
 #' Get cartodb xyz url.
@@ -22,8 +15,6 @@ get_stamen_xyz_url <- function(layer = "toner"){
 #'
 #' @export
 #'
-## need to add atribution:
-## attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
 get_cartodb_xyz_url <- function(layer = "dark_all"){
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
 }
