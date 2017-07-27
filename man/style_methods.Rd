@@ -8,7 +8,7 @@
 \alias{icon_style}
 \alias{text_style}
 \alias{style_methods}
-\title{Create styles}
+\title{Create styles.}
 \usage{
 stroke_style(color = "green", width = 2)
 
