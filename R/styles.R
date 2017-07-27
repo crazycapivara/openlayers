@@ -1,6 +1,10 @@
+#' Read JavaScript function.
+#'
+#' @param filename filename
+#'
 #' @export
 #'
-js_style_function <- function(filename) {
+read_js_function <- function(filename) {
   readr::read_file(filename) %>%
     htmlwidgets::JS()
 }
