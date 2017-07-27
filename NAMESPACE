@@ -3,7 +3,6 @@
 S3method("+",style)
 export("%>%")
 export(add_geojson)
-export(add_geojson_ds)
 export(add_mouse_position)
 export(add_osm_tiles)
 export(add_overview_map)

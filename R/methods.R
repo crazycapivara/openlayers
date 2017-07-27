@@ -86,8 +86,7 @@ add_earthquakes <- function(ol){
   ol
 }
 
-#' @export
-#'
+# TODO: useful ? export : remove
 add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
@@ -96,7 +95,7 @@ add_geojson_ds <- function(ol, url){
 #'
 #' @param ol map widget
 #' @param data geojson, ignored if \code{filename} is given
-#' @param filename filename to read geojson from
+#' @param filename filename or url to read geojson from
 #' @param style style object or \code{NULL} (use default style)
 #' @param opacity layer opacity
 #'

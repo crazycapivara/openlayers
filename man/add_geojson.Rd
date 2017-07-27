@@ -11,7 +11,7 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL, opacity = 1)
 
 \item{data}{geojson, ignored if \code{filename} is given}
 
-\item{filename}{filename to read geojson from}
+\item{filename}{filename or url to read geojson from}
 
 \item{style}{style object or \code{NULL} (use default style)}
 
