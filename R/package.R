@@ -1,6 +1,6 @@
-#' openlayersr
+#' openlayers
 #'
-#' @name openlayersr
+#' @name openlayers
 #'
 #' @importFrom magrittr %>%
 #' @export %>%
