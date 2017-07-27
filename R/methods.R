@@ -11,13 +11,14 @@ get_stamen_xyz_url <- function(layer = "toner"){
   sprintf("http://tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
-#' Get cartodb XYZ url.
+#' Get cartodb xyz url.
 #'
-#' check \url{https://carto.com/location-data-services/basemaps/}
+#' for available layers please
+#' check \href{https://carto.com/location-data-services/basemaps/}{cartodb-basemaps}
 #'
 #' @param layer cartodb layer name
 #'
-#' @return cartodb url for given layer
+#' @return cartodb xyz url for given layer
 #'
 #' @export
 #'
@@ -25,6 +26,12 @@ get_stamen_xyz_url <- function(layer = "toner"){
 ## attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
 get_cartodb_xyz_url <- function(layer = "dark_all"){
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
+}
+
+#' @export
+#'
+carto_db_attribution <- function(){
+  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
 }
 
 #' Set the view of the map (geographical center and zoom).
@@ -78,8 +85,6 @@ add_xyz_tiles <- function(ol, xyz_url = get_cartodb_xyz_url(), opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, opacity)
 }
 
-#'
-#'
 ## TODO: obsolete ? remove!
 add_earthquakes <- function(ol){
   ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"

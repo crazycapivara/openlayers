@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{get_cartodb_xyz_url}
 \alias{get_cartodb_xyz_url}
-\title{Get cartodb XYZ url.}
+\title{Get cartodb xyz url.}
 \usage{
 get_cartodb_xyz_url(layer = "dark_all")
 }
@@ -10,8 +10,9 @@ get_cartodb_xyz_url(layer = "dark_all")
 \item{layer}{cartodb layer name}
 }
 \value{
-cartodb url for given layer
+cartodb xyz url for given layer
 }
 \description{
-check \url{https://carto.com/location-data-services/basemaps/}
+for available layers please
+check \href{https://carto.com/location-data-services/basemaps/}{cartodb-basemaps}
 }
