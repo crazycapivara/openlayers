@@ -40,7 +40,7 @@ ol <- function(width = NULL, height = NULL, elementId = NULL) {
 #' @name ol-shiny
 #'
 #' @export
-olOutput <- function(outputId, width = '100%', height = '400px'){
+olOutput <- function(outputId, width = '100%', height = '400px') {
   htmlwidgets::shinyWidgetOutput(outputId, 'ol', width, height, package = 'openlayers')
 }
 
