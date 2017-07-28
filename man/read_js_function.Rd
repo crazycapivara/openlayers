@@ -2,7 +2,7 @@
 % Please edit documentation in R/styles.R
 \name{read_js_function}
 \alias{read_js_function}
-\title{Read JavaScript function.}
+\title{Read JavaScript function from a file}
 \usage{
 read_js_function(filename)
 }
@@ -10,5 +10,5 @@ read_js_function(filename)
 \item{filename}{filename}
 }
 \description{
-Read JavaScript function.
+Read JavaScript function from a file
 }

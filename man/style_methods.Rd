@@ -8,7 +8,7 @@
 \alias{icon_style}
 \alias{text_style}
 \alias{style_methods}
-\title{Create styles.}
+\title{Create styles}
 \usage{
 stroke_style(color = "green", width = 2)
 
@@ -56,5 +56,4 @@ Style methods to create style objects corresponding to
   style = stroke_style() + fill_style()
 
   point_style = circle_style(stroke_style(color = "blue"), fill = NULL)
-
 }

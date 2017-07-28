@@ -1,4 +1,4 @@
-#' Create styles.
+#' Create styles
 #'
 #' Style methods to create style objects corresponding to
 #' \href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
@@ -17,5 +17,4 @@
 #'   style = stroke_style() + fill_style()
 #'
 #'   point_style = circle_style(stroke_style(color = "blue"), fill = NULL)
-#'
 NULL
