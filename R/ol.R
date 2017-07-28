@@ -10,11 +10,11 @@
 ol <- function(width = NULL, height = NULL, elementId = NULL) {
 
   # forward options using x
-  x = list(calls = list())
+  x <- list(calls = list())
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'ol',
+    'ol',
     structure(x),
     width = width,
     height = height,
