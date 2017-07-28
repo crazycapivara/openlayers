@@ -64,7 +64,8 @@ var styleIt = function(style) {
     // TODO: use helper func
     if (style.marker) {
       _style.setImage(new ol.style.Icon({
-        src: style.marker.src || olOptions.defaultMarkerIcon
+        src: style.marker.src || olOptions.defaultMarkerIcon,
+        color: undefined // TODO: set as parameter in R
       }));
     }
 
