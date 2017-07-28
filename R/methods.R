@@ -1,10 +1,10 @@
 ## TODO: obsolete, because stamen tiles can be added via 'add_stamen_tiles'
-## only useful, because 'https' does not show up in RStudio
+## only useful, because 'https' layers sometimes do not show up in RStudio
 get_stamen_xyz_url <- function(layer = "toner"){
   sprintf("http://{a-c}.tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
-#' Get cartodb xyz url.
+#' Get cartodb xyz url
 #'
 #' for available layers please
 #' check \href{https://carto.com/location-data-services/basemaps/}{cartodb-basemaps}
@@ -14,7 +14,6 @@ get_stamen_xyz_url <- function(layer = "toner"){
 #' @return cartodb xyz url for given layer
 #'
 #' @export
-#'
 get_cartodb_xyz_url <- function(layer = "dark_all"){
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
 }
@@ -22,7 +21,6 @@ get_cartodb_xyz_url <- function(layer = "dark_all"){
 #' Cartodb attribution.
 #'
 #' @export
-#'
 cartodb_attribution <- function(){
   c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
     '&copy;<a href="https://carto.com/attribution">CARTO</a>')
@@ -36,7 +34,6 @@ cartodb_attribution <- function(){
 #' @param zoom zoom level
 #'
 #' @export
-#'
 set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
   invoke_method(ol, "setView", lon, lat, zoom)
 }
@@ -46,28 +43,25 @@ set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
 #' @name add_tiles
 #'
 #' @param ol map widget
-#'
 NULL
 
-#' @describeIn add_tiles Add osm tiles.
+#' @describeIn add_tiles Add osm tile layer to map
 #'
 #' @export
-#'
 add_osm_tiles <- function(ol){
   invoke_method(ol, "addOSMTiles")
 }
 
-#' @describeIn add_tiles Add stamen tiles.
+#' @describeIn add_tiles Add stamen tile layer to map
 #'
 #' @param layer stamen layer name
 #'
 #' @export
-#'
 add_stamen_tiles <- function(ol, layer = "watercolor"){
   invoke_method(ol, "addStamenTiles", layer)
 }
 
-#' @describeIn add_tiles Add custom tiles.
+#' @describeIn add_tiles Add custom tile layer to map
 #'
 #' @param xyz_url xyz url
 #' @param attribution attribution (character vector)
@@ -80,7 +74,6 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #' }
 #'
 #' @export
-#'
 add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
 }
@@ -96,7 +89,7 @@ add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
-#' Add vector layer to map.
+#' Add vector layer to map
 #'
 #' @param ol map widget
 #' @param data geojson, ignored if \code{filename} is given
@@ -110,7 +103,6 @@ add_geojson_ds <- function(ol, url){
 #' }
 #'
 #' @export
-#'
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
   if(!is.null(filename)){
     data <- readr::read_file(filename)

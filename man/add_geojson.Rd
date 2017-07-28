@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{add_geojson}
 \alias{add_geojson}
-\title{Add vector layer to map.}
+\title{Add vector layer to map}
 \usage{
 add_geojson(ol, data = NULL, filename = NULL, style = NULL, opacity = 1)
 }
@@ -18,7 +18,7 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL, opacity = 1)
 \item{opacity}{layer opacity}
 }
 \description{
-Add vector layer to map.
+Add vector layer to map
 }
 \examples{
 \dontrun{

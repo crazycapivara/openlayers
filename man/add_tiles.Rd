@@ -29,11 +29,11 @@ Add tile layers to map.
 }
 \section{Functions}{
 \itemize{
-\item \code{add_osm_tiles}: Add osm tiles.
+\item \code{add_osm_tiles}: Add osm tile layer to map
 
-\item \code{add_stamen_tiles}: Add stamen tiles.
+\item \code{add_stamen_tiles}: Add stamen tile layer to map
 
-\item \code{add_xyz_tiles}: Add custom tiles.
+\item \code{add_xyz_tiles}: Add custom tile layer to map
 }}
 
 \examples{

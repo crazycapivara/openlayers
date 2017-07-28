@@ -5,7 +5,6 @@
 #'
 #' @importFrom magrittr %>%
 #' @export %>%
-#'
 NULL
 
 #' Pipe operator.
@@ -14,5 +13,4 @@ NULL
 #'
 #' @name pipe
 #' @aliases %>%
-#'
 NULL
