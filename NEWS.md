@@ -27,3 +27,8 @@
 # openlayers 0.2.2
 
 * Added missing function docs
+* Added functions to add controls to map
+  - `add_scale_line`
+  - `add_overview_map`
+  - `add_mouse_control`
+* Added examples to `inst/examples`
