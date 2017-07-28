@@ -2,9 +2,13 @@
 
 #' Add controls to map
 #'
-#' @name controls
-#'
 #' @param ol map widget
+#'
+#' @name controls
+NULL
+
+#' @describeIn controls Add scaleline to map
+#'
 #' @param units units, supported values are
 #'   \code{degrees}, \code{imperial}, \code{nautical}, \code{metric} and \code{us}
 #'
@@ -18,7 +22,7 @@ add_scale_line <- function(ol, units = "metric"){
   ol
 }
 
-#' @name controls
+#' @describeIn controls Add mouse position to map
 #'
 #' @param projection projection used to display coordinates
 #'
@@ -27,18 +31,16 @@ add_scale_line <- function(ol, units = "metric"){
 #' }
 #'
 #' @export
-#'
 add_mouse_position <- function(ol, projection = "EPSG:4326"){
   ol$x$mouse_position = list(projection = projection)
   ol
 }
 
-#' @name controls
+#' @describeIn controls Add overview map to map
 #'
 #' @param collapsed start the overview map collapsed?
 #'
 #' @export
-#'
 add_overview_map <- function(ol, collapsed = TRUE){
   ol$x$overview_map = list(collapsed = collapsed)
   ol
