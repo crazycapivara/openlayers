@@ -42,6 +42,14 @@ add_mouse_position <- function(ol, projection = "EPSG:4326"){
 #'
 #' @export
 add_overview_map <- function(ol, collapsed = TRUE){
-  ol$x$overview_map = list(collapsed = collapsed)
+  ol$x$overview_map <- list(collapsed = collapsed)
+  ol
+}
+
+#' @describeIn controls Add full screen control to map
+#'
+#' @export
+add_full_screen <- function(ol) {
+  ol$x$full_screen <- TRUE
   ol
 }

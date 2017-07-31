@@ -2,6 +2,7 @@
 
 S3method("+",style)
 export("%>%")
+export(add_full_screen)
 export(add_geojson)
 export(add_mouse_position)
 export(add_osm_tiles)

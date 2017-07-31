@@ -5,6 +5,7 @@
 \alias{add_scale_line}
 \alias{add_mouse_position}
 \alias{add_overview_map}
+\alias{add_full_screen}
 \title{Add controls to map}
 \usage{
 add_scale_line(ol, units = "metric")
@@ -12,6 +13,8 @@ add_scale_line(ol, units = "metric")
 add_mouse_position(ol, projection = "EPSG:4326")
 
 add_overview_map(ol, collapsed = TRUE)
+
+add_full_screen(ol)
 }
 \arguments{
 \item{ol}{map widget}
@@ -33,6 +36,8 @@ Add controls to map
 \item \code{add_mouse_position}: Add mouse position to map
 
 \item \code{add_overview_map}: Add overview map to map
+
+\item \code{add_full_screen}: Add full screen control to map
 }}
 
 \examples{
