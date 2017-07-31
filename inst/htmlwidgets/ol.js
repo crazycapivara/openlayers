@@ -123,13 +123,28 @@ methods.addXYZTiles = function(xyz_url, attribution, opacity) {
   helpMe.addTileLayer(this, source, opacity);
 };
 
+methods.addSelect = function(condition) {
+  condition = condition || "pointerMove";
+  var select = new ol.interaction.Select({
+    condition: ol.events.condition[condition]
+  });
+  this.addInteraction(select);
+  select.on("select", function(e) {
+    console.log("selected");
+    var feature = e.target.getFeatures().item(0);
+    if (feature) {
+      console.log(feature.getId());
+    }
+  });
+};
+
 methods.addGeojson = function(data, style, opacity) {
   console.log("please add geojson");
 
   var format = new ol.format.GeoJSON();
   var features = format.readFeatures(data, {
     // TODO: get projection from data source
-    dataProjection: "",
+    dataProjection: "EPSG:4326",
     featureProjection: "EPSG:3857"
   });
   helpMe.setFeatureIds(features);
@@ -201,6 +216,24 @@ HTMLWidgets.widget({
       })
       //renderer: 'canvas'
     });
+
+    // use select interaction instead!?
+    /*
+    map.on("pointermove", function(evt) {
+      //if (evt.dragging) return;
+      console.log("clicked");
+      var feature = map.forEachFeatureAtPixel(evt.pixel,
+      function(feature) {
+          return feature;
+      });
+      //console.log(feature);
+      var property = "NAME";
+      if (feature) {
+        console.log(feature.getId());
+        console.log(feature.get(property));
+      }
+    });
+    */
 
     return {
 
