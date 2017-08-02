@@ -123,10 +123,11 @@ methods.addXYZTiles = function(xyz_url, attribution, opacity) {
   helpMe.addTileLayer(this, source, opacity);
 };
 
-methods.addSelect = function(condition) {
+methods.addSelect = function(condition, layers) {
   condition = condition || "pointerMove";
   var select = new ol.interaction.Select({
-    condition: ol.events.condition[condition]
+    condition: ol.events.condition[condition],
+    layers: layers
   });
   this.addInteraction(select);
   select.on("select", function(e) {
@@ -138,7 +139,7 @@ methods.addSelect = function(condition) {
   });
 };
 
-methods.addGeojson = function(data, style, opacity) {
+methods.addGeojson = function(data, style, opacity, options) {
   console.log("please add geojson");
 
   var format = new ol.format.GeoJSON();
@@ -164,6 +165,12 @@ methods.addGeojson = function(data, style, opacity) {
     _style = typeof(style) == "function" ? style : styleIt(style);
     layer.setStyle(_style);
   }
+
+  if (options.select) {
+    console.log("add select to layer");
+    methods.addSelect.call(this, options.select.condition, [layer]);
+  }
+
   this.addLayer(layer);
 
   // TODO: fit should be optional

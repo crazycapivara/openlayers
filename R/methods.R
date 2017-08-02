@@ -103,9 +103,9 @@ add_geojson_ds <- function(ol, url){
 #' }
 #'
 #' @export
-add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1){
+add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL, opacity = 1, options = list()){
   if(!is.null(filename)){
     data <- readr::read_file(filename)
   }
-  invoke_method(ol, "addGeojson", data, style, opacity)
+  invoke_method(ol, "addGeojson", data, style, opacity, options)
 }
