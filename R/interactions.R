@@ -4,8 +4,9 @@ add_select <- function(ol, condition = "singleClick") {
 }
 
 #' @export
-select_interaction <- function(condition = "singleClick") {
+select_interaction <- function(condition = "singleClick", property = NULL) {
   list(select = list(
-    condition = condition
+    condition = condition,
+    property = property
   ))
 }

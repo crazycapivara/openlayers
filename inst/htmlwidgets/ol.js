@@ -123,7 +123,7 @@ methods.addXYZTiles = function(xyz_url, attribution, opacity) {
   helpMe.addTileLayer(this, source, opacity);
 };
 
-methods.addSelect = function(condition, layers) {
+methods.addSelect = function(condition, layers, property) {
   condition = condition || "pointerMove";
   var select = new ol.interaction.Select({
     condition: ol.events.condition[condition],
@@ -135,6 +135,9 @@ methods.addSelect = function(condition, layers) {
     var feature = e.target.getFeatures().item(0);
     if (feature) {
       console.log(feature.getId());
+      if (property) {
+        console.log(feature.get(property));
+      }
     }
   });
 };
@@ -168,7 +171,8 @@ methods.addGeojson = function(data, style, opacity, options) {
 
   if (options.select) {
     console.log("add select to layer");
-    methods.addSelect.call(this, options.select.condition, [layer]);
+    methods.addSelect.call(
+      this, options.select.condition, [layer], options.select.property);
   }
 
   this.addLayer(layer);
