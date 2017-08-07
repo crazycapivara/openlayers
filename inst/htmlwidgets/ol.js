@@ -27,6 +27,13 @@ helpMe.setFeatureIds = function(features) {
   });
 };
 
+helpMe.addContainer = function(el, containerId) {
+  var container = document.createElement("div");
+  container.setAttribute("id", containerId);
+  container.innerHTML = "Hi folks";
+  el.parentElement.appendChild(container);
+};
+
 // style helpers as a homage to the RHCP
 var freakyStyley = {};
 
@@ -228,6 +235,7 @@ HTMLWidgets.widget({
       //renderer: 'canvas'
     });
 
+    helpMe.addContainer(el, "info");
     // use select interaction instead!?
     /*
     map.on("pointermove", function(evt) {
