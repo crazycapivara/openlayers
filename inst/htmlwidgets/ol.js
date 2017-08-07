@@ -142,8 +142,11 @@ methods.addSelect = function(condition, layers, property) {
     var feature = e.target.getFeatures().item(0);
     if (feature) {
       console.log(feature.getId());
+      console.log(feature.getProperties());
       if (property) {
         console.log(feature.get(property));
+        document.getElementById("info").innerHTML =
+          feature.get(property);
       }
     }
   });
