@@ -30,7 +30,8 @@ helpMe.setFeatureIds = function(features) {
 helpMe.addContainer = function(el, containerId) {
   var container = document.createElement("div");
   container.setAttribute("id", containerId);
-  container.innerHTML = "Hi folks";
+  container.innerHTML = "&nbsp;";
+  container.setAttribute("style", "padding: 5px;");
   el.parentElement.appendChild(container);
 };
 
@@ -148,7 +149,7 @@ methods.addSelect = function(condition, layers, property) {
         document.getElementById("info").innerHTML =
           feature.get(property);
       }
-    }
+    } else {document.getElementById("info").innerHTML = "";}
   });
 };
 
