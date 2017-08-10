@@ -32,7 +32,8 @@ helpMe.addContainer = function(el, containerId) {
   container.setAttribute("id", containerId);
   container.innerHTML = "&nbsp;";
   container.setAttribute("style", "padding: 5px;");
-  el.parentElement.appendChild(container);
+  //el.parentElement.appendChild(container);
+  el.appendChild(container);
 };
 
 // style helpers as a homage to the RHCP
@@ -138,6 +139,7 @@ methods.addSelect = function(selectOptions, layers) {
     layers: layers
   });
   this.addInteraction(select);
+  helpMe.addContainer(olWidgetElement, "info");
   select.on("select", function(e) {
     console.log("selected");
     var feature = e.target.getFeatures().item(0);
@@ -237,7 +239,8 @@ HTMLWidgets.widget({
       //renderer: 'canvas'
     });
 
-    helpMe.addContainer(el, "info");
+    window.olWidgetElement = el;
+    //helpMe.addContainer(el, "info");
     // use select interaction instead!?
     /*
     map.on("pointermove", function(evt) {
