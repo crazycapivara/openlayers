@@ -61,7 +61,7 @@ var styleIt = function(style) {
 
     // TODO: use helper func
     if (style.circle) {
-      console.log(style.circle);
+      //console.log(style.circle);
       _style.setImage(new ol.style.Circle({
         stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
         fill: freakyStyley.getFill(feature, style.circle.fill),
@@ -131,10 +131,10 @@ methods.addXYZTiles = function(xyz_url, attribution, opacity) {
   helpMe.addTileLayer(this, source, opacity);
 };
 
-methods.addSelect = function(condition, layers, property) {
-  condition = condition || "pointerMove";
+methods.addSelect = function(selectOptions, layers) {
+  condition = selectOptions.condition || "pointerMove";
   var select = new ol.interaction.Select({
-    condition: ol.events.condition[condition],
+    condition: ol.events.condition[selectOptions.condition],
     layers: layers
   });
   this.addInteraction(select);
@@ -144,16 +144,16 @@ methods.addSelect = function(condition, layers, property) {
     if (feature) {
       console.log(feature.getId());
       console.log(feature.getProperties());
-      if (property) {
-        console.log(feature.get(property));
+      if (selectOptions.property) {
+        console.log(feature.get(selectOptions.property));
         document.getElementById("info").innerHTML =
-          feature.get(property);
+          feature.get(selectOptions.property);
       }
     } else {document.getElementById("info").innerHTML = "";}
   });
 };
 
-methods.addGeojson = function(data, style, opacity, options) {
+methods.addGeojson = function(data, style, options) {
   console.log("please add geojson");
 
   var format = new ol.format.GeoJSON();
@@ -168,11 +168,9 @@ methods.addGeojson = function(data, style, opacity, options) {
     features: features
   });
 
-  //console.log("try this one", dataSource.getFeatures());
-
   var layer = new ol.layer.Vector({
     source: dataSource,
-    opacity: opacity
+    opacity: options.opacity || 1
   });
 
   if (style) {
@@ -183,7 +181,7 @@ methods.addGeojson = function(data, style, opacity, options) {
   if (options.select) {
     console.log("add select to layer");
     methods.addSelect.call(
-      this, options.select.condition, [layer], options.select.property);
+      this, options.select, [layer]);
   }
 
   this.addLayer(layer);
