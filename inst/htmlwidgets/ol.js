@@ -120,199 +120,199 @@ var ol = window.ol;
     };
   };
 
-// methods to be invoked from R, this = map object!
-var methods = {};
+  // methods to be invoked from R, this = map object!
+  var methods = {};
 
-methods.setView = function(lon, lat, zoom) {
-  this.setView(new ol.View({
-    center: ol.proj.fromLonLat([lon, lat]),
-    zoom: zoom
-  }));
-};
+  methods.setView = function(lon, lat, zoom) {
+    this.setView(new ol.View({
+      center: ol.proj.fromLonLat([lon, lat]),
+      zoom: zoom
+    }));
+  };
 
-// TODO: use 'helpMe.addTileLayer' method!
-methods.addStamenTiles = function(layer) {
-  this.addLayer(new ol.layer.Tile({
-    source: new ol.source.Stamen({layer: layer})
-  }));
-};
+  // TODO: use 'helpMe.addTileLayer' method!
+  methods.addStamenTiles = function(layer) {
+    this.addLayer(new ol.layer.Tile({
+      source: new ol.source.Stamen({layer: layer})
+    }));
+  };
 
-// TODO: use 'helpMe.addTileLayer' method!
-methods.addOSMTiles = function() {
-  this.addLayer(new ol.layer.Tile({
-    source: new ol.source.OSM()
-  }));
-};
+  // TODO: use 'helpMe.addTileLayer' method!
+  methods.addOSMTiles = function() {
+    this.addLayer(new ol.layer.Tile({
+      source: new ol.source.OSM()
+    }));
+  };
 
-methods.addXYZTiles = function(xyz_url, attribution, opacity) {
-  source = new ol.source.XYZ({
-    url: xyz_url,
-    attributions: attribution || null
-  });
-  helpMe.addTileLayer(this, source, opacity);
-};
+  methods.addXYZTiles = function(xyz_url, attribution, opacity) {
+    source = new ol.source.XYZ({
+      url: xyz_url,
+      attributions: attribution || null
+    });
+    helpMe.addTileLayer(this, source, opacity);
+  };
 
-methods.addSelect = function(selectOptions, layers) {
-  condition = selectOptions.condition || "pointerMove";
-  var select = new ol.interaction.Select({
-    condition: ol.events.condition[selectOptions.condition],
-    layers: layers
-  });
-  this.addInteraction(select);
+  methods.addSelect = function(selectOptions, layers) {
+    condition = selectOptions.condition || "pointerMove";
+    var select = new ol.interaction.Select({
+      condition: ol.events.condition[selectOptions.condition],
+      layers: layers
+    });
+    this.addInteraction(select);
 
-  var target = helpMe.addContainer("info");
-  select.on("select", function(e) {
-    var feature = e.target.getFeatures().item(0);
-    if (feature) {
-      debug.log("feature id:", feature.getId());
-      debug.log("feature properties:", feature.getProperties());
-      if (selectOptions.property) {
-        target.innerHTML = feature.get(selectOptions.property);
-      }
-    } else {target.innerHTML = "&nbsp;"}
-  });
-};
+    var target = helpMe.addContainer("info");
+    select.on("select", function(e) {
+      var feature = e.target.getFeatures().item(0);
+      if (feature) {
+        debug.log("feature id:", feature.getId());
+        debug.log("feature properties:", feature.getProperties());
+        if (selectOptions.property) {
+          target.innerHTML = feature.get(selectOptions.property);
+        }
+      } else { target.innerHTML = "&nbsp;"; }
+    });
+  };
 
-methods.addGeojson = function(data, style, options) {
-  var format = new ol.format.GeoJSON();
-  var features = format.readFeatures(data, {
-    // TODO: get projection from data source
-    dataProjection: "",
-    featureProjection: "EPSG:3857"
-  });
-  helpMe.setFeatureIds(features);
+  methods.addGeojson = function(data, style, options) {
+    var format = new ol.format.GeoJSON();
+    var features = format.readFeatures(data, {
+      // TODO: get projection from data source
+      dataProjection: "",
+      featureProjection: "EPSG:3857"
+    });
+    helpMe.setFeatureIds(features);
 
-  var dataSource = new ol.source.Vector({
-    features: features
-  });
+    var dataSource = new ol.source.Vector({
+      features: features
+    });
 
-  var layer = new ol.layer.Vector({
-    source: dataSource,
-    opacity: options.opacity || 1
-  });
+    var layer = new ol.layer.Vector({
+      source: dataSource,
+      opacity: options.opacity || 1
+    });
 
-  if (style) {
-    _style = typeof(style) == "function" ? style : styleIt(style);
-    layer.setStyle(_style);
-  }
+    if (style) {
+      _style = typeof(style) == "function" ? style : styleIt(style);
+      layer.setStyle(_style);
+    }
 
-  if (options.select) {
-    debug.log("add select interaction to layer:", options.select);
-    methods.addSelect.call(
-      this, options.select, [layer]);
-  }
+    if (options.select) {
+      debug.log("add select interaction to layer:", options.select);
+      methods.addSelect.call(
+        this, options.select, [layer]);
+    }
 
-  this.addLayer(layer);
+    this.addLayer(layer);
 
-  // TODO: fit should be optional
-  this.getView().fit(dataSource.getExtent(), {
-    maxZoom: olWidget.options.defaults.maxZoomFit
-  });
+    // TODO: fit should be optional
+    this.getView().fit(dataSource.getExtent(), {
+      maxZoom: olWidget.options.defaults.maxZoomFit
+    });
 
-  debug.log("zoom:", this.getView().getZoom());
-  debug.log("resolution:", this.getView().getResolution());
-};
+    debug.log("zoom:", this.getView().getZoom());
+    debug.log("resolution:", this.getView().getResolution());
+  };
 
-// TODO: check how to set feature ids
-methods.addGeojsonFromUrl = function(url) {
-  var dataSource = new ol.source.Vector({
-    url: url,
-    format: new ol.format.GeoJSON()
-  });
+  // TODO: check how to set feature ids
+  methods.addGeojsonFromUrl = function(url) {
+    var dataSource = new ol.source.Vector({
+      url: url,
+      format: new ol.format.GeoJSON()
+    });
 
-  var layer = new ol.layer.Vector({
-    source: dataSource,
-  });
+    var layer = new ol.layer.Vector({
+      source: dataSource,
+    });
 
-  this.addLayer(layer);
-};
+    this.addLayer(layer);
+  };
 
-HTMLWidgets.widget({
+  HTMLWidgets.widget({
 
-  name: 'ol',
+    name: 'ol',
 
-  type: 'output',
+    type: 'output',
 
-  factory: function(el, width, height) {
+    factory: function(el, width, height) {
 
-    olWidget.element = el;
+      olWidget.element = el;
 
-    var map = null;
+      var map = null;
 
-    return {
+      return {
 
-      renderValue: function(x) {
+        renderValue: function(x) {
 
-        olWidget.debug.active = true;
-        olWidget.debug.log({msg: "Welcome to the machine!"});
+          olWidget.debug.active = true;
+          olWidget.debug.log({msg: "Welcome to the machine!"});
 
-        map = new ol.Map({
-          target: el.id,
-          view: new ol.View({
-            center: [0, 0],
-            zoom: 2
-          }),
-          renderer: "canvas"
-        });
+          map = new ol.Map({
+            target: el.id,
+            view: new ol.View({
+              center: [0, 0],
+              zoom: 2
+            }),
+            renderer: "canvas"
+          });
 
-        // add scale line to map
-        if (x.scale_line) {
-          map.addControl(new ol.control.ScaleLine({
-            units: x.scale_line.units
-          }));
+          // add scale line to map
+          if (x.scale_line) {
+            map.addControl(new ol.control.ScaleLine({
+              units: x.scale_line.units
+            }));
+          }
+
+          if (x.mouse_position) {
+            map.addControl(new ol.control.MousePosition({
+              coordinateFormat: ol.coordinate.createStringXY(4),
+              projection: x.mouse_position.projection || "EPSG:4326"
+            }));
+          }
+
+          if (x.overview_map) {
+            map.addControl(new ol.control.OverviewMap({
+              collapsed: x.overview_map.collapsed
+            }));
+          }
+
+          if (x.full_screen) {
+            map.addControl(new ol.control.FullScreen());
+          }
+
+          // add earthquakes
+          // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
+          if(x.earthquakes_url) {
+            map.addLayer(new ol.layer.Vector({
+              //title: 'Earthquakes',
+              source: new ol.source.Vector({
+                url: x.earthquakes_url,
+                format: new ol.format.GeoJSON()
+              })
+            }));
+          }
+
+          // execute calls
+          debug.log("all calls:", x.calls);
+
+          for (var i = 0; i < x.calls.length; ++i) {
+            var call = x.calls[i];
+            debug.log("current call:", call);
+            methods[call.method].apply(map, call.args);
+          }
+
+          //debug.log(window);
+
+        // END renderValue
+        },
+
+        resize: function(width, height) {
+
+          // TODO: code to re-render the widget with a new size
+
         }
 
-        if (x.mouse_position) {
-          map.addControl(new ol.control.MousePosition({
-            coordinateFormat: ol.coordinate.createStringXY(4),
-            projection: x.mouse_position.projection || "EPSG:4326"
-          }));
-        }
-
-        if (x.overview_map) {
-          map.addControl(new ol.control.OverviewMap({
-            collapsed: x.overview_map.collapsed
-          }));
-        }
-
-        if (x.full_screen) {
-          map.addControl(new ol.control.FullScreen());
-        }
-
-        // add earthquakes
-        // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
-        if(x.earthquakes_url) {
-          map.addLayer(new ol.layer.Vector({
-            //title: 'Earthquakes',
-            source: new ol.source.Vector({
-              url: x.earthquakes_url,
-              format: new ol.format.GeoJSON()
-            })
-          }));
-        }
-
-        // execute calls
-        debug.log("all calls:", x.calls);
-
-        for (var i = 0; i < x.calls.length; ++i) {
-          var call = x.calls[i];
-          debug.log("current call:", call);
-          methods[call.method].apply(map, call.args);
-        }
-
-        //debug.log(window);
-
-      // END renderValue
-      },
-
-      resize: function(width, height) {
-
-        // TODO: code to re-render the widget with a new size
-
-      }
-
-    };
-  }
-});
+      };
+    }
+  });
 
 })();

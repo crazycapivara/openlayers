@@ -8,7 +8,7 @@ map <- ol() %>%
   add_stamen_tiles() %>%
   add_geojson(filename = geojson_url,
               style = fill_style(colors),
-              opacity = 0.5) %>%
+              options = layer_options(opacity = 0.5)) %>%
   add_mouse_position() #%>% add_stamen_tiles("terrain-labels")
 
 map
