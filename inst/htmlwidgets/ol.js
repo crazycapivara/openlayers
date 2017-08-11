@@ -158,18 +158,16 @@ methods.addSelect = function(selectOptions, layers) {
   });
   this.addInteraction(select);
 
-  var targetId = "info";
-  helpMe.addContainer(targetId);
+  var target = helpMe.addContainer("info");
   select.on("select", function(e) {
     var feature = e.target.getFeatures().item(0);
     if (feature) {
       debug.log("feature id:", feature.getId());
       debug.log("feature properties:", feature.getProperties());
       if (selectOptions.property) {
-        document.getElementById(targetId).innerHTML =
-          feature.get(selectOptions.property);
+        target.innerHTML = feature.get(selectOptions.property);
       }
-    } else {document.getElementById(targetId).innerHTML = "&nbsp;"}
+    } else {target.innerHTML = "&nbsp;"}
   });
 };
 
