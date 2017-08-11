@@ -42,6 +42,7 @@ helpMe.setFeatureIds = function(features) {
   });
 };
 
+// TODO: add style parameter
 helpMe.addContainer = function(containerId, el) {
   el = el || olWidget.element;
   var container = document.createElement("div");
@@ -50,6 +51,7 @@ helpMe.addContainer = function(containerId, el) {
   container.setAttribute("style", "padding: 5px;");
   //el.parentElement.appendChild(container);
   el.appendChild(container);
+  return container;
 };
 
 // style helpers as a homage to the RHCP
@@ -155,29 +157,27 @@ methods.addSelect = function(selectOptions, layers) {
     layers: layers
   });
   this.addInteraction(select);
-  helpMe.addContainer("info");
+
+  var targetId = "info";
+  helpMe.addContainer(targetId);
   select.on("select", function(e) {
-    console.log("selected");
     var feature = e.target.getFeatures().item(0);
     if (feature) {
-      console.log(feature.getId());
-      console.log(feature.getProperties());
+      debug.log("feature id:", feature.getId());
+      debug.log("feature properties:", feature.getProperties());
       if (selectOptions.property) {
-        console.log(feature.get(selectOptions.property));
-        document.getElementById("info").innerHTML =
+        document.getElementById(targetId).innerHTML =
           feature.get(selectOptions.property);
       }
-    } else {document.getElementById("info").innerHTML = "";}
+    } else {document.getElementById(targetId).innerHTML = "&nbsp;"}
   });
 };
 
 methods.addGeojson = function(data, style, options) {
-  console.log("please add geojson");
-
   var format = new ol.format.GeoJSON();
   var features = format.readFeatures(data, {
     // TODO: get projection from data source
-    dataProjection: "EPSG:4326",
+    dataProjection: "",
     featureProjection: "EPSG:3857"
   });
   helpMe.setFeatureIds(features);
@@ -197,7 +197,7 @@ methods.addGeojson = function(data, style, options) {
   }
 
   if (options.select) {
-    console.log("add select to layer");
+    debug.log("add select interaction to layer:", options.select);
     methods.addSelect.call(
       this, options.select, [layer]);
   }
@@ -209,8 +209,8 @@ methods.addGeojson = function(data, style, options) {
     maxZoom: olOptions.maxZoomFit
   });
 
-  //console.log("zoom", this.getView().getZoom());
-  //console.log("resolution", this.getView().getResolution());
+  debug.log("zoom:", this.getView().getZoom());
+  debug.log("resolution:", this.getView().getResolution());
 };
 
 // TODO: check how to set feature ids
@@ -235,25 +235,25 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    var map = new ol.Map({
-      target: el.id,
-      view: new ol.View({
-        center: [0, 0],
-        zoom: 2
-      })
-      //renderer: 'canvas'
-    });
-
     olWidget.element = el;
+
+    var map = null;
 
     return {
 
       renderValue: function(x) {
 
-        //el.innerText = x.message;
-        //debug.log(window);
         olWidget.debug.active = true;
         olWidget.debug.log({msg: "Welcome to the machine!"});
+
+        map = new ol.Map({
+          target: el.id,
+          view: new ol.View({
+            center: [0, 0],
+            zoom: 2
+          }),
+          renderer: "canvas"
+        });
 
         // add scale line to map
         if (x.scale_line) {
@@ -299,7 +299,8 @@ HTMLWidgets.widget({
           debug.log("current call:", call);
           methods[call.method].apply(map, call.args);
         }
-        //console.log(window);
+
+        //debug.log(window);
 
       // END renderValue
       },
