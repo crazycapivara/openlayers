@@ -3,6 +3,8 @@ var ol = window.ol;
 
 "use strict";
 
+(function() {
+
 var olOptions = {};
 
 olOptions.maxZoomFit = 16;
@@ -193,8 +195,8 @@ methods.addGeojson = function(data, style, options) {
     maxZoom: olOptions.maxZoomFit
   });
 
-  console.log("zoom", this.getView().getZoom());
-  console.log("resolution", this.getView().getResolution());
+  //console.log("zoom", this.getView().getZoom());
+  //console.log("resolution", this.getView().getResolution());
 };
 
 // TODO: check how to set feature ids
@@ -310,8 +312,9 @@ HTMLWidgets.widget({
           var call = x.calls[i];
           debugLog("current call:");
           debugLog(call);
-          window.methods[call.method].apply(map, call.args);
+          methods[call.method].apply(map, call.args);
         }
+        //console.log(window);
 
       // END renderValue
       },
@@ -325,3 +328,5 @@ HTMLWidgets.widget({
     };
   }
 });
+
+})();
