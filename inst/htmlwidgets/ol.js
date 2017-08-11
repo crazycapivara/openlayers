@@ -5,6 +5,11 @@ var ol = window.ol;
 
 (function() {
 
+var olWidget = {}; //window.olWidget = {};
+
+olWidget.element = null;
+
+// TODO: if needed, put it to 'olWidget'
 var olOptions = {};
 
 olOptions.maxZoomFit = 16;
@@ -29,7 +34,8 @@ helpMe.setFeatureIds = function(features) {
   });
 };
 
-helpMe.addContainer = function(el, containerId) {
+helpMe.addContainer = function(containerId, el) {
+  el = el || olWidget.element;
   var container = document.createElement("div");
   container.setAttribute("id", containerId);
   container.innerHTML = "&nbsp;";
@@ -102,7 +108,7 @@ var _styleIt = function(style) {
   };
 };
 
-// methods to be invoked from R
+// methods to be invoked from R, this = map object!
 var methods = {};
 
 methods.setView = function(lon, lat, zoom) {
@@ -141,7 +147,7 @@ methods.addSelect = function(selectOptions, layers) {
     layers: layers
   });
   this.addInteraction(select);
-  helpMe.addContainer(olWidgetElement, "info");
+  helpMe.addContainer("info");
   select.on("select", function(e) {
     console.log("selected");
     var feature = e.target.getFeatures().item(0);
@@ -241,7 +247,7 @@ HTMLWidgets.widget({
       //renderer: 'canvas'
     });
 
-    window.olWidgetElement = el;
+    olWidget.element = el;
     //helpMe.addContainer(el, "info");
     // use select interaction instead!?
     /*
@@ -314,7 +320,7 @@ HTMLWidgets.widget({
           debugLog(call);
           methods[call.method].apply(map, call.args);
         }
-        //console.log(window);
+        console.log(window);
 
       // END renderValue
       },
