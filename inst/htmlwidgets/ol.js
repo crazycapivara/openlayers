@@ -17,13 +17,23 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
-// TODO: if needed, put it to 'olWidget'
-var olOptions = {};
+  olWidget.options = {};
 
-olOptions.maxZoomFit = 16;
-olOptions.defaultRadius = 10;
-// TODO: use base64, see below
-olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
+  olWidget.options.defaults = {
+    maxZoomFit: 16,
+    // TODO: use base64
+    markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
+  };
+
+  // TODO: if needed, put it to 'olWidget'
+  /*
+  var olOptions = {};
+
+  olOptions.maxZoomFit = 16;
+  olOptions.defaultRadius = 10;
+  // TODO: use base64, see below
+  olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
+  */
 
 // help(ers) as an homage to the Beatles
 var helpMe = {};
@@ -91,7 +101,7 @@ var styleIt = function(style) {
     // TODO: use helper func
     if (style.marker) {
       _style.setImage(new ol.style.Icon({
-        src: style.marker.src || olOptions.defaultMarkerIcon,
+        src: style.marker.src || olWidget.options.defaults.markerIcon,
         color: undefined // TODO: set as parameter in R
       }));
     }
@@ -204,7 +214,7 @@ methods.addGeojson = function(data, style, options) {
 
   // TODO: fit should be optional
   this.getView().fit(dataSource.getExtent(), {
-    maxZoom: olOptions.maxZoomFit
+    maxZoom: olWidget.options.defaults.maxZoomFit
   });
 
   debug.log("zoom:", this.getView().getZoom());
