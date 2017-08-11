@@ -13,8 +13,8 @@ var ol = window.ol;
 
   debug.active = false;
 
-  debug.log = function(x) {
-    if (this.active) console.log(x);
+  debug.log = function() {
+    if (this.active) console.log.apply(console, arguments);
   };
 
 // TODO: if needed, put it to 'olWidget'
@@ -235,17 +235,6 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    // TODO: mv to window namespace if needed!
-    var debug = true; // should be passed via 'ol_options' in R
-    //var defaultRadius = 10;
-
-    function debugLog(msg) {
-      if (debug) {
-        console.log(msg);
-      }
-    }
-
-    // TODO: apply setView func instead of setting here
     var map = new ol.Map({
       target: el.id,
       view: new ol.View({
@@ -280,7 +269,7 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         //el.innerText = x.message;
-        //debugLog(window);
+        //debug.log(window);
         olWidget.debug.active = true;
         olWidget.debug.log({msg: "Welcome to the machine!"});
 
@@ -321,13 +310,11 @@ HTMLWidgets.widget({
         }
 
         // execute calls
-        debugLog("all calls:");
-        debugLog(x.calls);
+        debug.log("all calls:", x.calls);
 
-        for (var i = 0; i < x.calls.length; i++) {
+        for (var i = 0; i < x.calls.length; ++i) {
           var call = x.calls[i];
-          debugLog("current call:");
-          debugLog(call);
+          debug.log("current call:", call);
           methods[call.method].apply(map, call.args);
         }
         //console.log(window);
