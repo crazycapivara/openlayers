@@ -5,9 +5,17 @@ var ol = window.ol;
 
 (function() {
 
-var olWidget = {}; //window.olWidget = {};
+  var olWidget = {}; //window.olWidget = {};
 
-olWidget.element = null;
+  olWidget.element = null;
+
+  var debug = olWidget.debug = {};
+
+  debug.active = false;
+
+  debug.log = function(x) {
+    if (this.active) console.log(x);
+  };
 
 // TODO: if needed, put it to 'olWidget'
 var olOptions = {};
@@ -273,6 +281,8 @@ HTMLWidgets.widget({
 
         //el.innerText = x.message;
         //debugLog(window);
+        olWidget.debug.active = true;
+        olWidget.debug.log({msg: "Welcome to the machine!"});
 
         // add scale line to map
         if (x.scale_line) {
@@ -320,7 +330,7 @@ HTMLWidgets.widget({
           debugLog(call);
           methods[call.method].apply(map, call.args);
         }
-        console.log(window);
+        //console.log(window);
 
       // END renderValue
       },
