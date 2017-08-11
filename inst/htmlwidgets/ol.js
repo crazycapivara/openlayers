@@ -25,108 +25,100 @@ var ol = window.ol;
     markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
   };
 
-  // TODO: if needed, put it to 'olWidget'
-  /*
-  var olOptions = {};
+  // help(ers) as an homage to the Beatles
+  var helpMe = {};
 
-  olOptions.maxZoomFit = 16;
-  olOptions.defaultRadius = 10;
-  // TODO: use base64, see below
-  olOptions.defaultMarkerIcon = "http://openlayers.org/en/v4.2.0/examples/data/icon.png";
-  */
-
-// help(ers) as an homage to the Beatles
-var helpMe = {};
-
-helpMe.addTileLayer = function(map, source, opacity){
-  map.addLayer(new ol.layer.Tile({
-    source: source,
-    opacity: opacity || 1
-  }));
-};
-
-helpMe.setFeatureIds = function(features) {
-  features.forEach(function(feature, i) {
-    console.log("new feature: " + i);
-    feature.setId(i);
-  });
-};
-
-// TODO: add style parameter
-helpMe.addContainer = function(containerId, el) {
-  el = el || olWidget.element;
-  var container = document.createElement("div");
-  container.setAttribute("id", containerId);
-  container.innerHTML = "&nbsp;";
-  container.setAttribute("style", "padding: 5px;");
-  //el.parentElement.appendChild(container);
-  el.appendChild(container);
-  return container;
-};
-
-// style helpers as a homage to the RHCP
-var freakyStyley = {};
-
-freakyStyley.getOptionValue = function(feature, style, option) {
-  return style[option] instanceof Array ? style[option][feature.getId()] : style[option];
-};
-
-freakyStyley.getFill = function(feature, fill) {
-  return fill ? new ol.style.Fill({
-    color: this.getOptionValue(feature, fill, "color")
-  }) : null;
-};
-
-freakyStyley.getStroke = function(feature, stroke) {
-  // TODO: implement 'getStroke' method
-};
-
-var styleIt = function(style) {
-  return function(feature, resolution) {
-    _style = new ol.style.Style();
-    if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
-
-    if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
-
-    // TODO: use helper func
-    if (style.circle) {
-      //console.log(style.circle);
-      _style.setImage(new ol.style.Circle({
-        stroke: style.circle.stroke ? new ol.style.Stroke(style.circle.stroke) : null,
-        fill: freakyStyley.getFill(feature, style.circle.fill),
-        radius: freakyStyley.getOptionValue(feature, style.circle, "radius")
-      }));
-    }
-
-    // TODO: use helper func
-    if (style.marker) {
-      _style.setImage(new ol.style.Icon({
-        src: style.marker.src || olWidget.options.defaults.markerIcon,
-        color: undefined // TODO: set as parameter in R
-      }));
-    }
-
-    if (style.text) {
-      _style.setText(new ol.style.Text({
-        text: style.text.property ? String(feature.get(style.text.property)) :
-          freakyStyley.getOptionValue(feature, style.text, "text"),
-        scale: style.text.scale || 1
-      }));
-    }
-
-    return _style;
+  helpMe.addTileLayer = function(map, source, opacity){
+    map.addLayer(new ol.layer.Tile({
+      source: source,
+      opacity: opacity || 1
+    }));
   };
-};
 
-// use this function to apply style depending on resolution
-// NOT USED at the moment
-var _styleIt = function(style) {
-  var res_test = 4000;
-  console.log("using _styleIt!");
-  return function(feature, resolution) {
-    return resolution < res_test ? styleIt(style)(feature, resolution) : null;
+  helpMe.setFeatureIds = function(features) {
+    features.forEach(function(feature, i) {
+      debug.log("set feature id: ", i);
+      feature.setId(i);
+    });
   };
-};
+
+  // TODO: add style parameter
+  helpMe.addContainer = function(containerId, el) {
+    el = el || olWidget.element;
+    var container = document.createElement("div");
+    container.setAttribute("id", containerId);
+    container.innerHTML = "&nbsp;";
+    container.setAttribute("style", "padding: 5px;");
+    //el.parentElement.appendChild(container);
+    el.appendChild(container);
+    return container;
+  };
+
+  // style helpers as a homage to the RHCP
+  var freakyStyley = {};
+
+  freakyStyley.getOptionValue = function(feature, style, option) {
+    return style[option] instanceof Array ?
+      style[option][feature.getId()] : style[option];
+  };
+
+  freakyStyley.getFill = function(feature, fill) {
+    return fill ? new ol.style.Fill({
+      color: this.getOptionValue(feature, fill, "color")
+    }) : null;
+  };
+
+  freakyStyley.getStroke = function(feature, stroke) {
+    // TODO: implement 'getStroke' method
+  };
+
+  var styleIt = function(style) {
+    return function(feature, resolution) {
+      _style = new ol.style.Style();
+      if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
+
+      if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
+
+      // TODO: use helper func
+      if (style.circle) {
+        _style.setImage(new ol.style.Circle({
+          stroke: style.circle.stroke ?
+            new ol.style.Stroke(style.circle.stroke) : null,
+          fill: freakyStyley.getFill(feature, style.circle.fill),
+          radius: freakyStyley.getOptionValue(feature, style.circle, "radius")
+        }));
+      }
+
+      // TODO: use helper func
+      if (style.marker) {
+        _style.setImage(new ol.style.Icon({
+          src: style.marker.src || olWidget.options.defaults.markerIcon,
+          color: undefined // TODO: set as parameter in R
+        }));
+      }
+
+      if (style.text) {
+        _style.setText(new ol.style.Text({
+          text: style.text.property ?
+            String(feature.get(style.text.property)) :
+            freakyStyley.getOptionValue(feature, style.text, "text"),
+          scale: style.text.scale || 1
+        }));
+      }
+
+      return _style;
+    };
+  };
+
+  // use this function to apply style depending on resolution
+  // NOT USED at the moment
+  var _styleIt = function(style) {
+    var res_test = 4000;
+    console.log("using _styleIt!");
+    return function(feature, resolution) {
+      return resolution < res_test ? styleIt(style)(feature, resolution) : null;
+    };
+  };
 
 // methods to be invoked from R, this = map object!
 var methods = {};
