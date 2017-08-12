@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{add_geojson}
 \alias{add_geojson}
-\title{Add vector layer to map}
+\title{Add vector layer to the map}
 \usage{
 add_geojson(ol, data = NULL, filename = NULL, style = NULL,
   options = vector_options(), select = NULL)
@@ -21,11 +21,12 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL,
 \item{select}{see \code{\link{select_interaction}}}
 }
 \description{
-Add vector layer to map
+Add vector layer to the map
 }
 \examples{
 \dontrun{
-  geojson <- geojsonio::geojson_json(quakes[1:10, ])
+  require("geojsonio")
+  geojson <- geojson_json(us_cities[1:10, ])
   ol() \%>\% add_geojson(geojson)
 }
 

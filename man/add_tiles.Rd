@@ -5,7 +5,7 @@
 \alias{add_osm_tiles}
 \alias{add_stamen_tiles}
 \alias{add_xyz_tiles}
-\title{Add tile layers to map.}
+\title{Add tile layers to the map}
 \usage{
 add_osm_tiles(ol)
 
@@ -25,15 +25,15 @@ add_xyz_tiles(ol, xyz_url, attribution = NULL, opacity = 1)
 \item{opacity}{layer opacity}
 }
 \description{
-Add tile layers to map.
+Add tile layers to the map
 }
 \section{Functions}{
 \itemize{
-\item \code{add_osm_tiles}: Add osm tile layer to map
+\item \code{add_osm_tiles}: Add osm tile layer to the map
 
-\item \code{add_stamen_tiles}: Add stamen tile layer to map
+\item \code{add_stamen_tiles}: Add stamen tile layer to the map
 
-\item \code{add_xyz_tiles}: Add custom tile layer to map
+\item \code{add_xyz_tiles}: Add custom tile layer to the map
 }}
 
 \examples{

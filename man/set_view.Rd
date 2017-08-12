@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{set_view}
 \alias{set_view}
-\title{Set the view of the map (geographical center and zoom).}
+\title{Set the view of the map (geographical center and zoom)}
 \usage{
 set_view(ol, lon = 9.5, lat = 51.31667, zoom = 4)
 }
@@ -16,5 +16,5 @@ set_view(ol, lon = 9.5, lat = 51.31667, zoom = 4)
 \item{zoom}{zoom level}
 }
 \description{
-Set the view of the map (geographical center and zoom).
+Set the view of the map (geographical center and zoom)
 }

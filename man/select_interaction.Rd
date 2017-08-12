@@ -2,7 +2,7 @@
 % Please edit documentation in R/interactions.R
 \name{select_interaction}
 \alias{select_interaction}
-\title{Select interaction}
+\title{Select interaction (object)}
 \usage{
 select_interaction(condition = "singleClick", property = NULL)
 }
@@ -12,5 +12,5 @@ select_interaction(condition = "singleClick", property = NULL)
 \item{property}{feature property, ...}
 }
 \description{
-Select interaction
+Select interaction (object)
 }

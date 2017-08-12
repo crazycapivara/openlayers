@@ -26,7 +26,7 @@ cartodb_attribution <- function(){
     '&copy;<a href="https://carto.com/attribution">CARTO</a>')
 }
 
-#' Set the view of the map (geographical center and zoom).
+#' Set the view of the map (geographical center and zoom)
 #'
 #' @param ol map widget
 #' @param lon longitude of center
@@ -38,21 +38,21 @@ set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
   invoke_method(ol, "setView", lon, lat, zoom)
 }
 
-#' Add tile layers to map.
+#' Add tile layers to the map
 #'
 #' @name add_tiles
 #'
 #' @param ol map widget
 NULL
 
-#' @describeIn add_tiles Add osm tile layer to map
+#' @describeIn add_tiles Add osm tile layer to the map
 #'
 #' @export
 add_osm_tiles <- function(ol){
   invoke_method(ol, "addOSMTiles")
 }
 
-#' @describeIn add_tiles Add stamen tile layer to map
+#' @describeIn add_tiles Add stamen tile layer to the map
 #'
 #' @param layer stamen layer name
 #'
@@ -61,7 +61,7 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
   invoke_method(ol, "addStamenTiles", layer)
 }
 
-#' @describeIn add_tiles Add custom tile layer to map
+#' @describeIn add_tiles Add custom tile layer to the map
 #'
 #' @param xyz_url xyz url
 #' @param attribution attribution (character vector)
@@ -83,7 +83,7 @@ add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
-#' Add vector layer to map
+#' Add vector layer to the map
 #'
 #' @param ol map widget
 #' @param data geojson, ignored if \code{filename} is given
@@ -93,7 +93,8 @@ add_geojson_ds <- function(ol, url){
 #' @param select see \code{\link{select_interaction}}
 #'
 #' @examples \dontrun{
-#'   geojson <- geojsonio::geojson_json(quakes[1:10, ])
+#'   require("geojsonio")
+#'   geojson <- geojson_json(us_cities[1:10, ])
 #'   ol() %>% add_geojson(geojson)
 #' }
 #'
@@ -113,7 +114,7 @@ require_namespace <- function(name){
   }
 }
 
-#' Add vector data to map
+#' Add vector data to the map
 #'
 #' This function is just a shorthand to \code{\link{add_geojson}} using
 #' \pkg{geojsonio} to convert any data object to geojson.
