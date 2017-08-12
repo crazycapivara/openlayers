@@ -16,6 +16,6 @@ add_vector_data(ol, data, ...)
 }
 \description{
 This function is just a shorthand to \code{\link{add_geojson}} using
-\pkg{geojsonio} to convert any data to geojson.
+\pkg{geojsonio} to convert any data object to geojson.
 Therefore, if the library/namespace is not available, an error is thrown.
 }
