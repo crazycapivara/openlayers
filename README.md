@@ -5,7 +5,7 @@ An R Interface to OpenLayers
 
 [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=master)](https://travis-ci.org/crazycapivara/openlayers) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=develop)](https://travis-ci.org/crazycapivara/openlayers)
 
-[OpenLayers](https://openlayers.org/) is an open-source JavaScript library *making it easy to put a dynamic map in any web page*. The goal of the openlayers R package is to make this functionalty available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still a beta version (check [NEWS](NEWS.md) file for available functionality). Under the hood it wraps OpenLayers v4.2.0.
+[OpenLayers](https://openlayers.org/) is an open-source JavaScript library *making it easy to put a dynamic map in any web page*. The goal of the openlayers R package is to make this functionality available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still a beta version (check [NEWS](NEWS.md) file for available functionality). Under the hood it wraps OpenLayers v4.2.0.
 
 Installation
 ------------
