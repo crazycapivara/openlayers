@@ -74,7 +74,7 @@ var ol = window.ol;
 
   var styleIt = function(style) {
     return function(feature, resolution) {
-      _style = new ol.style.Style();
+      var _style = new ol.style.Style();
       if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
 
       if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
@@ -192,7 +192,7 @@ var ol = window.ol;
     });
 
     if (style) {
-      _style = typeof(style) == "function" ? style : styleIt(style);
+      var _style = typeof(style) == "function" ? style : styleIt(style);
       layer.setStyle(_style);
     }
 
