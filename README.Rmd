@@ -39,18 +39,20 @@ library(openlayers)
 
 ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
 
+require("geojsonio")
+
 ol()  %>% add_stamen_tiles() %>%
   add_geojson(
-    geojsonio::geojson_json(quakes[1:10, ]),
+    geojson_json(us_cities[1:10, ]),
     style = marker_style()
   )
 
-library(sf)
+require("sf")
 
 nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
 
 ol() %>% add_stamen_tiles("terrain") %>%
-  add_geojson(geojsonio::geojson_json(nc))
+  add_vector_data(nc)
 ```
 
 ## Documentation
