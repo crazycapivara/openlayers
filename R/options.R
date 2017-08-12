@@ -1,3 +1,8 @@
+#' Map options
+#'
+#' @param max_zoom_fit max zoom when fitting view to extend of data source
+#' @param ... to be added soon
+#'
 #' @export
 ol_options <- function(max_zoom_fit = 16, ...) {
   c(list(maxZoomFit = max_zoom_fit),

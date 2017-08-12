@@ -14,7 +14,7 @@ ol(width = NULL, height = NULL, elementId = NULL,
 
 \item{elementId}{explicit element id (usually not needed)}
 
-\item{options}{see \code{\link{op_options}}}
+\item{options}{map options, see \code{\link{ol_options}}}
 }
 \description{
 Create OpenLayers map widget

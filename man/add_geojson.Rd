@@ -16,7 +16,7 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL,
 
 \item{style}{style object or \code{NULL} (use default style)}
 
-\item{options}{layer options, see \code{\link{layer_options}}}
+\item{options}{general vector options, see \code{\link{vector_options}}}
 
 \item{select}{see \code{\link{select_interaction}}}
 }

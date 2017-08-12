@@ -3,7 +3,7 @@
 #' @param width map width
 #' @param height map height
 #' @param elementId explicit element id (usually not needed)
-#' @param options see \code{\link{op_options}}
+#' @param options map options, see \code{\link{ol_options}}
 #'
 #' @import htmlwidgets
 #'

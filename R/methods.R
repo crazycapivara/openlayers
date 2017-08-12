@@ -95,7 +95,7 @@ add_geojson_ds <- function(ol, url){
 #' @param data geojson, ignored if \code{filename} is given
 #' @param filename filename or url to read geojson from
 #' @param style style object or \code{NULL} (use default style)
-#' @param options layer options, see \code{\link{layer_options}}
+#' @param options general vector options, see \code{\link{vector_options}}
 #' @param select see \code{\link{select_interaction}}
 #'
 #' @examples \dontrun{
