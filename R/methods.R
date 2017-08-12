@@ -105,7 +105,7 @@ add_geojson_ds <- function(ol, url){
 #'
 #' @export
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
-                        options = layer_options(), select = NULL){
+                        options = vector_options(), select = NULL){
   if(!is.null(filename)){
     data <- readr::read_file(filename)
   }
