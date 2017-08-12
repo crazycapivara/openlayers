@@ -2,15 +2,13 @@
 % Please edit documentation in R/options.R
 \name{layer_options}
 \alias{layer_options}
-\title{Layer options.}
+\title{Layer options}
 \usage{
-layer_options(opacity = 1, select = NULL)
+layer_options(opacity = 1)
 }
 \arguments{
 \item{opacity}{opacity}
-
-\item{select}{\code{\link{select_interaction}} object}
 }
 \description{
-Layer options.
+Layer options
 }

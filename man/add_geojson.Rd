@@ -5,7 +5,7 @@
 \title{Add vector layer to map}
 \usage{
 add_geojson(ol, data = NULL, filename = NULL, style = NULL,
-  options = layer_options())
+  options = layer_options(), select = NULL)
 }
 \arguments{
 \item{ol}{map widget}
@@ -17,6 +17,8 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL,
 \item{style}{style object or \code{NULL} (use default style)}
 
 \item{options}{layer options, see \code{\link{layer_options}}}
+
+\item{select}{see \code{\link{select_interaction}}}
 }
 \description{
 Add vector layer to map
