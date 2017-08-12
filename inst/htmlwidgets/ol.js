@@ -17,6 +17,9 @@ var ol = window.ol;
 
   olWidget.options = {
     debug: false,
+    renderer: "canvas",
+    minZoom: undefined,
+    maxZoom: undefined,
     maxZoomFit: 16,
     // TODO: use base64
     markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
@@ -252,9 +255,12 @@ var ol = window.ol;
             target: el.id,
             view: new ol.View({
               center: [0, 0],
-              zoom: 2
+              zoom: 2,
+              minZoom: olWidget.options.minZoom,
+              maxZoom: olWidget.options.maxZoom
             }),
-            renderer: "canvas"
+            renderer: olWidget.options.renderer,
+            loadTilesWhileAnimating: true
           });
 
           // add scale line to map
