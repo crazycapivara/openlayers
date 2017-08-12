@@ -78,12 +78,6 @@ add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, opacity = 1){
   invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
 }
 
-# TODO: obsolete ? remove : export
-add_earthquakes <- function(ol){
-  ol$x$earthquakes_url <- "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson"
-  ol
-}
-
 # TODO: useful ? export : remove
 add_geojson_ds <- function(ol, url){
   invoke_method(ol, "addGeojsonFromUrl", url)

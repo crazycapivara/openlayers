@@ -290,18 +290,6 @@ var ol = window.ol;
             map.addControl(new ol.control.FullScreen());
           }
 
-          // add earthquakes
-          // countries: https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson
-          if(x.earthquakes_url) {
-            map.addLayer(new ol.layer.Vector({
-              //title: 'Earthquakes',
-              source: new ol.source.Vector({
-                url: x.earthquakes_url,
-                format: new ol.format.GeoJSON()
-              })
-            }));
-          }
-
           // execute calls
           debug.log("all calls:", x.calls);
 
