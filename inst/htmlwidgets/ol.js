@@ -1,9 +1,7 @@
 // define ol to use strict mode
 var ol = window.ol;
 
-"use strict";
-
-(function() {
+(function() {"use strict";
 
   var olWidget = {}; //window.olWidget = {};
 
@@ -17,9 +15,8 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
-  olWidget.options = {};
-
-  olWidget.options.defaults = {
+  olWidget.options = {
+    debug: false,
     maxZoomFit: 16,
     // TODO: use base64
     markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
@@ -92,7 +89,7 @@ var ol = window.ol;
       // TODO: use helper func
       if (style.marker) {
         _style.setImage(new ol.style.Icon({
-          src: style.marker.src || olWidget.options.defaults.markerIcon,
+          src: style.marker.src || olWidget.options.markerIcon,
           color: undefined // TODO: set as parameter in R
         }));
       }
@@ -145,7 +142,7 @@ var ol = window.ol;
   };
 
   methods.addXYZTiles = function(xyz_url, attribution, opacity) {
-    source = new ol.source.XYZ({
+    var source = new ol.source.XYZ({
       url: xyz_url,
       attributions: attribution || null
     });
@@ -153,9 +150,9 @@ var ol = window.ol;
   };
 
   methods.addSelect = function(selectOptions, layers) {
-    condition = selectOptions.condition || "pointerMove";
+    var condition = selectOptions.condition || "pointerMove";
     var select = new ol.interaction.Select({
-      condition: ol.events.condition[selectOptions.condition],
+      condition: ol.events.condition[condition],
       layers: layers
     });
     this.addInteraction(select);
@@ -206,7 +203,7 @@ var ol = window.ol;
 
     // TODO: fit should be optional
     this.getView().fit(dataSource.getExtent(), {
-      maxZoom: olWidget.options.defaults.maxZoomFit
+      maxZoom: olWidget.options.maxZoomFit
     });
 
     debug.log("zoom:", this.getView().getZoom());
@@ -243,8 +240,13 @@ var ol = window.ol;
 
         renderValue: function(x) {
 
-          olWidget.debug.active = true;
-          olWidget.debug.log({msg: "Welcome to the machine!"});
+          console.log(Object.keys(x.options));
+          console.log(x.options);
+          for (var key in x.options) { olWidget.options[key] = x.options[key]; }
+          console.log(olWidget.options);
+
+          olWidget.debug.active = olWidget.options.debug;
+          olWidget.debug.log("Welcome to the machine!");
 
           map = new ol.Map({
             target: el.id,

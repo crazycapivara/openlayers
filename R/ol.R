@@ -3,14 +3,15 @@
 #' @param width map width
 #' @param height map height
 #' @param elementId explicit element id (usually not needed)
+#' @param options see \code{\link{op_options}}
 #'
 #' @import htmlwidgets
 #'
 #' @export
-ol <- function(width = NULL, height = NULL, elementId = NULL) {
+ol <- function(width = NULL, height = NULL, elementId = NULL, options = ol_options()) {
 
   # forward options using x
-  x <- list(calls = list())
+  x <- list(calls = list(), options = options)
 
   # create widget
   htmlwidgets::createWidget(
@@ -45,6 +46,7 @@ olOutput <- function(outputId, width = '100%', height = '400px') {
 }
 
 #' @rdname ol-shiny
+#'
 #' @export
 renderOl <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted

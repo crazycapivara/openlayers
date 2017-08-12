@@ -4,7 +4,8 @@
 \alias{ol}
 \title{Create OpenLayers map widget}
 \usage{
-ol(width = NULL, height = NULL, elementId = NULL)
+ol(width = NULL, height = NULL, elementId = NULL,
+  options = ol_options())
 }
 \arguments{
 \item{width}{map width}
@@ -12,6 +13,8 @@ ol(width = NULL, height = NULL, elementId = NULL)
 \item{height}{map height}
 
 \item{elementId}{explicit element id (usually not needed)}
+
+\item{options}{see \code{\link{op_options}}}
 }
 \description{
 Create OpenLayers map widget

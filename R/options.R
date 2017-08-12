@@ -1,3 +1,8 @@
+#' @export
+ol_options <- function(max_zoom_fit = 16, ...) {
+  c(list(maxZoomFit = max_zoom_fit), list(...))
+}
+
 ## also add options?
 `+.options` <- function(lhs, rhs) {
   c(lhs, rhs)
