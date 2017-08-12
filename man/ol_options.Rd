@@ -4,10 +4,14 @@
 \alias{ol_options}
 \title{Map options}
 \usage{
-ol_options(max_zoom_fit = 16, ...)
+ol_options(min_zoom = NULL, max_zoom = NULL, max_zoom_fit = 16, ...)
 }
 \arguments{
-\item{max_zoom_fit}{max zoom when fitting view to extend of data source}
+\item{min_zoom}{minimal zoom of map}
+
+\item{max_zoom}{maximal zoom of map}
+
+\item{max_zoom_fit}{maximal zoom when fitting view to extend of data source}
 
 \item{...}{to be added soon}
 }

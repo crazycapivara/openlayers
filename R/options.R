@@ -1,12 +1,18 @@
 #' Map options
 #'
-#' @param max_zoom_fit max zoom when fitting view to extend of data source
+#' @param min_zoom minimal zoom of map
+#' @param max_zoom maximal zoom of map or \code{NULL} (no limit)
+#' @param max_zoom_fit maximal zoom when fitting view to extend of data source
 #' @param ... to be added soon
 #'
 #' @export
-ol_options <- function(max_zoom_fit = 16, ...) {
-  c(list(maxZoomFit = max_zoom_fit),
-    list(...))
+ol_options <- function(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...) {
+  x <- list(
+    minZoom = min_zoom,
+    maxZoom = max_zoom,
+    maxZoomFit = max_zoom_fit
+  )
+  c(x, list(...))
 }
 
 #' Vector layer options

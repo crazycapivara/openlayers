@@ -7,7 +7,7 @@ var ol = window.ol;
 
   olWidget.element = null;
 
-  var debug = olWidget.debug = {};
+  var debug = {}; //olWidget.debug = {};
 
   debug.active = false;
 
@@ -243,13 +243,16 @@ var ol = window.ol;
 
         renderValue: function(x) {
 
-          console.log(Object.keys(x.options));
           console.log(x.options);
-          for (var key in x.options) { olWidget.options[key] = x.options[key]; }
+          for (var key in x.options) {
+            // set null to undefined
+            olWidget.options[key] = x.options[key] === null ?
+              undefined : x.options[key];
+          }
           console.log(olWidget.options);
 
-          olWidget.debug.active = olWidget.options.debug;
-          olWidget.debug.log("Welcome to the machine!");
+          debug.active = olWidget.options.debug;
+          debug.log("Welcome to the machine!");
 
           map = new ol.Map({
             target: el.id,
