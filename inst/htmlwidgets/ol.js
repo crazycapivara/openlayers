@@ -266,6 +266,14 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
+          var latlngContainer = helpMe.addContainer("latlng");
+          map.on("singleclick", function(e) {
+            var coordinate = ol.proj.transform(
+              e.coordinate, "EPSG:3857", "EPSG:4326");
+            console.log("xy", coordinate);
+            latlngContainer.innerHTML = ol.coordinate.toStringHDMS(coordinate);
+          });
+
           // add scale line to map
           if (x.scale_line) {
             map.addControl(new ol.control.ScaleLine({
