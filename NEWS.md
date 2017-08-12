@@ -32,3 +32,14 @@
   - `add_overview_map`
   - `add_mouse_control`
 * Added examples to `inst/examples`
+
+# openlayers 0.3.0
+
+* Added full screen control
+  - `add_full_screen`
+* Added `select_interaction` making features selectable
+* Added `ol_options` to set map options like
+  - `min_zoom`, `max_zoom`
+  - `debug` mode
+* Added function `add_vector_data` as a shorthand to `add_geojson` using `geojsonio`
+to parse any data to geojson
