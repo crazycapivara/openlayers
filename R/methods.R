@@ -106,3 +106,27 @@ add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
   options <- c(options, list(select = select))
   invoke_method(ol, "addGeojson", data, style, options)
 }
+
+require_namespace <- function(name){
+  if(!requireNamespace(name, quietly = TRUE)){
+    stop(sprintf("please install %s\n", name), call. = FALSE)
+  }
+}
+
+#' Add vector data to map
+#'
+#' This function is just a shorthand to \code{\link{add_geojson}} using
+#' \pkg{geojsonio} to convert any data object to geojson.
+#' Therefore, if the library/namespace is not available, an error is thrown.
+#'
+#' @param ol map widget
+#' @param data any data object which can be parsed to geojson by
+#'   \code{\link[geojsonio]{geojson_json}}
+#' @param ... optional parameters passed to \code{\link{add_geojson}}
+#'
+#' @export
+add_vector_data <- function(ol, data, ...) {
+  require_namespace("geojsonio")
+  data <- geojsonio::geojson_json(data)
+  add_geojson(ol, data, ...)
+}
