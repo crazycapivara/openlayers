@@ -270,8 +270,13 @@ var ol = window.ol;
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
-            console.log("xy", coordinate);
+            debug.log("xy", coordinate);
             latlngContainer.innerHTML = ol.coordinate.toStringHDMS(coordinate);
+            if (HTMLWidgets.shinyMode) {
+              debug.log("Shiny mode!");
+              var lnglat = { lng: coordinate[0], lat: coordinate[1] };
+              Shiny.onInputChange(el.id + "_click", lnglat);
+            }
           });
 
           // add scale line to map
