@@ -294,7 +294,11 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
-          helpMe.dragAndDrop(el, function(data) { console.log(data); });
+          //helpMe.dragAndDrop(el, function(data) { console.log(data); });
+          helpMe.dragAndDrop(el, function(data) {
+            console.log(data);
+            methods.addGeojson.call(map, data, null, {});
+          });
 
           //var latlngContainer = helpMe.addContainer("latlng");
           map.on("singleclick", function(e) {
