@@ -59,6 +59,7 @@ var ol = window.ol;
     feature.getKeys().forEach(function(key) {
       if (key !== "geometry") properties[key] = feature.get(key);
     });
+    debug.log("feature properties:", properties);
     return properties;
   };
 
@@ -191,12 +192,8 @@ var ol = window.ol;
       var feature = e.target.getFeatures().item(0);
       if (feature) {
         var properties = helpMe.getFeatureProperties(feature);
-        debug.log("feature id:", feature.getId());
-        debug.log("feature properties:", properties);
         if (selectOptions.property) {
           target.innerHTML = properties[selectOptions.property];
-        } else if (selectOptions.showJson) {
-          target.innerHTML = JSON.stringify(properties);
         }
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
