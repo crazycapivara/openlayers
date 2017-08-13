@@ -169,18 +169,16 @@ var ol = window.ol;
         if (selectOptions.property) {
           target.innerHTML = feature.get(selectOptions.property);
         }
-        /*
-        var properties = feature.getProperties();
-        var p_ = {};
-        for (var key in properties) {
-          var x = properties[key];
-          if (typeof x !== Object) p_[key] = x;
-        }
-        console.log(p_);
-        */
+        // get all properties of feature
+        var properties = {id: feature.getId()};
+        feature.getKeys().forEach(function(key) {
+          if (key !== "geometry") properties[key] = feature.get(key);
+        });
+        debug.log(properties);
+
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
-          Shiny.onInputChange(olWidget.element.id + "_select", feature.getId());
+          Shiny.onInputChange(olWidget.element.id + "_select", properties);
         }
       } else { target.innerHTML = "&nbsp;"; }
     });
