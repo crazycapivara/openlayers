@@ -294,12 +294,6 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
-          //helpMe.dragAndDrop(el, function(data) { console.log(data); });
-          helpMe.dragAndDrop(el, function(data) {
-            console.log(data);
-            methods.addGeojson.call(map, data, null, {});
-          });
-
           //var latlngContainer = helpMe.addContainer("latlng");
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
@@ -337,6 +331,18 @@ var ol = window.ol;
 
           if (x.full_screen) {
             map.addControl(new ol.control.FullScreen());
+          }
+
+          if (x.enable_drag_and_drop) {
+            helpMe.dragAndDrop(el, function(data) {
+              debug.log(data);
+              if (!data.features) {
+                console.log("no features found");
+                return;
+              }
+              methods.addGeojson.call(map, data, null,
+                { select: {condition: "singleClick"} });
+            });
           }
 
           // execute calls

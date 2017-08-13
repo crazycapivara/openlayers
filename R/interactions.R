@@ -22,3 +22,9 @@ add_select <- function(ol, options = select_interaction()) {
 select_interaction <- function(condition = "singleClick", property = NULL) {
   list(condition = condition, property = property)
 }
+
+#' @export
+enable_drag_and_drop <- function(ol) {
+  ol$x$enable_drag_and_drop <- TRUE
+  ol
+}
