@@ -75,6 +75,7 @@ var ol = window.ol;
   var styleIt = function(style) {
     return function(feature, resolution) {
       var _style = new ol.style.Style();
+
       if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
 
       if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
@@ -277,15 +278,19 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
-          var latlngContainer = helpMe.addContainer("latlng");
+          //var latlngContainer = helpMe.addContainer("latlng");
+
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
             debug.log("xy", coordinate);
-            latlngContainer.innerHTML = ol.coordinate.toStringHDMS(coordinate);
+
+            var coordHDMS = ol.coordinate.toStringHDMS(coordinate);
+            //latlngContainer.innerHTML = coordHDMS;
+
             if (HTMLWidgets.shinyMode) {
               debug.log("Shiny mode!");
-              var lnglat = { lng: coordinate[0], lat: coordinate[1] };
+              var lnglat = { lng: coordinate[0], lat: coordinate[1], HDMS: coordHDMS };
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
           });
