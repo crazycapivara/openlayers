@@ -214,11 +214,9 @@ var ol = window.ol;
       featureProjection: "EPSG:3857"
     });
     helpMe.setFeatureIds(features);
-
     var dataSource = new ol.source.Vector({
       features: features
     });
-
     var layer = new ol.layer.Vector({
       source: dataSource,
       opacity: options.opacity || 1
@@ -228,14 +226,6 @@ var ol = window.ol;
       var _style = typeof(style) == "function" ? style : styleIt(style);
       layer.setStyle(_style);
     }
-
-    /*
-    if (options.select) {
-      debug.log("add select interaction to layer:", options.select);
-      methods.addSelect.call(
-        this, options.select, [layer]);
-    }
-    */
 
     this.addLayer(layer);
 
