@@ -182,7 +182,7 @@ var ol = window.ol;
     var condition = selectOptions.condition || "pointerMove";
     var select = new ol.interaction.Select({
       condition: ol.events.condition[condition],
-      layers: layers
+      layers: layers // if undefined all layers are selectable!
     });
     this.addInteraction(select);
     // add event listener
@@ -195,6 +195,8 @@ var ol = window.ol;
         debug.log("feature properties:", properties);
         if (selectOptions.property) {
           target.innerHTML = properties[selectOptions.property];
+        } else if (selectOptions.showJson) {
+          target.innerHTML = JSON.stringify(properties);
         }
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
@@ -227,11 +229,13 @@ var ol = window.ol;
       layer.setStyle(_style);
     }
 
+    /*
     if (options.select) {
       debug.log("add select interaction to layer:", options.select);
       methods.addSelect.call(
         this, options.select, [layer]);
     }
+    */
 
     this.addLayer(layer);
 
@@ -340,8 +344,7 @@ var ol = window.ol;
                 console.log("no features found");
                 return;
               }
-              methods.addGeojson.call(map, data, null,
-                { select: {condition: "singleClick"} });
+              methods.addGeojson.call(map, data, null, {});
             });
           }
 

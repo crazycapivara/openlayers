@@ -1,34 +1,25 @@
-#' Add select interaction to the map
-#'
-#' Globally add select interaction to the map,
-#' which means all layers are selectable.
+#' Add interactions to the map
 #'
 #' @param ol map widget
-#' @param options \code{\link{select_interaction}} object
 #'
-#' @seealso \code{select} parameter in \code{\link{add_geojson}}
-#'
-#' @export
-add_select <- function(ol, options = select_interaction()) {
-  invoke_method(ol, "addSelect", options)
-}
+#' @name interactions
+NULL
 
-#' Select interaction (object)
+#' @describeIn interactions Add select interaction to the map
 #'
 #' @param condition event condition like \code{singleClick}, \code{pointerMove}, ...
 #' @param property feature property, ...
 #'
 #' @export
-select_interaction <- function(condition = "singleClick", property = NULL) {
-  list(condition = condition, property = property)
+add_select <- function(ol, condition = "singleClick", property = NULL) {
+  options <- list(condition = condition, property = property)
+  invoke_method(ol, "addSelect", options)
 }
 
-#' Enable drag and drop
-#'
-#' Add drag and drop event listener to the map.
+#' @describeIn interactions Add drag and drop interaction to the map
 #'
 #' @export
-enable_drag_and_drop <- function(ol) {
+add_drag_and_drop <- function(ol) {
   ol$x$enable_drag_and_drop <- TRUE
   ol
 }
