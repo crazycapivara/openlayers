@@ -3,17 +3,17 @@ var ol = window.ol;
 
 (function() {"use strict";
 
-  var olWidget = {}; //window.olWidget = {};
-
-  olWidget.element = null;
-
-  var debug = {}; //olWidget.debug = {};
+  var debug = {};
 
   debug.active = false;
 
   debug.log = function() {
     if (this.active) console.log.apply(console, arguments);
   };
+
+  var olWidget = {};
+
+  olWidget.element = null;
 
   olWidget.options = {
     debug: false,
