@@ -186,20 +186,24 @@ var ol = window.ol;
       layers: layers // if undefined all layers are selectable!
     });
     this.addInteraction(select);
-    // add event listener
-    var target = helpMe.addContainer("info");
+
+    // TODO: put to seperate function
+    var displayContainer = selectOptions.property ?
+      helpMe.addContainer("selected-feature") : {};
     select.on("select", function(e) {
       var feature = e.target.getFeatures().item(0);
       if (feature) {
         var properties = helpMe.getFeatureProperties(feature);
-        if (selectOptions.property) {
-          target.innerHTML = properties[selectOptions.property];
+        var key = selectOptions.property;
+        if (key) {
+          displayContainer.innerHTML = key === "_ALL_" ?
+          JSON.stringify(properties) : properties[key];
         }
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
           Shiny.onInputChange(olWidget.element.id + "_select", properties);
         }
-      } else { target.innerHTML = "&nbsp;"; }
+      } else { displayContainer.innerHTML = "&nbsp;"; }
     });
   };
 
