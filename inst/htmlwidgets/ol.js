@@ -168,26 +168,17 @@ var ol = window.ol;
       layers: layers
     });
     this.addInteraction(select);
-
+    // add event listener
     var target = helpMe.addContainer("info");
     select.on("select", function(e) {
       var feature = e.target.getFeatures().item(0);
       if (feature) {
-        debug.log("feature id:", feature.getId());
-        debug.log("feature properties:", feature.getProperties());
-        if (selectOptions.property) {
-          target.innerHTML = feature.get(selectOptions.property);
-        }
-        // get all properties of feature
-        /*
-        var properties = {id: feature.getId()};
-        feature.getKeys().forEach(function(key) {
-          if (key !== "geometry") properties[key] = feature.get(key);
-        });
-        */
         var properties = helpMe.getFeatureProperties(feature);
-        debug.log(properties);
-
+        debug.log("feature id:", feature.getId());
+        debug.log("feature properties:", properties);
+        if (selectOptions.property) {
+          target.innerHTML = properties[selectOptions.property];
+        }
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
           Shiny.onInputChange(olWidget.element.id + "_select", properties);
