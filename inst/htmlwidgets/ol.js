@@ -197,7 +197,7 @@ var ol = window.ol;
         var key = selectOptions.property;
         if (key) {
           displayContainer.innerHTML = key === "_ALL_" ?
-          JSON.stringify(properties) : properties[key];
+          "<pre>" + JSON.stringify(properties, null, 2) + "</pre>" : properties[key];
         }
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
