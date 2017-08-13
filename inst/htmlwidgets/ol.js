@@ -62,6 +62,23 @@ var ol = window.ol;
     return properties;
   };
 
+  helpMe.dragAndDrop = function dropJSON(targetEl, callback) {
+    // disable default drag & drop functionality
+    targetEl.addEventListener("dragenter", function(e){ e.preventDefault(); });
+    targetEl.addEventListener("dragover",  function(e){ e.preventDefault(); });
+    targetEl.addEventListener("drop", function(event) {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        var data = JSON.parse(this.result);
+        callback(data);
+      };
+      var f = event.dataTransfer.files[0];
+      reader.readAsText(f);
+      event.preventDefault();
+    });
+  };
+
+
   // style helpers as a homage to the RHCP
   var freakyStyley = {};
 
@@ -276,6 +293,8 @@ var ol = window.ol;
             renderer: olWidget.options.renderer,
             loadTilesWhileAnimating: true
           });
+
+          helpMe.dragAndDrop(el, function(data) { console.log(data); });
 
           //var latlngContainer = helpMe.addContainer("latlng");
           map.on("singleclick", function(e) {
