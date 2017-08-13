@@ -54,6 +54,14 @@ var ol = window.ol;
     return container;
   };
 
+  helpMe.getFeatureProperties = function(feature) {
+    var properties = { id: feature.getId() };
+    feature.getKeys().forEach(function(key) {
+      if (key !== "geometry") properties[key] = feature.get(key);
+    });
+    return properties;
+  };
+
   // style helpers as a homage to the RHCP
   var freakyStyley = {};
 
@@ -171,10 +179,13 @@ var ol = window.ol;
           target.innerHTML = feature.get(selectOptions.property);
         }
         // get all properties of feature
+        /*
         var properties = {id: feature.getId()};
         feature.getKeys().forEach(function(key) {
           if (key !== "geometry") properties[key] = feature.get(key);
         });
+        */
+        var properties = helpMe.getFeatureProperties(feature);
         debug.log(properties);
 
         // Pass feature properties back to R in shiny mode
@@ -231,11 +242,9 @@ var ol = window.ol;
       url: url,
       format: new ol.format.GeoJSON()
     });
-
     var layer = new ol.layer.Vector({
       source: dataSource,
     });
-
     this.addLayer(layer);
   };
 
@@ -248,7 +257,6 @@ var ol = window.ol;
     factory: function(el, width, height) {
 
       olWidget.element = el;
-
       var map = null;
 
       return {
@@ -279,15 +287,13 @@ var ol = window.ol;
           });
 
           //var latlngContainer = helpMe.addContainer("latlng");
-
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
             debug.log("xy", coordinate);
-
             var coordHDMS = ol.coordinate.toStringHDMS(coordinate);
             //latlngContainer.innerHTML = coordHDMS;
-
+            // pass coordinate back to R
             if (HTMLWidgets.shinyMode) {
               debug.log("Shiny mode!");
               var lnglat = { lng: coordinate[0], lat: coordinate[1], HDMS: coordHDMS };
