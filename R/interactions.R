@@ -23,6 +23,10 @@ select_interaction <- function(condition = "singleClick", property = NULL) {
   list(condition = condition, property = property)
 }
 
+#' Enable drag and drop
+#'
+#' Add drag and drop event listener to the map.
+#'
 #' @export
 enable_drag_and_drop <- function(ol) {
   ol$x$enable_drag_and_drop <- TRUE
