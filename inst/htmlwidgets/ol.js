@@ -179,8 +179,26 @@ var ol = window.ol;
     helpMe.addTileLayer(this, source, opacity);
   };
 
-  methods.addSelect = function(selectOptions, layers) {
-    var condition = selectOptions.condition || "pointerMove";
+  var displayFeatureProperties = function(properties) {
+    var containerId = "selected-feature";
+    var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
+    if (properties) {
+      var text = JSON.stringify(properties, null, 2).replace(/\{|\}|\"/g, "");
+      container.innerHTML = "<pre>" + text + "</pre>";
+    } else {
+      //container.innerHTML = "&nbsp;";
+      container.parentElement.removeChild(container);
+    }
+  };
+
+  var addSelectListener = function(options) {
+    return function(e) {
+      // not implemented yet
+    };
+  };
+
+  methods.addSelect = function(options, layers) {
+    var condition = options.condition || "pointerMove";
     var select = new ol.interaction.Select({
       condition: ol.events.condition[condition],
       layers: layers // if undefined all layers are selectable!
@@ -188,22 +206,19 @@ var ol = window.ol;
     this.addInteraction(select);
 
     // TODO: put to seperate function
-    var displayContainer = selectOptions.property ?
-      helpMe.addContainer("selected-feature") : {};
     select.on("select", function(e) {
       var feature = e.target.getFeatures().item(0);
+      var properties = null;
       if (feature) {
-        var properties = helpMe.getFeatureProperties(feature);
-        var key = selectOptions.property;
-        if (key) {
-          displayContainer.innerHTML = key === "_ALL_" ?
-          "<pre>" + JSON.stringify(properties, null, 2) + "</pre>" : properties[key];
-        }
+        properties = helpMe.getFeatureProperties(feature);
         // Pass feature properties back to R in shiny mode
         if (HTMLWidgets.shinyMode) {
           Shiny.onInputChange(olWidget.element.id + "_select", properties);
         }
-      } else { displayContainer.innerHTML = "&nbsp;"; }
+      }
+      if (options.displayProperties) {
+          displayFeatureProperties(properties);
+      }
     });
   };
 

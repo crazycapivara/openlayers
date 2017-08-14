@@ -8,11 +8,11 @@ NULL
 #' @describeIn interactions Add select interaction to the map
 #'
 #' @param condition event condition like \code{singleClick}, \code{pointerMove}, ...
-#' @param property feature property, ...
+#' @param display_properties display feature properties on select?
 #'
 #' @export
-add_select <- function(ol, condition = "singleClick", property = NULL) {
-  options <- list(condition = condition, property = property)
+add_select <- function(ol, condition = "singleClick", display_properties = FALSE) {
+  options <- list(condition = condition, displayProperties = display_properties)
   invoke_method(ol, "addSelect", options)
 }
 
