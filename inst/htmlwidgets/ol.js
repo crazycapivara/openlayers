@@ -179,12 +179,17 @@ var ol = window.ol;
     helpMe.addTileLayer(this, source, opacity);
   };
 
-  var displayFeatureProperties = function(properties) {
+  var displayFeatureProperties = function(properties, keys) {
     var containerId = "selected-feature";
     var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
     if (properties) {
-      var text = JSON.stringify(properties, null, 2).replace(/\{|\}|\"/g, "");
-      container.innerHTML = "<pre>" + text + "</pre>";
+      var text = JSON.stringify(properties, keys, 1).replace(/\{|\}|\"/g, "");
+      /*
+      var text = Object.keys(properties).map(function(key){
+        return key + ": " + properties[key];
+      }).join(", ");
+      */
+      container.innerHTML = text;
     } else {
       //container.innerHTML = "&nbsp;";
       container.parentElement.removeChild(container);
@@ -217,7 +222,7 @@ var ol = window.ol;
         }
       }
       if (options.displayProperties) {
-          displayFeatureProperties(properties);
+          displayFeatureProperties(properties, options.displayProperties);
       }
     });
   };
