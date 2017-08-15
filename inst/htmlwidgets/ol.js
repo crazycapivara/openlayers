@@ -80,7 +80,6 @@ var ol = window.ol;
     });
   };
 
-
   // style helpers as a homage to the RHCP
   var freakyStyley = {};
 
@@ -179,22 +178,20 @@ var ol = window.ol;
     });
     helpMe.addTileLayer(this, source, opacity);
   };
+  var callbacks = {};
 
-  var displayFeatureProperties = function(properties, keys) {
+  callbacks.displayProperties = function(properties) {
+    var text = Object.keys(properties).map(function(key){
+        return "<b>" + key + ":</b> " + properties[key];
+      }).join(", ");
+    text = "<div style='padding: 10px;'>" + text + "</div>";
+    return text;
+  };
+
+  var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
     var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
-    if (properties) {
-      var text = JSON.stringify(properties, keys, 1).replace(/\{|\}|\"/g, "");
-      /*
-      var text = Object.keys(properties).map(function(key){
-        return key + ": " + properties[key];
-      }).join(", ");
-      */
-      container.innerHTML = text;
-    } else {
-      //container.innerHTML = "&nbsp;";
-      container.parentElement.removeChild(container);
-    }
+    container.innerHTML = properties ? callbacks.displayProperties(properties) : null;
   };
 
   var addSelectListener = function(options) {
@@ -211,19 +208,19 @@ var ol = window.ol;
     });
     this.addInteraction(select);
 
-    // TODO: put to seperate function
+    // TODO: put to seperate function?
     select.on("select", function(e) {
       var feature = e.target.getFeatures().item(0);
       var properties = null;
       if (feature) {
         properties = helpMe.getFeatureProperties(feature);
-        // Pass feature properties back to R in shiny mode
-        if (HTMLWidgets.shinyMode) {
-          Shiny.onInputChange(olWidget.element.id + "_select", properties);
-        }
+      }
+      // Pass feature properties back to R
+      if (HTMLWidgets.shinyMode) {
+        Shiny.onInputChange(olWidget.element.id + "_select", properties);
       }
       if (options.displayProperties) {
-          displayFeatureProperties(properties, options.displayProperties);
+          displayFeatureProperties(properties);
       }
     });
   };
