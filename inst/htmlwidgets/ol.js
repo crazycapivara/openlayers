@@ -47,10 +47,11 @@ var ol = window.ol;
     el = el || olWidget.element;
     var container = document.createElement("div");
     container.setAttribute("id", containerId);
-    container.innerHTML = "&nbsp;";
-    container.setAttribute("style", "padding: 5px;");
+    //container.innerHTML = "&nbsp;";
+    //container.setAttribute("style", "padding: 5px;");
+    el.parentElement.insertBefore(container, el.nextSibling);
     //el.parentElement.appendChild(container);
-    el.appendChild(container);
+    //el.appendChild(container);
     return container;
   };
 
