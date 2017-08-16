@@ -112,6 +112,14 @@ var ol = window.ol;
     });
   };
 
+  freakyStyley.text = function(options, feature) {
+    return new ol.style.Text({
+      text: options.property ? String(feature.get(options.property)) :
+        freakyStyley.getOptionValue(feature, options, "text"),
+      scale: options.scale || 1 // TODO: use olWidget.options to set default value
+      });
+  };
+
   var styleIt = function(style) {
     return function(feature, resolution) {
       var _style = new ol.style.Style({
@@ -143,6 +151,7 @@ var ol = window.ol;
         }));
       }
 
+      /*
       if (style.text) {
         _style.setText(new ol.style.Text({
           text: style.text.property ?
@@ -151,7 +160,8 @@ var ol = window.ol;
           scale: style.text.scale || 1
         }));
       }
-
+      */
+      if (style.text) _style.setText(freakyStyley.text(style.text, feature));
       return _style;
     };
   };
