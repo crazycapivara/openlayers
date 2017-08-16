@@ -121,7 +121,10 @@ var ol = window.ol;
   };
 
   freakyStyley.icon = function(options, feature) {
-
+    return new ol.style.Icon({
+      src: options.src || olWidget.options.markerIcon,
+      color: undefined // TODO: set as parameter in R
+    });
   };
 
   var styleIt = function(style) {
@@ -132,12 +135,15 @@ var ol = window.ol;
       });
       if (style.circle) _style.setImage(freakyStyley.circle(style.circle, feature));
       // TODO: use helper func
+      /*
       if (style.marker) {
         _style.setImage(new ol.style.Icon({
           src: style.marker.src || olWidget.options.markerIcon,
           color: undefined // TODO: set as parameter in R
         }));
       }
+      */
+      else if (style.marker) _style.setImage(freakyStyley.icon(style.marker, feature));
       if (style.text) _style.setText(freakyStyley.text(style.text, feature));
       return _style;
     };
