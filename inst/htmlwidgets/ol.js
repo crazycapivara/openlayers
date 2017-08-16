@@ -286,8 +286,7 @@ var ol = window.ol;
           console.log(x.options);
           for (var key in x.options) {
             // set null to undefined
-            olWidget.options[key] = x.options[key] === null ?
-              undefined : x.options[key];
+            olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
           }
           console.log(olWidget.options);
 
