@@ -180,7 +180,7 @@ var ol = window.ol;
   };
   var callbacks = {};
 
-  callbacks.displayProperties = function(properties) {
+  callbacks.renderFeatureProperties = function(properties) {
     var text = Object.keys(properties).map(function(key){
         return "<b>" + key + ":</b> " + properties[key];
       }).join(", ");
@@ -191,7 +191,7 @@ var ol = window.ol;
   var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
     var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
-    container.innerHTML = properties ? callbacks.displayProperties(properties) : null;
+    container.innerHTML = properties ? callbacks.renderFeatureProperties(properties) : null;
   };
 
   var addSelectListener = function(options) {
