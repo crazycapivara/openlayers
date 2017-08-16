@@ -64,11 +64,11 @@ var ol = window.ol;
     return properties;
   };
 
-  helpMe.dragAndDrop = function dropJSON(targetEl, callback) {
+  helpMe.dragAndDrop = function(targetElement, callback) {
     // disable default drag & drop functionality
-    targetEl.addEventListener("dragenter", function(e){ e.preventDefault(); });
-    targetEl.addEventListener("dragover",  function(e){ e.preventDefault(); });
-    targetEl.addEventListener("drop", function(event) {
+    targetElement.addEventListener("dragenter", function(e){ e.preventDefault(); });
+    targetElement.addEventListener("dragover",  function(e){ e.preventDefault(); });
+    targetElement.addEventListener("drop", function(event) {
       var reader = new FileReader();
       reader.onloadend = function() {
         var data = JSON.parse(this.result);
@@ -178,6 +178,7 @@ var ol = window.ol;
     });
     helpMe.addTileLayer(this, source, opacity);
   };
+
   var callbacks = {};
 
   callbacks.renderFeatureProperties = function(properties) {
