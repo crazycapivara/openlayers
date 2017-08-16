@@ -42,6 +42,17 @@ var ol = window.ol;
     });
   };
 
+  helpMe.getFeaturesFromGeojson = function(data) {
+    var format = new ol.format.GeoJSON();
+    var features = format.readFeatures(data, {
+      // TODO: get projection from data source
+      dataProjection: "",
+      featureProjection: "EPSG:3857"
+    });
+    this.setFeatureIds(features);
+    return features;
+  };
+
   helpMe.addContainer = function(containerId, el) {
     el = el || olWidget.element;
     var container = document.createElement("div");
@@ -143,7 +154,7 @@ var ol = window.ol;
   };
 
   // methods to be invoked from R, this = map object!
-  var methods = {};
+  var methods = olWidget.methods = {};
 
   methods.setView = function(lon, lat, zoom) {
     this.setView(new ol.View({
@@ -184,6 +195,7 @@ var ol = window.ol;
     return text;
   };
 
+  // Move to 'helpMe'
   var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
     var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
@@ -203,7 +215,6 @@ var ol = window.ol;
       layers: layers // if undefined all layers are selectable!
     });
     this.addInteraction(select);
-
     // TODO: put to seperate function?
     select.on("select", function(e) {
       var feature = e.target.getFeatures().item(0);
@@ -222,6 +233,7 @@ var ol = window.ol;
   };
 
   methods.addGeojson = function(data, style, options) {
+    /*
     var format = new ol.format.GeoJSON();
     var features = format.readFeatures(data, {
       // TODO: get projection from data source
@@ -229,6 +241,8 @@ var ol = window.ol;
       featureProjection: "EPSG:3857"
     });
     helpMe.setFeatureIds(features);
+    */
+    var features = helpMe.getFeaturesFromGeojson(data);
     var dataSource = new ol.source.Vector({
       features: features
     });
