@@ -42,16 +42,11 @@ var ol = window.ol;
     });
   };
 
-  // TODO: add style parameter
   helpMe.addContainer = function(containerId, el) {
     el = el || olWidget.element;
     var container = document.createElement("div");
     container.setAttribute("id", containerId);
-    //container.innerHTML = "&nbsp;";
-    //container.setAttribute("style", "padding: 5px;");
     el.parentElement.insertBefore(container, el.nextSibling);
-    //el.parentElement.appendChild(container);
-    //el.appendChild(container);
     return container;
   };
 
