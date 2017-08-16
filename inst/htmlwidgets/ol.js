@@ -120,29 +120,17 @@ var ol = window.ol;
       });
   };
 
+  freakyStyley.icon = function(options, feature) {
+
+  };
+
   var styleIt = function(style) {
     return function(feature, resolution) {
       var _style = new ol.style.Style({
         stroke: freakyStyley.stroke(style.stroke, feature),
         fill: freakyStyley.fill(style.fill, feature)
       });
-
-      //if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
-
-      //if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
-
-      // TODO: use helper func
-      /*
-      if (style.circle) {
-        _style.setImage(new ol.style.Circle({
-          stroke: freakyStyley.stroke(style.circle.stroke),
-          fill: freakyStyley.fill(style.circle.fill, feature),
-          radius: freakyStyley.getOptionValue(feature, style.circle, "radius")
-        }));
-      }
-      */
       if (style.circle) _style.setImage(freakyStyley.circle(style.circle, feature));
-
       // TODO: use helper func
       if (style.marker) {
         _style.setImage(new ol.style.Icon({
@@ -150,17 +138,6 @@ var ol = window.ol;
           color: undefined // TODO: set as parameter in R
         }));
       }
-
-      /*
-      if (style.text) {
-        _style.setText(new ol.style.Text({
-          text: style.text.property ?
-            String(feature.get(style.text.property)) :
-            freakyStyley.getOptionValue(feature, style.text, "text"),
-          scale: style.text.scale || 1
-        }));
-      }
-      */
       if (style.text) _style.setText(freakyStyley.text(style.text, feature));
       return _style;
     };
