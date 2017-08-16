@@ -129,18 +129,18 @@ var ol = window.ol;
 
   var styleIt = function(style) {
     return function(feature, resolution) {
-      var _style = new ol.style.Style({
+      var style_ = new ol.style.Style({
         stroke: freakyStyley.stroke(style.stroke, feature),
         fill: freakyStyley.fill(style.fill, feature),
         text: freakyStyley.text(style.text, feature)
       });
       if (style.circle) {
-        _style.setImage(freakyStyley.circle(style.circle, feature));
+        style_.setImage(freakyStyley.circle(style.circle, feature));
       }
       else if (style.marker) {
-        _style.setImage(freakyStyley.icon(style.marker, feature));
+        style_.setImage(freakyStyley.icon(style.marker, feature));
       }
-      return _style;
+      return style_;
     };
   };
 
@@ -234,15 +234,6 @@ var ol = window.ol;
   };
 
   methods.addGeojson = function(data, style, options) {
-    /*
-    var format = new ol.format.GeoJSON();
-    var features = format.readFeatures(data, {
-      // TODO: get projection from data source
-      dataProjection: "",
-      featureProjection: "EPSG:3857"
-    });
-    helpMe.setFeatureIds(features);
-    */
     var features = helpMe.getFeaturesFromGeojson(data);
     var dataSource = new ol.source.Vector({
       features: features
@@ -253,7 +244,7 @@ var ol = window.ol;
     });
 
     if (style) {
-      var _style = typeof(style) == "function" ? style : styleIt(style);
+      var _style = typeof(style) === "function" ? style : styleIt(style);
       layer.setStyle(_style);
     }
 
