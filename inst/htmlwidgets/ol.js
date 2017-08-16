@@ -113,11 +113,11 @@ var ol = window.ol;
   };
 
   freakyStyley.text = function(options, feature) {
-    return new ol.style.Text({
+    return options ? new ol.style.Text({
       text: options.property ? String(feature.get(options.property)) :
         freakyStyley.getOptionValue(feature, options, "text"),
       scale: options.scale || 1 // TODO: use olWidget.options to set default value
-      });
+      }) : undefined;
   };
 
   freakyStyley.icon = function(options, feature) {
@@ -131,20 +131,15 @@ var ol = window.ol;
     return function(feature, resolution) {
       var _style = new ol.style.Style({
         stroke: freakyStyley.stroke(style.stroke, feature),
-        fill: freakyStyley.fill(style.fill, feature)
+        fill: freakyStyley.fill(style.fill, feature),
+        text: freakyStyley.text(style.text, feature)
       });
-      if (style.circle) _style.setImage(freakyStyley.circle(style.circle, feature));
-      // TODO: use helper func
-      /*
-      if (style.marker) {
-        _style.setImage(new ol.style.Icon({
-          src: style.marker.src || olWidget.options.markerIcon,
-          color: undefined // TODO: set as parameter in R
-        }));
+      if (style.circle) {
+        _style.setImage(freakyStyley.circle(style.circle, feature));
       }
-      */
-      else if (style.marker) _style.setImage(freakyStyley.icon(style.marker, feature));
-      if (style.text) _style.setText(freakyStyley.text(style.text, feature));
+      else if (style.marker) {
+        _style.setImage(freakyStyley.icon(style.marker, feature));
+      }
       return _style;
     };
   };
