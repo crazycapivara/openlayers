@@ -94,33 +94,46 @@ var ol = window.ol;
       style[option][feature.getId()] : style[option];
   };
 
-  freakyStyley.getFill = function(feature, fill) {
-    return fill ? new ol.style.Fill({
-      color: this.getOptionValue(feature, fill, "color")
-    }) : null;
+  freakyStyley.fill = function(options, feature) {
+    return options ? new ol.style.Fill({
+      color: this.getOptionValue(feature, options, "color")
+    }) : undefined;
   };
 
-  freakyStyley.getStroke = function(feature, stroke) {
-    // TODO: implement 'getStroke' method
+  freakyStyley.stroke = function(options, feature) {
+    return options ? new ol.style.Stroke(options) : undefined;
+  };
+
+  freakyStyley.circle = function(options, feature) {
+    return new ol.style.Circle({
+      stroke: this.stroke(options.stroke),
+      fill: this.fill(options.fill, feature),
+      radius: this.getOptionValue(feature, options, "radius")
+    });
   };
 
   var styleIt = function(style) {
     return function(feature, resolution) {
-      var _style = new ol.style.Style();
+      var _style = new ol.style.Style({
+        stroke: freakyStyley.stroke(style.stroke, feature),
+        fill: freakyStyley.fill(style.fill, feature)
+      });
 
-      if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
+      //if (style.stroke) _style.setStroke(new ol.style.Stroke(style.stroke));
 
-      if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
+      //if (style.fill) _style.setFill(freakyStyley.getFill(feature, style.fill, "color"));
 
       // TODO: use helper func
+      /*
       if (style.circle) {
         _style.setImage(new ol.style.Circle({
-          stroke: style.circle.stroke ?
-            new ol.style.Stroke(style.circle.stroke) : null,
-          fill: freakyStyley.getFill(feature, style.circle.fill),
+          stroke: freakyStyley.stroke(style.circle.stroke),
+          fill: freakyStyley.fill(style.circle.fill, feature),
           radius: freakyStyley.getOptionValue(feature, style.circle, "radius")
         }));
       }
+      */
+      if (style.circle) _style.setImage(freakyStyley.circle(style.circle, feature));
 
       // TODO: use helper func
       if (style.marker) {
