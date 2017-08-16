@@ -240,16 +240,13 @@ var ol = window.ol;
     });
     var layer = new ol.layer.Vector({
       source: dataSource,
-      opacity: options.opacity || 1
+      opacity: options.opacity || 1 // TODO: set default in olWidget.options
     });
-
     if (style) {
-      var _style = typeof(style) === "function" ? style : styleIt(style);
-      layer.setStyle(_style);
+      var style_ = typeof(style) === "function" ? style : styleIt(style);
+      layer.setStyle(style_);
     }
-
     this.addLayer(layer);
-
     // TODO: fit should be optional
     this.getView().fit(dataSource.getExtent(), {
       maxZoom: olWidget.options.maxZoomFit
