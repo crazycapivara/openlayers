@@ -6,7 +6,7 @@
 \alias{add_drag_and_drop}
 \title{Add interactions to the map}
 \usage{
-add_select(ol, condition = "singleClick", property = NULL)
+add_select(ol, condition = "singleClick", display_properties = FALSE)
 
 add_drag_and_drop(ol)
 }
@@ -15,7 +15,7 @@ add_drag_and_drop(ol)
 
 \item{condition}{event condition like \code{singleClick}, \code{pointerMove}, ...}
 
-\item{property}{feature property, ...}
+\item{display_properties}{display feature properties on select?}
 }
 \description{
 Add interactions to the map
