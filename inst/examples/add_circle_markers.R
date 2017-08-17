@@ -1,22 +1,18 @@
 library(openlayers)
 library(geojsonio)
 
-quason <- geojson_json(quakes[1:20, ])
-
 style <- circle_style(
   stroke = stroke_style(color = "yellow"),
   fill = fill_style(),
   radius = 15
 )
 
-map <- ol() %>% add_stamen_tiles("toner") %>%
-  add_geojson(quason, style = style)
+data <- us_cities[1:10, ]
 
-map
+map <- ol() %>% add_stamen_tiles("toner")
 
-style <- style + text_style(property = "mag", scale = 1.0)
+map %>% add_geojson(geojson_json(data), style = style)
 
-map <- ol() %>% add_stamen_tiles("toner") %>%
-  add_geojson(quason, style = style)
+style_ <- style + text_style(property = "capital", scale = 2.5)
 
-map
+map  %>% add_vector_data(data, style = style_)
