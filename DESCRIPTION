@@ -14,7 +14,8 @@ Imports:
     htmlwidgets,
     jsonlite,
     magrittr,
-    readr
+    readr,
+    base64enc
 Suggests:
     geojsonio,
     sf,
