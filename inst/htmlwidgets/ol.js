@@ -11,7 +11,7 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
-  var olWidget = {};
+  var olWidget = window.olWidget = {};
 
   olWidget.element = null;
 
@@ -176,7 +176,9 @@ var ol = window.ol;
   // TODO: use 'helpMe.addTileLayer' method!
   methods.addStamenTiles = function(layer) {
     this.addLayer(new ol.layer.Tile({
-      source: new ol.source.Stamen({layer: layer})
+      source: new ol.source.Stamen({layer: layer}),
+      //type: "base",
+      title: layer
     }));
   };
 

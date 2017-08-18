@@ -4,7 +4,7 @@ layerswitcher_dependencies <- function() {
       "ol-layerswitcher",
       version = "1.1.2",
       src = system.file("htmlwidgets/plugins/ol-layerswitcher", package = "openlayers"),
-      script = "ol3-layerswitcher.js",
+      script = c("ol3-layerswitcher.js", "ol-layerswitcher-bindings.js"),
       stylesheet = "ol3-layerswitcher.css"
     )
   )
@@ -16,5 +16,5 @@ add_layer_switcher <- function(ol) {
     ol$dependencies,
     layerswitcher_dependencies()
   )
-  ol
+  invoke_method(ol, "addLayerSwitcher")
 }
