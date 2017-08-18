@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{add_vector_data}
 \alias{add_vector_data}
-\title{Add vector data to the map}
+\title{Add (vector) features to the map}
 \usage{
 add_vector_data(ol, data, ...)
 }
