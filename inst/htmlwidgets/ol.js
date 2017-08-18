@@ -119,6 +119,7 @@ var ol = window.ol;
 
   freakyStyley.text = function(options, feature) {
     return options ? new ol.style.Text({
+      //font: "bold 12px Ubuntu",
       text: this._getText(options, feature),
       scale: options.scale || 1, // TODO: use olWidget.options to set default value
       stroke: this.stroke(options.stroke, feature),
