@@ -26,6 +26,10 @@ cartodb_attribution <- function(){
     '&copy;<a href="https://carto.com/attribution">CARTO</a>')
 }
 
+add_cartodb_tiles <- function(ol, layer){
+  stop("needs to be implemented, just do it")
+}
+
 #' Set the view of the map (geographical center and zoom)
 #'
 #' @param ol map widget
@@ -112,7 +116,7 @@ require_namespace <- function(name){
   }
 }
 
-#' Add vector data to the map
+#' Add (vector) features to the map
 #'
 #' This function is just a shorthand to \code{\link{add_geojson}} using
 #' \pkg{geojsonio} to convert any data object to geojson.
@@ -129,3 +133,6 @@ add_vector_data <- function(ol, data, ...) {
   data <- geojsonio::geojson_json(data)
   add_geojson(ol, data, ...)
 }
+
+## rename function or set an alias
+add_features <- add_vector_data
