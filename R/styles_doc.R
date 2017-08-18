@@ -10,7 +10,7 @@
 #' @return style object
 #'
 #' @note
-#'   \code{color} (in \code{fill_style}), \code{radius} amd \code{text} can be single values applied to all features
+#'   \code{color} (in \code{fill_style}), \code{radius} and \code{text} can be single values applied to all features
 #'   or vectors of length equal to the number of features
 #'
 #' @examples
