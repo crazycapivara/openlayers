@@ -62,7 +62,7 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 
 #' @rdname style_methods
 #'
-#' @param src url of the icon, base64 encoded icon (see \link{\code{make_icon}})
+#' @param src url of the icon, base64 encoded icon (see \code{\link{make_icon}})
 #'   or \code{NULL} (use default icon)
 #' @param anchor center of the icon relative to its top left corner
 #' @param color color to tint the icon or \code{NULL} (keep original)
@@ -91,13 +91,19 @@ icon_style <- marker_style
 #' @param text text content, ignored in case \code{property} parameter is set
 #' @param property feature property used as text content
 #' @param scale text scale
+#' @param stroke ...
+#' @param fill ...
 #'
 #' @export
-text_style <- function(text = NULL, property = NULL, scale = 1.5){
-  style_(text = list(
-    text = text,
-    property = property,
-    scale = scale
+text_style <- function(text = NULL, property = NULL, scale = 1.5, stroke = NULL, fill = NULL){
+  style_(text = c(
+      list(
+        text = text,
+        property = property,
+        scale = scale
+      ),
+      stroke,
+      fill
   ))
 }
 

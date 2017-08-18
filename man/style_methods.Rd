@@ -20,7 +20,8 @@ marker_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
 icon_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
-text_style(text = NULL, property = NULL, scale = 1.5)
+text_style(text = NULL, property = NULL, scale = 1.5, stroke = NULL,
+  fill = NULL)
 }
 \arguments{
 \item{color}{color to tint the icon or \code{NULL} (keep original)}
@@ -33,7 +34,7 @@ text_style(text = NULL, property = NULL, scale = 1.5)
 
 \item{radius}{radius in pixels}
 
-\item{src}{url of the icon, base64 encoded icon (see \link{\code{make_icon}})
+\item{src}{url of the icon, base64 encoded icon (see \code{\link{make_icon}})
 or \code{NULL} (use default icon)}
 
 \item{anchor}{center of the icon relative to its top left corner}
@@ -43,6 +44,10 @@ or \code{NULL} (use default icon)}
 \item{property}{feature property used as text content}
 
 \item{scale}{text scale}
+
+\item{stroke}{...}
+
+\item{fill}{...}
 
 \item{color}{stroke or fill color}
 }
@@ -54,7 +59,7 @@ Style methods to create style objects corresponding to
 \href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
 }
 \note{
-\code{color} (in \code{fill_style}), \code{radius} amd \code{text} can be single values applied to all features
+\code{color} (in \code{fill_style}), \code{radius} and \code{text} can be single values applied to all features
   or vectors of length equal to the number of features
 }
 \examples{
