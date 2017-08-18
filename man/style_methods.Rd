@@ -16,14 +16,14 @@ fill_style(color = "rgba(0, 0, 255, 0.5)")
 
 circle_style(stroke = stroke_style(), fill = fill_style(), radius = 10)
 
-marker_style(src = NULL)
+marker_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
-icon_style(src = NULL)
+icon_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
 text_style(text = NULL, property = NULL, scale = 1.5)
 }
 \arguments{
-\item{color}{stroke or fill color}
+\item{color}{color to tint the icon or \code{NULL} (keep original)}
 
 \item{width}{stroke width in pixels}
 
@@ -33,13 +33,18 @@ text_style(text = NULL, property = NULL, scale = 1.5)
 
 \item{radius}{radius in pixels}
 
-\item{src}{icon url or \code{NULL} (use default icon)}
+\item{src}{url of the icon, base64 encoded icon (see \link{\code{make_icon}})
+or \code{NULL} (use default icon)}
+
+\item{anchor}{center of the icon relative to its top left corner}
 
 \item{text}{text content, ignored in case \code{property} parameter is set}
 
 \item{property}{feature property used as text content}
 
 \item{scale}{text scale}
+
+\item{color}{stroke or fill color}
 }
 \value{
 style object

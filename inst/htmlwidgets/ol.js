@@ -123,7 +123,9 @@ var ol = window.ol;
   freakyStyley.icon = function(options, feature) {
     return new ol.style.Icon({
       src: options.src || olWidget.options.markerIcon,
-      color: undefined // TODO: set as parameter in R
+      anchor: options.anchor || undefined,
+      anchorOrigin: "top-left",
+      color: this.getOptionValue(feature, options, "color") || undefined
     });
   };
 
