@@ -91,19 +91,17 @@ icon_style <- marker_style
 #' @param text text content, ignored in case \code{property} parameter is set
 #' @param property feature property used as text content
 #' @param scale text scale
-#' @param stroke ...
-#' @param fill ...
 #'
 #' @export
-text_style <- function(text = NULL, property = NULL, scale = 1.5, stroke = NULL, fill = NULL){
+text_style <- function(text = NULL, property = NULL, scale = 1.5, color = "black", stroke = NULL){
   style_(text = c(
       list(
         text = text,
         property = property,
         scale = scale
       ),
-      stroke,
-      fill
+      fill_style(color = color),
+      stroke
   ))
 }
 

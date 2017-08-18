@@ -20,8 +20,8 @@ marker_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
 icon_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
 
-text_style(text = NULL, property = NULL, scale = 1.5, stroke = NULL,
-  fill = NULL)
+text_style(text = NULL, property = NULL, scale = 1.5, color = "black",
+  stroke = NULL)
 }
 \arguments{
 \item{color}{color to tint the icon or \code{NULL} (keep original)}
@@ -44,10 +44,6 @@ or \code{NULL} (use default icon)}
 \item{property}{feature property used as text content}
 
 \item{scale}{text scale}
-
-\item{stroke}{...}
-
-\item{fill}{...}
 
 \item{color}{stroke or fill color}
 }
