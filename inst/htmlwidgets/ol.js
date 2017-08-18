@@ -112,10 +112,14 @@ var ol = window.ol;
     });
   };
 
+  freakyStyley._getText = function(options, feature) {
+    return options.property ? String(feature.get(options.property)) :
+      this.getOptionValue(feature, options, "text");
+  };
+
   freakyStyley.text = function(options, feature) {
     return options ? new ol.style.Text({
-      text: options.property ? String(feature.get(options.property)) :
-        this.getOptionValue(feature, options, "text"),
+      text: this._getText(options, feature),
       scale: options.scale || 1, // TODO: use olWidget.options to set default value
       stroke: this.stroke(options.stroke, feature),
       fill: this.fill(options.fill, feature)
