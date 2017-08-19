@@ -16,15 +16,15 @@ fill_style(color = "rgba(0, 0, 255, 0.5)")
 
 circle_style(stroke = stroke_style(), fill = fill_style(), radius = 10)
 
-marker_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
+marker_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
-icon_style(src = NULL, anchor = c(0.5, 0.8), color = NULL)
+icon_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
 text_style(text = NULL, property = NULL, scale = 1.5, color = "black",
   stroke = NULL)
 }
 \arguments{
-\item{color}{color to tint the icon or \code{NULL} (keep original)}
+\item{color}{stroke or fill color}
 
 \item{width}{stroke width in pixels}
 
@@ -39,13 +39,13 @@ or \code{NULL} (use default icon)}
 
 \item{anchor}{center of the icon relative to its top left corner}
 
+\item{icon_color}{color to tint the icon or \code{NULL} (keep original)}
+
 \item{text}{text content, ignored in case \code{property} parameter is set}
 
 \item{property}{feature property used as text content}
 
 \item{scale}{text scale}
-
-\item{color}{stroke or fill color}
 }
 \value{
 style object
