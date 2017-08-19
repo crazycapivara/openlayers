@@ -377,6 +377,7 @@ var ol = window.ol;
           }
 
           //debug.log(window);
+          //debug.log(map.getLayers().getArray().length);
 
         // END renderValue
         },

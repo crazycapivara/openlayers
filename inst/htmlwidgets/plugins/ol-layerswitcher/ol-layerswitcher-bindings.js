@@ -7,19 +7,13 @@ var olWidget = window.olWidget;
   var methods = olWidget.methods;
 
   methods.addLayerSwitcher = function() {
-    //console.log("add layer switcher");
     olWidget.layerSwitcher = new ol.control.LayerSwitcher();
  	  this.addControl(olWidget.layerSwitcher);
+ 	  // TODO: do not display control, if no layers are present
+ 	  /*
+ 	  var layers = this.getLayers().getArray();
+ 	  var titles = layers.map(function(l) { return l.get("title"); });
+ 	  console.log(titles);
+ 	  */
   };
-
-  // update layer switcher when geojson is added
-  /*
-  var addGeojson_ = methods.addGeojson;
-  methods.addGeojson = function() {
-    addGeojson_.apply(this, arguments);
-    if (olWidget.layerSwitcher) {
-      console.log("Update layer switcher");
-    }
-  };
-  */
 })();
