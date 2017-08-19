@@ -252,7 +252,7 @@ var ol = window.ol;
     var layer = new ol.layer.Vector({
       source: dataSource,
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
-      title: options.name || undefined,
+      title: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type
     });
     if (style) {
@@ -264,7 +264,6 @@ var ol = window.ol;
     this.getView().fit(dataSource.getExtent(), {
       maxZoom: olWidget.options.maxZoomFit
     });
-
     debug.log("zoom:", this.getView().getZoom());
     debug.log("resolution:", this.getView().getResolution());
   };
@@ -297,6 +296,7 @@ var ol = window.ol;
         renderValue: function(x) {
 
           console.log(x.options);
+          // TODO: move to helper func
           for (var key in x.options) {
             // set null to undefined
             olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
@@ -319,13 +319,11 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
-          //var latlngContainer = helpMe.addContainer("latlng");
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
             debug.log("xy", coordinate);
             var coordHDMS = ol.coordinate.toStringHDMS(coordinate);
-            //latlngContainer.innerHTML = coordHDMS;
             // pass coordinate back to R
             if (HTMLWidgets.shinyMode) {
               debug.log("Shiny mode!");
@@ -365,7 +363,7 @@ var ol = window.ol;
                 console.log("no features found");
                 return;
               }
-              methods.addGeojson.call(map, data, null, {});
+              methods.addGeojson.call(map, data, null, {name: getDockerContainerName()});
             });
           }
 
