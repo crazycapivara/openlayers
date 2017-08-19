@@ -69,7 +69,7 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #'
 #' @param xyz_url xyz url
 #' @param attribution attribution (character vector)
-#' @param opacity layer opacity
+#' @param options layer options
 #'
 #' @examples \dontrun{
 #'   xyz_url <- get_cartodb_xyz_url()
@@ -78,8 +78,8 @@ add_stamen_tiles <- function(ol, layer = "watercolor"){
 #' }
 #'
 #' @export
-add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, opacity = 1){
-  invoke_method(ol, "addXYZTiles", xyz_url, attribution, opacity)
+add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, options = layer_options()){
+  invoke_method(ol, "addXYZTiles", xyz_url, attribution, options)
 }
 
 # TODO: useful ? export : remove

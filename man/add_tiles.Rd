@@ -11,7 +11,7 @@ add_osm_tiles(ol)
 
 add_stamen_tiles(ol, layer = "watercolor")
 
-add_xyz_tiles(ol, xyz_url, attribution = NULL, opacity = 1)
+add_xyz_tiles(ol, xyz_url, attribution = NULL, options = layer_options())
 }
 \arguments{
 \item{ol}{map widget}
@@ -22,7 +22,7 @@ add_xyz_tiles(ol, xyz_url, attribution = NULL, opacity = 1)
 
 \item{attribution}{attribution (character vector)}
 
-\item{opacity}{layer opacity}
+\item{options}{layer options}
 }
 \description{
 Add tile layers to the map

@@ -28,11 +28,15 @@ var ol = window.ol;
   // help(ers) as an homage to the Beatles
   var helpMe = {};
 
-  helpMe.addTileLayer = function(map, source, opacity){
+  helpMe.addTileLayer = function(map, source, options){
+    options.source = source;
+    map.addLayer(new ol.layer.Tile(options));
+    /*
     map.addLayer(new ol.layer.Tile({
       source: source,
       opacity: opacity || 1
     }));
+    */
   };
 
   helpMe.setFeatureIds = function(features) {
@@ -189,12 +193,12 @@ var ol = window.ol;
     }));
   };
 
-  methods.addXYZTiles = function(xyz_url, attribution, opacity) {
+  methods.addXYZTiles = function(xyz_url, attribution, options) {
     var source = new ol.source.XYZ({
       url: xyz_url,
       attributions: attribution || null
     });
-    helpMe.addTileLayer(this, source, opacity);
+    helpMe.addTileLayer(this, source, options);
   };
 
   var callbacks = {};
