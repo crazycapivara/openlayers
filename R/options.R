@@ -23,3 +23,8 @@ ol_options <- function(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...) {
 vector_options <- function(opacity = 1) {
   list(opacity = opacity)
 }
+
+#' @export
+layer_options <- function(name = NULL, ...) {
+  list(name = name, ...)
+}
