@@ -251,7 +251,9 @@ var ol = window.ol;
     });
     var layer = new ol.layer.Vector({
       source: dataSource,
-      opacity: options.opacity || 1 // TODO: set default in olWidget.options
+      opacity: options.opacity || 1, // TODO: set default in olWidget.options
+      title: options.name || undefined,
+      type: options.type
     });
     if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
