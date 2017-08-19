@@ -31,12 +31,6 @@ var ol = window.ol;
   helpMe.addTileLayer = function(map, source, options){
     options.source = source;
     map.addLayer(new ol.layer.Tile(options));
-    /*
-    map.addLayer(new ol.layer.Tile({
-      source: source,
-      opacity: opacity || 1
-    }));
-    */
   };
 
   helpMe.setFeatureIds = function(features) {
