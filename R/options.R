@@ -25,6 +25,6 @@ vector_options <- function(opacity = 1) {
 }
 
 #' @export
-layer_options <- function(name = NULL, ...) {
-  list(name = name, ...)
+layer_options <- function(opacity = 1, name = NULL, ...) {
+  list(opacity = opacity, name = name, ...)
 }

@@ -93,7 +93,7 @@ add_geojson_ds <- function(ol, url){
 #' @param data geojson, ignored if \code{filename} is given
 #' @param filename filename or url to read geojson from
 #' @param style style object or \code{NULL} (use default style)
-#' @param options general vector options, see \code{\link{vector_options}}
+#' @param options general layer options, see \code{\link{layer_options}}
 #'
 #' @examples \dontrun{
 #'   require("geojsonio")
@@ -103,7 +103,7 @@ add_geojson_ds <- function(ol, url){
 #'
 #' @export
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
-                        options = vector_options()){
+                        options = layer_options()){
   if(!is.null(filename)){
     data <- readr::read_file(filename)
   }
