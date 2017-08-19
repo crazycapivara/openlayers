@@ -183,7 +183,9 @@ var ol = window.ol;
   // TODO: use 'helpMe.addTileLayer' method!
   methods.addOSMTiles = function() {
     this.addLayer(new ol.layer.Tile({
-      source: new ol.source.OSM()
+      source: new ol.source.OSM(),
+      //type: "base",
+      title: "osm"
     }));
   };
 
