@@ -15,15 +15,17 @@ ol_options <- function(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...) {
   c(x, list(...))
 }
 
-#' Vector layer options
-#'
-#' @param opacity opacity
-#'
-#' @export
+## TODO: remove, use layer options instead
 vector_options <- function(opacity = 1) {
   list(opacity = opacity)
 }
 
+#' Layer options
+#'
+#' @param opacity opacity of layer
+#' @param name name of layer
+#' @param ... hidden options
+#'
 #' @export
 layer_options <- function(opacity = 1, name = NULL, ...) {
   list(opacity = opacity, name = name, ...)
