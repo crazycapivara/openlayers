@@ -1,16 +1,23 @@
 "use strict";
 
 var ol = window.ol;
+var olWidget = window.olWidget;
 
 (function() {
-  var methods = window.olWidget.methods;
+  var methods = olWidget.methods;
 
   methods.addLayerSwitcher = function() {
     console.log("add layer switcher");
-    var layerSwitcher = window.olWidget.layerSwitcher;
-    layerSwitcher = new ol.control.LayerSwitcher({
-      tipLabel: "Whatever" // optional label for button
-    });
- 	  this.addControl(layerSwitcher);
+    olWidget.layerSwitcher = new ol.control.LayerSwitcher();
+ 	  this.addControl(olWidget.layerSwitcher);
+  };
+
+  // update layer switcher when geojson is added
+  var addGeojson_ = methods.addGeojson;
+  methods.addGeojson = function() {
+    addGeojson_.apply(this, arguments);
+    if (olWidget.layerSwitcher) {
+      console.log("Update layer switcher");
+    }
   };
 })();
