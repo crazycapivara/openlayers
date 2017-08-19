@@ -5,3 +5,7 @@ dependencies:
     src: "htmlwidgets/lib/openlayers-4.2.0"
     script: ol.js
     stylesheet: ol.css
+  - name: names-generator
+    version: 1.0
+    src: "htmlwidgets/names-generator"
+    script: layer-names-generator.js

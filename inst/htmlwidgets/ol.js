@@ -305,6 +305,7 @@ var ol = window.ol;
 
           debug.active = olWidget.options.debug;
           debug.log("Welcome to the machine!");
+          debug.log(getDockerContainerName());
 
           map = new ol.Map({
             target: el.id,
