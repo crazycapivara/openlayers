@@ -112,7 +112,7 @@ var ol = window.ol;
     });
   };
 
-  freakyStyley._getText = function(options, feature) {
+  freakyStyley.getTextValue = function(options, feature) {
     return options.property ? String(feature.get(options.property)) :
       this.getOptionValue(feature, options, "text");
   };
@@ -120,7 +120,7 @@ var ol = window.ol;
   freakyStyley.text = function(options, feature) {
     return options ? new ol.style.Text({
       //font: "bold 12px Ubuntu",
-      text: this._getText(options, feature),
+      text: this.getTextValue(options, feature),
       scale: options.scale || 1, // TODO: use olWidget.options to set default value
       stroke: this.stroke(options.stroke, feature),
       fill: this.fill(options.fill, feature)
