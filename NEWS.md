@@ -43,3 +43,15 @@
   - `debug` mode
 * Added function `add_vector_data` as a shorthand to `add_geojson` using `geojsonio`
 to parse any data to geojson
+
+# openlayers 0.4.0
+
+* Fixed bug in select interaction
+* Added more parameters to `icon_style`
+* Added drag and drop functionality (`add_drag_and_drop`)
+* Changed default marker icon
+* Added function to create marker icons from images (`make_icon`), so that they
+can be used in `marker_style`
+* Improved shiny integration by passing data back to R:
+  - feature properties on select event
+  - coordinates on map click event

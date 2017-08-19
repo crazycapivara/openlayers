@@ -65,11 +65,11 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 #' @param src url of the icon, base64 encoded icon (see \code{\link{make_icon}})
 #'   or \code{NULL} (use default icon)
 #' @param anchor center of the icon relative to its top left corner
-#' @param color color to tint the icon or \code{NULL} (keep original)
+#' @param icon_color color to tint the icon or \code{NULL} (keep original)
 #'
 #' @export
 ## https://github.com/openstreetmap/map-icons/
-marker_style <- function(src = NULL, anchor = c(0.5, 0.8), color = NULL){
+marker_style <- function(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL){
   if(is.null(src)){
     src <- system.file("icons/gps.png", package = utils::packageName()) %>%
       make_icon()
@@ -77,7 +77,7 @@ marker_style <- function(src = NULL, anchor = c(0.5, 0.8), color = NULL){
   style_(marker = list(
     src = src,
     anchor = anchor,
-    color = color
+    color = icon_color
   ))
 }
 
