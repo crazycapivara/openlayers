@@ -1,3 +1,2 @@
-var test = require("./layer-names-generator.js");
-console.log("Hi");
+var test = require("./docker-names-generator.js");
 console.log(test.getDockerContainerName());

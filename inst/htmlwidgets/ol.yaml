@@ -8,4 +8,4 @@ dependencies:
   - name: names-generator
     version: 1.0
     src: "htmlwidgets/names-generator"
-    script: layer-names-generator.js
+    script: docker-names-generator.js
