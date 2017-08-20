@@ -28,6 +28,18 @@ var ol = window.ol;
   // help(ers) as an homage to the Beatles
   var helpMe = {};
 
+  helpMe.getLayers = function(map) {
+    return map.getLayers().getArray();
+  };
+
+  helpMe.getLayerByName = function(map, layerName) {
+    var layer = this.getLayers(map).filter(function(layer) {
+      return layer.get("name") === layerName;
+    });
+    return layer;
+  };
+
+  // TODO: obsolete? remove!
   helpMe.addTileLayer = function(map, source, options){
     options.source = source;
     map.addLayer(new ol.layer.Tile(options));
@@ -384,6 +396,8 @@ var ol = window.ol;
 
           //debug.log(window);
           //debug.log(map.getLayers().getArray().length);
+          console.log(helpMe.getLayers(map));
+          console.log(helpMe.getLayerByName(map, "osm"));
 
         // END renderValue
         },
