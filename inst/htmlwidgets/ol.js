@@ -270,9 +270,10 @@ var ol = window.ol;
     var layer = new ol.layer.Vector({
       source: dataSource,
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
-      title: options.docker ? getDockerContainerName() : options.name || undefined,
+      name: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type
     });
+    layer.set("title", layer.get("name"));
     if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
       layer.setStyle(style_);
@@ -395,9 +396,8 @@ var ol = window.ol;
           }
 
           //debug.log(window);
-          //debug.log(map.getLayers().getArray().length);
-          console.log(helpMe.getLayers(map));
-          console.log(helpMe.getLayerByName(map, "osm"));
+          debug.log(helpMe.getLayers(map));
+          debug.log(helpMe.getLayerByName(map, "osm"));
 
         // END renderValue
         },
