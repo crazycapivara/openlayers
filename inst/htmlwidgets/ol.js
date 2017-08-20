@@ -171,22 +171,27 @@ var ol = window.ol;
     }));
   };
 
-  // TODO: use 'helpMe.addTileLayer' method!
-  methods.addStamenTiles = function(layer) {
-    this.addLayer(new ol.layer.Tile({
-      source: new ol.source.Stamen({layer: layer}),
-      //type: "base",
-      title: layer
-    }));
+  // options: opacity, [title, type] used by layer switcher
+  var getTileOptions = function(options, source) {
+    options = options || {};
+    options.source = source;
+    options.preload = true;
+    options.title = options.name || undefined; // title is used in layer switcher plugin
+    return options;
   };
 
   // TODO: use 'helpMe.addTileLayer' method!
-  methods.addOSMTiles = function() {
-    this.addLayer(new ol.layer.Tile({
-      source: new ol.source.OSM(),
-      //type: "base",
-      title: "osm"
-    }));
+  methods.addStamenTiles = function(layer, options) {
+    var source = new ol.source.Stamen({ layer: layer });
+    options = getTileOptions(options, source);
+    this.addLayer(new ol.layer.Tile(options));
+  };
+
+  // TODO: use 'helpMe.addTileLayer' method!
+  methods.addOSMTiles = function(options) {
+    var source = new ol.source.OSM();
+    options = getTileOptions(options, source);
+    this.addLayer(new ol.layer.Tile(options));
   };
 
   methods.addXYZTiles = function(xyz_url, attribution, options) {
@@ -194,7 +199,8 @@ var ol = window.ol;
       url: xyz_url,
       attributions: attribution || null
     });
-    helpMe.addTileLayer(this, source, options);
+    options = getTileOptions(options, source);
+    this.addLayer(new ol.layer.Tile(options));
   };
 
   var callbacks = {};

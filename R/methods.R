@@ -52,8 +52,8 @@ NULL
 #' @describeIn add_tiles Add osm tile layer to the map
 #'
 #' @export
-add_osm_tiles <- function(ol){
-  invoke_method(ol, "addOSMTiles")
+add_osm_tiles <- function(ol, options = layer_options()){
+  invoke_method(ol, "addOSMTiles", options)
 }
 
 #' @describeIn add_tiles Add stamen tile layer to the map
@@ -61,8 +61,8 @@ add_osm_tiles <- function(ol){
 #' @param layer stamen layer name
 #'
 #' @export
-add_stamen_tiles <- function(ol, layer = "watercolor"){
-  invoke_method(ol, "addStamenTiles", layer)
+add_stamen_tiles <- function(ol, layer = "watercolor", options = layer_options()){
+  invoke_method(ol, "addStamenTiles", layer, options)
 }
 
 #' @describeIn add_tiles Add custom tile layer to the map

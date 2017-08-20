@@ -7,22 +7,22 @@
 \alias{add_xyz_tiles}
 \title{Add tile layers to the map}
 \usage{
-add_osm_tiles(ol)
+add_osm_tiles(ol, options = layer_options())
 
-add_stamen_tiles(ol, layer = "watercolor")
+add_stamen_tiles(ol, layer = "watercolor", options = layer_options())
 
 add_xyz_tiles(ol, xyz_url, attribution = NULL, options = layer_options())
 }
 \arguments{
 \item{ol}{map widget}
 
+\item{options}{layer options}
+
 \item{layer}{stamen layer name}
 
 \item{xyz_url}{xyz url}
 
 \item{attribution}{attribution (character vector)}
-
-\item{options}{layer options}
 }
 \description{
 Add tile layers to the map
