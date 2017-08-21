@@ -21,7 +21,7 @@ marker_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 icon_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
 text_style(text = NULL, property = NULL, scale = 1.5, color = "black",
-  stroke = NULL)
+  stroke = NULL, offset_xy = c(0, 0))
 }
 \arguments{
 \item{color}{stroke or fill color}
@@ -46,6 +46,9 @@ or \code{NULL} (use default icon)}
 \item{property}{feature property used as text content}
 
 \item{scale}{text scale}
+
+\item{offset_xy}{horizontal and vertical text offset in pixel,
+positive offsets will shift the text right and down}
 }
 \value{
 style object

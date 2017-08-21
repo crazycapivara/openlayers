@@ -133,7 +133,9 @@ var ol = window.ol;
       text: this.getTextValue(options, feature),
       scale: options.scale || 1, // TODO: use olWidget.options to set default value
       stroke: this.stroke(options.stroke, feature),
-      fill: this.fill(options.fill, feature)
+      fill: this.fill(options.fill, feature),
+      offsetX: options.offsetX,
+      offsetY: options.offsetY
       }) : undefined;
   };
 

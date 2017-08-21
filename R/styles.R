@@ -91,14 +91,19 @@ icon_style <- marker_style
 #' @param text text content, ignored in case \code{property} parameter is set
 #' @param property feature property used as text content
 #' @param scale text scale
+#' @param offset_xy horizontal and vertical text offset in pixel,
+#'   positive offsets will shift the text right and down
 #'
 #' @export
-text_style <- function(text = NULL, property = NULL, scale = 1.5, color = "black", stroke = NULL){
+text_style <- function(text = NULL, property = NULL, scale = 1.5,
+                       color = "black", stroke = NULL, offset_xy = c(0, 0)){
   style_(text = c(
       list(
         text = text,
         property = property,
-        scale = scale
+        scale = scale,
+        offsetX = offset_xy[1],
+        offsetY = offset_xy[2]
       ),
       fill_style(color = color),
       stroke
