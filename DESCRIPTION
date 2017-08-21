@@ -12,6 +12,7 @@ Depends:
     R (>= 3.3.2)
 Imports:
     htmlwidgets,
+    htmltools,
     jsonlite,
     magrittr,
     readr,
