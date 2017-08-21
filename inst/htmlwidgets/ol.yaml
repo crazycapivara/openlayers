@@ -1,8 +1,8 @@
 # (uncomment to add a dependency)
 dependencies:
   - name: ol
-    version: 4.2.0
-    src: "htmlwidgets/lib/openlayers-4.2.0"
+    version: 4.3.1
+    src: "htmlwidgets/lib/openlayers-4.3.1"
     script: ol.js
     stylesheet: ol.css
   - name: names-generator
