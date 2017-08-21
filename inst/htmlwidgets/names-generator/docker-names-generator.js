@@ -587,7 +587,6 @@ var getDockerContainerName = (function() {
   };
 
   return function() {
-
     return getRandomItem(left) + "_" + getRandomItem(right);
   };
 })();
