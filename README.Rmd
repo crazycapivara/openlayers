@@ -51,8 +51,10 @@ require("sf")
 
 nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
 
-ol() %>% add_stamen_tiles("terrain") %>%
-  add_vector_data(nc)
+ol() %>% add_stamen_tiles("watercolor") %>%
+  add_stamen_tiles("terrain-labels") %>%
+  add_vector_data(nc) %>%
+  add_overview_map()
 ```
 
 ## Documentation
