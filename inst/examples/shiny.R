@@ -2,7 +2,7 @@ library(shiny)
 library(geojsonio)
 
 view <- fluidPage(
-  h1("openleayers"),
+  h1("openlayers"),
   olOutput("map"),
   tableOutput("selected")
 )
