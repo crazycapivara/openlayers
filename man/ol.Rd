@@ -4,7 +4,7 @@
 \alias{ol}
 \title{Create OpenLayers map widget}
 \usage{
-ol(width = NULL, height = NULL, elementId = NULL,
+ol(width = "100\%", height = "400px", elementId = NULL,
   options = ol_options())
 }
 \arguments{

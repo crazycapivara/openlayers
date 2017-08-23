@@ -8,7 +8,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-ol <- function(width = NULL, height = NULL, elementId = NULL, options = ol_options()) {
+ol <- function(width = "100%", height = "400px", elementId = NULL, options = ol_options()) {
 
   # forward options using x
   x <- list(calls = list(), options = options)
