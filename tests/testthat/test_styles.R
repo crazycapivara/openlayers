@@ -14,7 +14,7 @@ test_that("combine styles", {
   expect_equal(style$fill$color, fill_color_expected)
 })
 
-test_that("check class", {
+test_that("class", {
   # when
   style <- fill_style() + stroke_style()
   # then
