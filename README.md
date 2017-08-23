@@ -27,7 +27,7 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.1 wrapping openlayersjs v4.3.1
+#> openlayers 0.4.2 wrapping openlayersjs v4.3.1
 ```
 
 ``` r
