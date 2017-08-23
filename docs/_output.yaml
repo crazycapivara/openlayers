@@ -1,2 +1,3 @@
 html_document:
   theme: united
+  css: include/doc_style.css

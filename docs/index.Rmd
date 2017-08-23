@@ -22,3 +22,5 @@ library(openlayers)
 ol() %>% add_stamen_tiles() %>% add_stamen_tiles("terrain-labels") %>%
   set_view(lon = 9.5, lat = 51.31667, zoom = 8)
 ```
+
+`## to be continued ##`
