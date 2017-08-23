@@ -55,3 +55,21 @@ Documentation
 -------------
 
 A detailed documentation of the package is still under development, but all functions are documented, so that you can use the build in help functionality of R. Furthermore, check the example scripts in [inst/examples/](inst/examples/) to get an idea about how to use this package.
+
+Code coverage
+-------------
+
+``` r
+package_coverage(function_exclusions = c(
+  "layerswitcher_dependencies",
+  "make_icon"))
+#> openlayers Coverage: 42.20%
+#> R/plugin-layerswitcher.R: 0.00%
+#> R/methods.R: 10.00%
+#> R/styles.R: 21.74%
+#> R/ol.R: 75.00%
+#> R/options.R: 87.50%
+#> R/controls.R: 100.00%
+#> R/interactions.R: 100.00%
+#> R/utils.R: 100.00%
+```
