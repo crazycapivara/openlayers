@@ -7,7 +7,7 @@
 #' @export %>%
 NULL
 
-#' Pipe operator.
+#' Pipe operator
 #'
 #' imported from \pkg{magrittr}
 #'

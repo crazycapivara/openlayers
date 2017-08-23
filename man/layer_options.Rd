@@ -7,9 +7,9 @@
 layer_options(opacity = 1, name = NULL, ...)
 }
 \arguments{
-\item{opacity}{opacity of layer}
+\item{opacity}{layer opacity}
 
-\item{name}{name of layer}
+\item{name}{layer name}
 
 \item{...}{hidden options}
 }

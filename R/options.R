@@ -1,8 +1,8 @@
 #' Map options
 #'
-#' @param min_zoom minimal zoom of map
-#' @param max_zoom maximal zoom of map or \code{NULL} (no limit)
-#' @param max_zoom_fit maximal zoom when fitting view to extend of data source
+#' @param min_zoom minimal zoom of the map
+#' @param max_zoom maximal zoom of the map or \code{NULL} (no limit)
+#' @param max_zoom_fit maximal zoom when fitting the view to the extend of the data source
 #' @param ... to be added soon
 #'
 #' @export
@@ -22,8 +22,8 @@ vector_options <- function(opacity = 1) {
 
 #' Layer options
 #'
-#' @param opacity opacity of layer
-#' @param name name of layer
+#' @param opacity layer opacity
+#' @param name layer name
 #' @param ... hidden options
 #'
 #' @export

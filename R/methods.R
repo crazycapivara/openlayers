@@ -18,7 +18,7 @@ get_cartodb_xyz_url <- function(layer = "dark_all"){
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
 }
 
-#' Cartodb attribution.
+#' Cartodb attribution
 #'
 #' @export
 cartodb_attribution <- function(){

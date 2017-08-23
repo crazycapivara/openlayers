@@ -3,7 +3,7 @@
 \name{pipe}
 \alias{pipe}
 \alias{\%>\%}
-\title{Pipe operator.}
+\title{Pipe operator}
 \description{
 imported from \pkg{magrittr}
 }

@@ -7,11 +7,11 @@
 ol_options(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...)
 }
 \arguments{
-\item{min_zoom}{minimal zoom of map}
+\item{min_zoom}{minimal zoom of the map}
 
-\item{max_zoom}{maximal zoom of map or \code{NULL} (no limit)}
+\item{max_zoom}{maximal zoom of the map or \code{NULL} (no limit)}
 
-\item{max_zoom_fit}{maximal zoom when fitting view to extend of data source}
+\item{max_zoom_fit}{maximal zoom when fitting the view to the extend of the data source}
 
 \item{...}{to be added soon}
 }

@@ -7,7 +7,7 @@
 \alias{add_overview_map}
 \alias{add_full_screen}
 \alias{add_layer_switcher}
-\title{Add controls to map}
+\title{Add controls to the map}
 \usage{
 add_scale_line(ol, units = "metric")
 
@@ -30,17 +30,17 @@ add_layer_switcher(ol)
 \item{collapsed}{start the overview map collapsed?}
 }
 \description{
-Add controls to map
+Add controls to the map
 }
 \section{Functions}{
 \itemize{
-\item \code{add_scale_line}: Add scaleline to map
+\item \code{add_scale_line}: Add scaleline to the map
 
-\item \code{add_mouse_position}: Add mouse position to map
+\item \code{add_mouse_position}: Add mouse position to the map
 
-\item \code{add_overview_map}: Add overview map to map
+\item \code{add_overview_map}: Add overview map to the map
 
-\item \code{add_full_screen}: Add full screen control to map
+\item \code{add_full_screen}: Add full screen control to the map
 
 \item \code{add_layer_switcher}: Add layer switcher to the map
 }}

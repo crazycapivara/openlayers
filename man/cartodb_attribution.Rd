@@ -2,10 +2,10 @@
 % Please edit documentation in R/methods.R
 \name{cartodb_attribution}
 \alias{cartodb_attribution}
-\title{Cartodb attribution.}
+\title{Cartodb attribution}
 \usage{
 cartodb_attribution()
 }
 \description{
-Cartodb attribution.
+Cartodb attribution
 }
