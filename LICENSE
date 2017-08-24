@@ -6,7 +6,7 @@ The openlayers package as a whole is distributed under the MIT License.
 The openlayers package includes other open source software components (full copies of the license agreements used by these components are included below):
 
 - OpenLayers (JavaScript library), https://github.com/openlayers/openlayers
-- ol3-layerswitcher https://github.com/walkermatt/ol3-layerswitcher
+- ol3-layerswitcher, https://github.com/walkermatt/ol3-layerswitcher
 
 
 OpenLayers license
