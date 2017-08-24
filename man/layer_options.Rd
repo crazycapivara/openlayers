@@ -12,7 +12,7 @@ layer_options(opacity = 1, name = NULL, ...)
 \item{name}{layer name}
 
 \item{...}{hidden options, e. g. pass \code{type = "base"} to set base layers
-used by layer-switcher control}
+used by the layer-switcher control}
 }
 \description{
 Layer options
