@@ -3,7 +3,8 @@
 #' @param min_zoom minimal zoom of the map
 #' @param max_zoom maximal zoom of the map or \code{NULL} (no limit)
 #' @param max_zoom_fit maximal zoom when fitting the view to the extend of the data source
-#' @param ... to be added soon
+#' @param ... hidden options, e. g. pass \code{renderer = "webgl"} to use
+#'   webgl as display engine (not recommend when viewing output directly in RStudio)
 #'
 #' @export
 ol_options <- function(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...) {
@@ -24,7 +25,8 @@ vector_options <- function(opacity = 1) {
 #'
 #' @param opacity layer opacity
 #' @param name layer name
-#' @param ... hidden options
+#' @param ... hidden options, e. g. pass \code{type = "base"} to set base layers
+#'   used by layer-switcher control
 #'
 #' @export
 layer_options <- function(opacity = 1, name = NULL, ...) {

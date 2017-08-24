@@ -13,7 +13,8 @@ ol_options(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...)
 
 \item{max_zoom_fit}{maximal zoom when fitting the view to the extend of the data source}
 
-\item{...}{to be added soon}
+\item{...}{hidden options, e. g. pass \code{renderer = "webgl"} to use
+webgl as display engine (not recommend when viewing output directly in RStudio)}
 }
 \description{
 Map options
