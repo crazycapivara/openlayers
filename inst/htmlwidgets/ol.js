@@ -358,6 +358,11 @@ var ol = window.ol;
 
           // add overlay container to show popups
           var overlay = methods.addOverlay.call(map, "popup-container");
+          var popupContainer = document.getElementById("popup-container");
+          // close popup on click event
+          popupContainer.addEventListener('click', function() {
+            overlay.setPosition();
+          });
 
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
@@ -377,7 +382,6 @@ var ol = window.ol;
               var popup_property = layer.get("popup");
               if(popup_property) {
                 console.log(feature.get(popup_property));
-                var popupContainer = document.getElementById("popup-container");
                 popupContainer.innerHTML = feature.get(popup_property);
                 overlay.setPosition(feature.getGeometry().getCoordinates());
               }
