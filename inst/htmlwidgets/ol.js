@@ -227,6 +227,15 @@ var ol = window.ol;
     return text;
   };
 
+  callbacks.renderPopups = function(feature, overlay) {
+    var geometry = feature.getGeometry();
+    var extent = geometry.getExtent();
+    var anchor = ol.extent.getCenter(extent);
+    var offset = geometry.getType() === "Point" ? [0, -50] : [0, 0];
+    overlay.setOffset(offset);
+    overlay.setPosition(anchor);
+  };
+
   // Move to 'helpMe'
   var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
@@ -384,13 +393,16 @@ var ol = window.ol;
               if(popup_property) {
                 console.log(feature.get(popup_property));
                 popupContainer.innerHTML = feature.get(popup_property);
+                callbacks.renderPopups(feature, overlay);
                 //console.log("type", feature.getGeometry().getType());
                 //var anchor = feature.getGeometry().getCoordinates();
+                /*
                 var extent = feature.getGeometry().getExtent();
                 var anchor = ol.extent.getCenter(extent);
                 var offset = feature.getGeometry().getType() === "Point" ? [0, -50] : [0, 0];
                 overlay.setOffset(offset);
                 overlay.setPosition(anchor);
+                */
               }
             });
           });
