@@ -287,6 +287,11 @@ var ol = window.ol;
     });
     debug.log("zoom:", this.getView().getZoom());
     debug.log("resolution:", this.getView().getResolution());
+
+    if (options.name === "popup") {
+      console.log("add popup");
+      layer.set("callback", function(feature) { console.log("I am a popup"); });
+    }
   };
 
   // TODO: check how to set feature ids
@@ -351,6 +356,15 @@ var ol = window.ol;
               var lnglat = { lng: coordinate[0], lat: coordinate[1], HDMS: coordHDMS };
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
+            map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
+              console.log("Layer", layer);
+              console.log(layer.get("name"));
+              var callback = layer.get("callback");
+              if (callback) {
+                console.log("callback");
+                callback(feature);
+              }
+            });
           });
 
           // add scale line to map
