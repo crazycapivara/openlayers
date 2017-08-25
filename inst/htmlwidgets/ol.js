@@ -273,7 +273,8 @@ var ol = window.ol;
       source: dataSource,
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
-      type: options.type
+      type: options.type,
+      popup: options.popup
     });
     layer.set("title", layer.get("name"));
     if (style) {
@@ -287,11 +288,6 @@ var ol = window.ol;
     });
     debug.log("zoom:", this.getView().getZoom());
     debug.log("resolution:", this.getView().getResolution());
-
-    if (options.name === "popup") {
-      console.log("add popup");
-      layer.set("callback", function(feature) { console.log("I am a popup"); });
-    }
   };
 
   // TODO: check how to set feature ids
@@ -357,12 +353,11 @@ var ol = window.ol;
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-              console.log("Layer", layer);
-              console.log(layer.get("name"));
-              var callback = layer.get("callback");
-              if (callback) {
-                console.log("callback");
-                callback(feature);
+              debug.log("layer", layer);
+              console.log("layer name", layer.get("name"));
+              var popup_property = layer.get("popup");
+              if(popup_property) {
+                console.log(feature.get(popup_property));
               }
             });
           });
