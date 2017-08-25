@@ -302,6 +302,21 @@ var ol = window.ol;
     this.addLayer(layer);
   };
 
+  // TODO: use as simple overlay as well and therefore,
+  // add position and text parameter
+  methods.addOverlay = function(containerId) {
+    var el = helpMe.addContainer(containerId);
+    el.setAttribute("style", "background: white; padding: 10px; border-radius: 10px;");
+    var overlay = new ol.Overlay({
+      element: el,
+      positioning: 'bottom-center',
+      offset: [0, -50], // TODO: set dynamically
+      autoPan: true
+    });
+    this.addOverlay(overlay);
+    return overlay;
+  };
+
   HTMLWidgets.widget({
 
     name: 'ol',
@@ -341,6 +356,9 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
+          // add overlay container to show popups
+          var overlay = methods.addOverlay.call(map, "popup-container");
+
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
@@ -352,12 +370,16 @@ var ol = window.ol;
               var lnglat = { lng: coordinate[0], lat: coordinate[1], HDMS: coordHDMS };
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
+            // popup support
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
               debug.log("layer", layer);
-              console.log("layer name", layer.get("name"));
+              debug.log("layer name", layer.get("name"));
               var popup_property = layer.get("popup");
               if(popup_property) {
                 console.log(feature.get(popup_property));
+                var popupContainer = document.getElementById("popup-container");
+                popupContainer.innerHTML = feature.get(popup_property);
+                overlay.setPosition(feature.getGeometry().getCoordinates());
               }
             });
           });
