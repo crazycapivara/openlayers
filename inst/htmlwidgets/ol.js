@@ -380,10 +380,17 @@ var ol = window.ol;
               debug.log("layer", layer);
               debug.log("layer name", layer.get("name"));
               var popup_property = layer.get("popup");
+              // TODO: use callback function
               if(popup_property) {
                 console.log(feature.get(popup_property));
                 popupContainer.innerHTML = feature.get(popup_property);
-                overlay.setPosition(feature.getGeometry().getCoordinates());
+                //console.log("type", feature.getGeometry().getType());
+                //var anchor = feature.getGeometry().getCoordinates();
+                var extent = feature.getGeometry().getExtent();
+                var anchor = ol.extent.getCenter(extent);
+                var offset = feature.getGeometry().getType() === "Point" ? [0, -50] : [0, 0];
+                overlay.setOffset(offset);
+                overlay.setPosition(anchor);
               }
             });
           });
