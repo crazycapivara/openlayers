@@ -52,6 +52,14 @@ var ol = window.ol;
     });
   };
 
+  helpMe.setFeatureProperties = function(features, propertyName, values) {
+    for (var i = 0; i < features.length; ++i) {
+        var value = values instanceof Array ? values[i] : values;
+        debug.log(value);
+        features[i].set(propertyName, value);
+    }
+  };
+
   helpMe.getFeaturesFromGeojson = function(data) {
     var format = new ol.format.GeoJSON();
     var features = format.readFeatures(data, {
@@ -283,7 +291,7 @@ var ol = window.ol;
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type,
-      popup: options.popup
+      popup_property: options.popup_property
     });
     layer.set("title", layer.get("name"));
     if (style) {
@@ -291,6 +299,10 @@ var ol = window.ol;
       layer.setStyle(style_);
     }
     this.addLayer(layer);
+    // Add popup text to features
+    if (options.popup) {
+      helpMe.setFeatureProperties(features, "popup", options.popup);
+    }
     // TODO: fit should be optional
     this.getView().fit(dataSource.getExtent(), {
       maxZoom: olWidget.options.maxZoomFit
@@ -386,12 +398,15 @@ var ol = window.ol;
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
             // popup support
+            // TODO: move to separate function?
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
               debug.log("layer name", layer.get("name"));
-              var popup_property = layer.get("popup");
-              if(popup_property) {
-                console.log(feature.get(popup_property));
-                popupContainer.innerHTML = feature.get(popup_property);
+              // either get property of feature or popup text bind to feature
+              var popupProperty = layer.get("popup_property");
+              var popupText = popupProperty ? feature.get(popupProperty) : feature.get("popup");
+              if(popupText) {
+                debug.log("popup text", popupText);
+                popupContainer.innerHTML = popupText;
                 callbacks.renderPopups(feature, popupOverlay);
               }
             });
