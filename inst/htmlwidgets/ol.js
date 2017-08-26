@@ -311,16 +311,17 @@ var ol = window.ol;
     this.addLayer(layer);
   };
 
-  // TODO: use as simple overlay as well and therefore,
-  // add position and text parameter
-  methods.addOverlay = function(containerId) {
+  // TODO: maybe move to 'helpMe'
+  // offset and position are optional
+  methods.addOverlay = function(containerId, offset, position) {
     var el = helpMe.addContainer(containerId);
     el.setAttribute("style", "background: white; padding: 10px; border-radius: 10px;");
     var overlay = new ol.Overlay({
       element: el,
       positioning: 'bottom-center',
-      offset: [0, -50], // TODO: set dynamically
-      autoPan: true
+      offset: offset || [0, -50],
+      autoPan: true,
+      position: position || undefined
     });
     this.addOverlay(overlay);
     return overlay;
@@ -366,11 +367,11 @@ var ol = window.ol;
           });
 
           // add overlay container to show popups
-          var overlay = methods.addOverlay.call(map, "popup-container");
-          var popupContainer = document.getElementById("popup-container");
+          var popupOverlay = methods.addOverlay.call(map, "popup-container");
+          var popupContainer = popupOverlay.getElement();
           // close popup on click event
           popupContainer.addEventListener('click', function() {
-            overlay.setPosition();
+            popupOverlay.setPosition();
           });
 
           map.on("singleclick", function(e) {
@@ -386,23 +387,12 @@ var ol = window.ol;
             }
             // popup support
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-              debug.log("layer", layer);
               debug.log("layer name", layer.get("name"));
               var popup_property = layer.get("popup");
-              // TODO: use callback function
               if(popup_property) {
                 console.log(feature.get(popup_property));
                 popupContainer.innerHTML = feature.get(popup_property);
-                callbacks.renderPopups(feature, overlay);
-                //console.log("type", feature.getGeometry().getType());
-                //var anchor = feature.getGeometry().getCoordinates();
-                /*
-                var extent = feature.getGeometry().getExtent();
-                var anchor = ol.extent.getCenter(extent);
-                var offset = feature.getGeometry().getType() === "Point" ? [0, -50] : [0, 0];
-                overlay.setOffset(offset);
-                overlay.setPosition(anchor);
-                */
+                callbacks.renderPopups(feature, popupOverlay);
               }
             });
           });
