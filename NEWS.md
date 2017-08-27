@@ -69,3 +69,11 @@ can be used in `marker_style`
 * Added and updated examples
 * As hidden option `renderer` parameter can be set to `webgl` in `ol_options`
 (does not work fine when displaying directly in RStudio)
+
+# openlayers 0.4.2
+
+* Switched to `OpenLayers` v4.3.1
+
+# openlayers 0.4.3
+
+* Added popup support
