@@ -44,10 +44,13 @@ ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
 
 require("geojsonio")
 
+features <- us_cities[1:5, ]
+
 ol()  %>% add_stamen_tiles() %>%
   add_geojson(
-    geojson_json(us_cities[1:10, ]),
-    style = marker_style()
+    geojson_json(features),
+    style = marker_style(),
+    popup = features$name
   )
 
 require("sf")

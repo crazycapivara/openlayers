@@ -27,7 +27,7 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.2 wrapping openlayersjs v4.3.1
+#> openlayers 0.4.3 wrapping openlayersjs v4.3.1
 ```
 
 ``` r
@@ -35,10 +35,13 @@ ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
 
 require("geojsonio")
 
+features <- us_cities[1:5, ]
+
 ol()  %>% add_stamen_tiles() %>%
   add_geojson(
-    geojson_json(us_cities[1:10, ]),
-    style = marker_style()
+    geojson_json(features),
+    style = marker_style(),
+    popup = features$name
   )
 
 require("sf")
