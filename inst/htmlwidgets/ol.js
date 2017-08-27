@@ -1,8 +1,7 @@
 // define ol to use strict mode
 var ol = window.ol;
 
-(function() {"use strict";
-
+(function() {"use strict"; // anonymos start
   var debug = {};
 
   debug.active = false;
@@ -236,7 +235,7 @@ var ol = window.ol;
   };
 
   callbacks.renderPopup = function(feature, overlay, text) {
-    debug.log("popup text", text);
+    debug.log("popup text:", text);
     overlay.getElement().innerHTML = text;
     var geometry = feature.getGeometry();
     var extent = geometry.getExtent();
@@ -343,32 +342,30 @@ var ol = window.ol;
   };
 
   HTMLWidgets.widget({
-
     name: 'ol',
-
     type: 'output',
 
     factory: function(el, width, height) {
-
       olWidget.element = el;
+
       var map = null;
 
       return {
+        renderValue: function(x) { // renderValue start
+          debug.active = x.options.debug;
 
-        renderValue: function(x) {
-
-          console.log(x.options);
-          // TODO: move to helper func
-          for (var key in x.options) {
-            // set null to undefined
-            olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
-          }
-          console.log(olWidget.options);
-
-          debug.active = olWidget.options.debug;
           debug.log("Welcome to the machine!");
           debug.log(getDockerContainerName());
+          debug.log("passed options:", x.options);
 
+          // TODO: move to helper func, set null to undefined
+          for (var key in x.options) {
+            olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
+          }
+
+          debug.log("current options:", olWidget.options);
+
+          // create map object
           map = new ol.Map({
             target: el.id,
             view: new ol.View({
@@ -391,7 +388,7 @@ var ol = window.ol;
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
-            debug.log("xy", coordinate);
+            debug.log("xy:", coordinate);
             var coordHDMS = ol.coordinate.toStringHDMS(coordinate);
             // pass coordinate back to R
             if (HTMLWidgets.shinyMode) {
@@ -402,7 +399,7 @@ var ol = window.ol;
             // popup support
             // TODO: move to separate function?
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
-              debug.log("layer name", layer.get("name"));
+              debug.log("layer name:", layer.get("name"));
               var popupProperty = layer.get("popupProperty");
               if(popupProperty) {
                 var popupText = feature.get(popupProperty);
@@ -455,21 +452,13 @@ var ol = window.ol;
             methods[call.method].apply(map, call.args);
           }
 
-          //debug.log(window);
           debug.log(helpMe.getLayers(map));
-          debug.log(helpMe.getLayerByName(map, "osm"));
-
-        // END renderValue
-        },
+        }, // renderValue end
 
         resize: function(width, height) {
-
           // TODO: code to re-render the widget with a new size
-
         }
-
       };
     }
   });
-
-})();
+})(); // anonymos end
