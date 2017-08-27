@@ -235,7 +235,9 @@ var ol = window.ol;
     return text;
   };
 
-  callbacks.renderPopups = function(feature, overlay) {
+  callbacks.renderPopup = function(feature, overlay, text) {
+    debug.log("popup text", text);
+    overlay.getElement().innerHTML = text;
     var geometry = feature.getGeometry();
     var extent = geometry.getExtent();
     var anchor = ol.extent.getCenter(extent);
@@ -291,7 +293,7 @@ var ol = window.ol;
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type,
-      popup_property: options.popup_property
+      popupProperty: options.popup_property
     });
     layer.set("title", layer.get("name"));
     if (style) {
@@ -302,6 +304,7 @@ var ol = window.ol;
     // Add popup text to features
     if (options.popup) {
       helpMe.setFeatureProperties(features, "popup", options.popup);
+      layer.set("popupProperty", "popup");
     }
     // TODO: fit should be optional
     this.getView().fit(dataSource.getExtent(), {
@@ -380,9 +383,8 @@ var ol = window.ol;
 
           // add overlay container to show popups
           var popupOverlay = methods.addOverlay.call(map, "popup-container");
-          var popupContainer = popupOverlay.getElement();
           // close popup on click event
-          popupContainer.addEventListener('click', function() {
+          popupOverlay.getElement().addEventListener('click', function() {
             popupOverlay.setPosition();
           });
 
@@ -401,13 +403,10 @@ var ol = window.ol;
             // TODO: move to separate function?
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
               debug.log("layer name", layer.get("name"));
-              // either get property of feature or popup text bind to feature
-              var popupProperty = layer.get("popup_property");
-              var popupText = popupProperty ? feature.get(popupProperty) : feature.get("popup");
-              if(popupText) {
-                debug.log("popup text", popupText);
-                popupContainer.innerHTML = popupText;
-                callbacks.renderPopups(feature, popupOverlay);
+              var popupProperty = layer.get("popupProperty");
+              if(popupProperty) {
+                var popupText = feature.get(popupProperty);
+                callbacks.renderPopup(feature, popupOverlay, popupText);
               }
             });
           });
