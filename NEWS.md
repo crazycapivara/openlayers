@@ -9,15 +9,14 @@
 # openlayers 0.4.1
 
 * Added `name` and `type` parameters to `layer_options` 
-* Added ol-layerswitcher plugin
+* Added `ol-layerswitcher` plugin
   - `add_layer_switcher`
   - to add layers to the menu just set the `name` parameter of the layer
   - set `type` parameter to `"base"` for base layers
-  - layer dropped to the map get random names based on the names-generator from _docker_
+  - layers dropped to the map get random names based on the names-generator from _docker_
 * Added horizontal and vertical text offset (parameters) to `text_style`
 * Added and updated examples
-* As hidden option `renderer` parameter can be set to `webgl` in `ol_options`
-(does not work fine when displaying directly in RStudio)
+* As hidden option `renderer` parameter can be set to `webgl` in `ol_options` (should not be used when displaying directly in RStudio)
 
 # openlayers 0.4.0
 
@@ -26,8 +25,7 @@
 * Added drag and drop functionality
   - `add_drag_and_drop`
 * Changed default marker icon
-* Added `make_icon` function to create marker icons from images, so that they
-can be used in `marker_style`
+* Added `make_icon` function to create marker icons from images, so that they can be used in `marker_style`
 * Improved shiny integration by passing data back to R:
   - feature properties on select event
   - coordinates on map click event
@@ -40,8 +38,7 @@ can be used in `marker_style`
 * Added `ol_options` to set map options like
   - `min_zoom`, `max_zoom`
   - `debug` mode
-* Added function `add_vector_data` as a shorthand to `add_geojson` using `geojsonio`
-to parse any data to geojson
+* Added function `add_vector_data` as a shorthand to `add_geojson` using `geojsonio` to parse any data to geojson
 
 # openlayers 0.2.2
 
