@@ -283,7 +283,7 @@ var ol = window.ol;
     });
   };
 
-  methods.addGeojson = function(data, style, options) {
+  methods.addGeojson = function(data, style, popup, options) {
     var features = helpMe.getFeaturesFromGeojson(data);
     var dataSource = new ol.source.Vector({
       features: features
@@ -302,8 +302,8 @@ var ol = window.ol;
     }
     this.addLayer(layer);
     // Add popup text to features
-    if (options.popup) {
-      helpMe.setFeatureProperties(features, "popup", options.popup);
+    if (popup) {
+      helpMe.setFeatureProperties(features, "popup", popup);
       layer.set("popupProperty", "popup");
     }
     // TODO: fit should be optional
