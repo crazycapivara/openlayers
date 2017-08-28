@@ -19,8 +19,29 @@ devtools::install_github("crazycapivara/openlayers", ref = "develop")
 ```{r}
 library(openlayers)
 
-ol() %>% add_stamen_tiles() %>% add_stamen_tiles("terrain-labels") %>%
+ol() %>%
+  add_stamen_tiles() %>%
+  add_stamen_tiles("terrain-labels") %>%
   set_view(lon = 9.5, lat = 51.31667, zoom = 8)
+```
+
+## Basic usage
+
+Call `ol()` to create a map object and add
+
+* layers,
+* controls,
+* interactions,
+* ...
+
+```{r, warning=FALSE}
+documenta_town <- c(lon = 9.497968, lat = 51.315699)
+
+ol() %>%
+  add_stamen_tiles("toner") %>%
+  add_vector_data(documenta_town,
+                  style = marker_style(),
+                  popup = "documenta town")
 ```
 
 `## to be continued ##`

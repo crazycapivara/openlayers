@@ -1,3 +1,7 @@
 html_document:
+  mathjax: null
+  self_contained: false
+  lib_dir: libs
+  fig_height: 2.25
   theme: united
   css: include/doc_style.css
