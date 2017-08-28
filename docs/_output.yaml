@@ -5,3 +5,5 @@ html_document:
   fig_height: 2.25
   theme: united
   css: include/doc_style.css
+  includes:
+    in_header: include/in_header.html
