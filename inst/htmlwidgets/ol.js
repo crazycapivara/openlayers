@@ -1,8 +1,7 @@
 // define ol to use strict mode
 var ol = window.ol;
 
-(function() {"use strict";
-
+(function() {"use strict"; // anonymos start
   var debug = {};
 
   debug.active = false;
@@ -50,6 +49,14 @@ var ol = window.ol;
       debug.log("set feature id: ", i);
       feature.setId(i);
     });
+  };
+
+  helpMe.setFeatureProperties = function(features, propertyName, values) {
+    for (var i = 0; i < features.length; ++i) {
+        var value = values instanceof Array ? values[i] : values;
+        debug.log(value);
+        features[i].set(propertyName, value);
+    }
   };
 
   helpMe.getFeaturesFromGeojson = function(data) {
@@ -227,6 +234,17 @@ var ol = window.ol;
     return text;
   };
 
+  callbacks.renderPopup = function(feature, overlay, text) {
+    debug.log("popup text:", text);
+    overlay.getElement().innerHTML = text;
+    var geometry = feature.getGeometry();
+    var extent = geometry.getExtent();
+    var anchor = ol.extent.getCenter(extent);
+    var offset = geometry.getType() === "Point" ? [0, -50] : [0, 0];
+    overlay.setOffset(offset);
+    overlay.setPosition(anchor);
+  };
+
   // Move to 'helpMe'
   var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
@@ -264,7 +282,7 @@ var ol = window.ol;
     });
   };
 
-  methods.addGeojson = function(data, style, options) {
+  methods.addGeojson = function(data, style, popup, options) {
     var features = helpMe.getFeaturesFromGeojson(data);
     var dataSource = new ol.source.Vector({
       features: features
@@ -273,7 +291,8 @@ var ol = window.ol;
       source: dataSource,
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
-      type: options.type
+      type: options.type,
+      popupProperty: options.popup_property
     });
     layer.set("title", layer.get("name"));
     if (style) {
@@ -281,6 +300,11 @@ var ol = window.ol;
       layer.setStyle(style_);
     }
     this.addLayer(layer);
+    // Add popup text to features
+    if (popup) {
+      helpMe.setFeatureProperties(features, "popup", popup);
+      layer.set("popupProperty", "popup");
+    }
     // TODO: fit should be optional
     this.getView().fit(dataSource.getExtent(), {
       maxZoom: olWidget.options.maxZoomFit
@@ -301,33 +325,47 @@ var ol = window.ol;
     this.addLayer(layer);
   };
 
+  // TODO: maybe move to 'helpMe'
+  // offset and position are optional
+  methods.addOverlay = function(containerId, offset, position) {
+    var el = helpMe.addContainer(containerId);
+    el.setAttribute("style", "background: white; padding: 10px; border-radius: 10px;");
+    var overlay = new ol.Overlay({
+      element: el,
+      positioning: 'bottom-center',
+      offset: offset || [0, -50],
+      autoPan: true,
+      position: position || undefined
+    });
+    this.addOverlay(overlay);
+    return overlay;
+  };
+
   HTMLWidgets.widget({
-
     name: 'ol',
-
     type: 'output',
 
     factory: function(el, width, height) {
-
       olWidget.element = el;
+
       var map = null;
 
       return {
+        renderValue: function(x) { // renderValue start
+          debug.active = x.options.debug;
 
-        renderValue: function(x) {
-
-          console.log(x.options);
-          // TODO: move to helper func
-          for (var key in x.options) {
-            // set null to undefined
-            olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
-          }
-          console.log(olWidget.options);
-
-          debug.active = olWidget.options.debug;
           debug.log("Welcome to the machine!");
           debug.log(getDockerContainerName());
+          debug.log("passed options:", x.options);
 
+          // TODO: move to helper func, set null to undefined
+          for (var key in x.options) {
+            olWidget.options[key] = x.options[key] === null ? undefined : x.options[key];
+          }
+
+          debug.log("current options:", olWidget.options);
+
+          // create map object
           map = new ol.Map({
             target: el.id,
             view: new ol.View({
@@ -340,10 +378,17 @@ var ol = window.ol;
             loadTilesWhileAnimating: true
           });
 
+          // add overlay container to show popups
+          var popupOverlay = methods.addOverlay.call(map, "popup-container");
+          // close popup on click event
+          popupOverlay.getElement().addEventListener('click', function() {
+            popupOverlay.setPosition();
+          });
+
           map.on("singleclick", function(e) {
             var coordinate = ol.proj.transform(
               e.coordinate, "EPSG:3857", "EPSG:4326");
-            debug.log("xy", coordinate);
+            debug.log("xy:", coordinate);
             var coordHDMS = ol.coordinate.toStringHDMS(coordinate);
             // pass coordinate back to R
             if (HTMLWidgets.shinyMode) {
@@ -351,6 +396,16 @@ var ol = window.ol;
               var lnglat = { lng: coordinate[0], lat: coordinate[1], HDMS: coordHDMS };
               Shiny.onInputChange(el.id + "_click", lnglat);
             }
+            // popup support
+            // TODO: move to separate function?
+            map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
+              debug.log("layer name:", layer.get("name"));
+              var popupProperty = layer.get("popupProperty");
+              if(popupProperty) {
+                var popupText = feature.get(popupProperty);
+                callbacks.renderPopup(feature, popupOverlay, popupText);
+              }
+            });
           });
 
           // add scale line to map
@@ -397,21 +452,13 @@ var ol = window.ol;
             methods[call.method].apply(map, call.args);
           }
 
-          //debug.log(window);
           debug.log(helpMe.getLayers(map));
-          debug.log(helpMe.getLayerByName(map, "osm"));
-
-        // END renderValue
-        },
+        }, // renderValue end
 
         resize: function(width, height) {
-
           // TODO: code to re-render the widget with a new size
-
         }
-
       };
     }
   });
-
-})();
+})(); // anonymos end

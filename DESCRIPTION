@@ -1,11 +1,12 @@
 Package: openlayers
-Title: An R Interface to OpenLayers
-Version: 0.4.2
+Title: An R Interface to 'OpenLayers'
+Version: 0.4.3
+Date: 2017-08-27
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
-Description: OpenLayers <https://openlayers.org/> is an open-source JavaScript library making it easy
-    to put a dynamic map in any web page. This package makes the functionality of
-    the JS library available within R via the htmlwidgets package.
+Description: Makes the open-source JavaScript library 'OpenLayers' <https://openlayers.org/> available
+  within R via the htmlwidgets package. So you can create interactive maps and
+  use them in Shiny apps or RMarkdown documents.
 URL: https://github.com/crazycapivara/openlayers/
 BugReports: https://github.com/crazycapivara/openlayers/issues/
 Depends:

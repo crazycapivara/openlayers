@@ -5,7 +5,7 @@
 \title{Add vector layer to the map}
 \usage{
 add_geojson(ol, data = NULL, filename = NULL, style = NULL,
-  options = layer_options())
+  popup = NULL, options = layer_options())
 }
 \arguments{
 \item{ol}{map widget}
@@ -15,6 +15,8 @@ add_geojson(ol, data = NULL, filename = NULL, style = NULL,
 \item{filename}{filename or url to read geojson from}
 
 \item{style}{style object or \code{NULL} (use default style)}
+
+\item{popup}{popup texts}
 
 \item{options}{general layer options, see \code{\link{layer_options}}}
 }
