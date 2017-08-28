@@ -7,3 +7,4 @@ html_document:
   css: include/doc_style.css
   includes:
     in_header: include/in_header.html
+    before_body: include/before_body.html

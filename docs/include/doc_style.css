@@ -1,3 +1,13 @@
-.ol{
+body {
+  padding-top: 70px;
+}
+
+.ol {
   padding-bottom: 15px;
+}
+
+.navbar-default {
+  background-color: #212223;
+  /*background-color: #283d4c;*/
+  border: none;
 }
