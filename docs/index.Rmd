@@ -43,7 +43,7 @@ documenta_town <- c(lon = 9.497968, lat = 51.315699)
 ol() %>%
   add_stamen_tiles("toner") %>%
   add_vector_data(documenta_town,
-                  style = marker_style(),
+                  style = icon_style(),
                   popup = "documenta town")
 ```
 

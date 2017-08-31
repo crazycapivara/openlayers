@@ -8,6 +8,8 @@ navbar:
       href: tiles.html
     - text: Features
       href: features.html
+    - text: Styles
+      href: styles.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/crazycapivara/openlayers

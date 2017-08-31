@@ -1,0 +1,93 @@
+---
+title: Styles
+pagetitle: OpenLayers for R - Styles
+---
+
+Corresponding to the [openlayers style classes ](https://openlayers.org/en/latest/apidoc/ol.style.html) the following (feature) styles are defined:
+
+* stroke
+* fill
+* text
+* circle
+* icon
+
+Method naming: `<type>_style`, e. g. `stroke_style`
+
+## Stroke
+
+```{r}
+library(openlayers)
+
+#fn <- "https://github.com/crazycapivara/rosgeo-live/raw/master/FOSSGIS-workshop/data/africa.js"
+
+fn <- system.file("geojson/nc.geojson", package = "openlayers")
+
+stroke <- stroke_style(color = "orange", width = 2)
+
+ol() %>%
+  add_osm_tiles() %>%
+  add_geojson(filename = fn, style = stroke)
+```
+
+## Fill
+
+```{r}
+fill = fill_style(color = substr(rainbow(100), 1, 7))
+
+ol() %>%
+  add_stamen_tiles("terrain") %>%
+  add_geojson(filename = fn,
+              style = fill,
+              options = layer_options(opacity = 0.7))
+```
+
+## Text
+
+```{r, message=FALSE}
+require("geojsonio")
+
+text <- text_style(property = "name")
+dont_panic <- text_style(
+  "So long, and thanks for all the fish",
+  color = "green",
+  stroke = stroke_style(color = "white", width = 3)
+)
+
+ol() %>%
+  add_stamen_tiles() %>%
+  add_vector_data(us_cities[4, ], style = dont_panic) %>%
+  add_vector_data(us_cities[1:3, ], style = text)
+```
+
+## Circle
+
+```{r, message=FALSE}
+style = circle_style(radius = 15,
+                     stroke = NULL,
+                     fill = fill_style("yellow"))
+
+ol() %>%
+  add_osm_tiles() %>%
+  add_vector_data(us_cities[1:10, ],
+                  style = style,
+                  options = layer_options(popup_property = "name"))
+```
+
+## Icon
+
+```{r, message=FALSE}
+features <- us_cities[1:10, ]
+colors <- ifelse(features$capital > 0, "red", "blue")
+style = icon_style(icon_color = colors)
+
+ol() %>% add_stamen_tiles() %>%
+  add_vector_data(features,
+                  style = style,
+                  popup = sprintf("<i>%s</i>", features$name))
+```
+
+Custom icons ...
+
+## Combing styles
+
+`## to be continued ##`
