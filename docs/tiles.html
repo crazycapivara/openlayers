@@ -185,6 +185,9 @@ $(document).ready(function () {
         <li>
   <a href="tiles.html">Tiles</a>
 </li>
+<li>
+  <a href="features.html">Features</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -212,14 +215,14 @@ $(document).ready(function () {
 <pre class="r"><code>library(openlayers)
 
 ol() %&gt;% add_osm_tiles()</code></pre>
-<div id="htmlwidget-a32d06122d8a95eb54a2" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a32d06122d8a95eb54a2">{"x":{"calls":[{"method":"addOSMTiles","args":[{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-21127a6fc9f58a7053f4" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-21127a6fc9f58a7053f4">{"x":{"calls":[{"method":"addOSMTiles","args":[{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="stamen" class="section level2">
 <h2>Stamen</h2>
 <pre class="r"><code>ol() %&gt;% add_stamen_tiles(&quot;watercolor&quot;)</code></pre>
-<div id="htmlwidget-a17dd03d8c666ece111e" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a17dd03d8c666ece111e">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7dd4e88a3da2200d5be7" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7dd4e88a3da2200d5be7">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="custom-tiles" class="section level2">
 <h2>Custom tiles</h2>
@@ -228,8 +231,8 @@ ol() %&gt;% add_osm_tiles()</code></pre>
 <pre class="r"><code>ol() %&gt;%
   add_xyz_tiles(xyz_url, attribution = cartodb_attribution()) %&gt;%
   set_view(lat = -22.90278, lon = -43.20750, zoom = 8)</code></pre>
-<div id="htmlwidget-445d7c3a71e5fd993937" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-445d7c3a71e5fd993937">{"x":{"calls":[{"method":"addXYZTiles","args":["https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",["&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<\/a>, ","&copy;<a href=\"https://carto.com/attribution\">CARTO<\/a>"],{"opacity":1,"name":null}]},{"method":"setView","args":[-43.2075,-22.90278,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5cbb12bec6e3263e23b3" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5cbb12bec6e3263e23b3">{"x":{"calls":[{"method":"addXYZTiles","args":["https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",["&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<\/a>, ","&copy;<a href=\"https://carto.com/attribution\">CARTO<\/a>"],{"opacity":1,"name":null}]},{"method":"setView","args":[-43.2075,-22.90278,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="combining-tiles" class="section level2">
 <h2>Combining tiles</h2>
@@ -237,14 +240,14 @@ ol() %&gt;% add_osm_tiles()</code></pre>
   add_stamen_tiles(&quot;watercolor&quot;) %&gt;%
   add_stamen_tiles(&quot;terrain-labels&quot;) %&gt;%
   set_view(lat = 51.509865, lon = -0.118092, zoom = 8)</code></pre>
-<div id="htmlwidget-0d11d3725342e5fcb913" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0d11d3725342e5fcb913">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addStamenTiles","args":["terrain-labels",{"opacity":1,"name":null}]},{"method":"setView","args":[-0.118092,51.509865,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-760b9c88172029216d04" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-760b9c88172029216d04">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addStamenTiles","args":["terrain-labels",{"opacity":1,"name":null}]},{"method":"setView","args":[-0.118092,51.509865,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>ol() %&gt;%
   add_stamen_tiles(&quot;watercolor&quot;) %&gt;%
   add_osm_tiles(options = layer_options(opacity = 0.4)) %&gt;%
   set_view(lat = 36.72016, lon = -4.42034, zoom = 8)</code></pre>
-<div id="htmlwidget-f269f0e9f8ff237e8f6b" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f269f0e9f8ff237e8f6b">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addOSMTiles","args":[{"opacity":0.4,"name":null}]},{"method":"setView","args":[-4.42034,36.72016,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f5ef68ad5830f43ae850" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5ef68ad5830f43ae850">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addOSMTiles","args":[{"opacity":0.4,"name":null}]},{"method":"setView","args":[-4.42034,36.72016,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 </div>
 
 

@@ -1,10 +1,13 @@
 name: OpenLayers for R
+include: [includes/imports.Rmd]
 output_dir: .
 navbar:
   title: OpenLayers for R
   left:
     - text: Tiles
       href: tiles.html
+    - text: Features
+      href: features.html
   right:
     - icon: fa-github fa-lg
       href: https://github.com/crazycapivara/openlayers

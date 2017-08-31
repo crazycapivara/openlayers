@@ -1,0 +1,63 @@
+---
+title: Features
+pagetitle: OpenLayers for R - Features
+---
+
+## Points
+
+Display as circles
+
+```{r, message=FALSE}
+require(geojsonio)
+
+point_features <- us_cities[1:10, ]
+
+ol() %>%
+  add_stamen_tiles() %>%
+  add_vector_data(point_features, style = circle_style())
+```
+
+... as icon markers
+
+```{r, message=FALSE}
+ol() %>%
+  add_stamen_tiles() %>%
+  add_vector_data(point_features, style = icon_style(),
+                  popup = point_features$name)
+```
+
+## Polygons
+
+```{r, message=FALSE}
+require(sf)
+
+nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
+
+ol() %>%
+  add_xyz_tiles(get_cartodb_xyz_url(), cartodb_attribution()) %>%
+  add_vector_data(nc)
+```
+
+## Lines
+
+Create line feature
+
+```{r}
+point_features <- us_cities[1:3, ] 
+
+(line_feature <- point_features[, c("long", "lat")] %>%
+  as.matrix()  %>%
+  st_linestring())
+```
+
+Add points, labels and line to the map
+
+```{r, message=FALSE}
+labels <- text_style(property = "name",
+                     offset_xy = c(0, -15))
+
+ol() %>% add_osm_tiles() %>%
+  add_vector_data(point_features) %>%
+  add_vector_data(point_features, style = labels) %>%
+  add_vector_data(line_feature)
+```
