@@ -1,5 +1,5 @@
 body {
-  padding-top: 70px;
+  padding-top: 90px;
 }
 
 .ol {
@@ -10,4 +10,8 @@ body {
   background-color: #212223;
   /*background-color: #283d4c;*/
   border: none;
+}
+
+.section h2 {
+  margin-top: -40px !important;
 }

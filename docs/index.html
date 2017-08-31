@@ -13,21 +13,21 @@
 
 <title>OpenLayers for R</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="libs/navigation-1.1/tabsets.js"></script>
-<link href="libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="libs/highlightjs-1.1/highlight.js"></script>
-<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
-<link href="libs/ol-4.3.1/ol.css" rel="stylesheet" />
-<script src="libs/ol-4.3.1/ol.js"></script>
-<script src="libs/names-generator-1/docker-names-generator.js"></script>
-<script src="libs/ol-binding-0.4.3/ol.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="site_libs/ol-4.3.1/ol.css" rel="stylesheet" />
+<script src="site_libs/ol-4.3.1/ol.js"></script>
+<script src="site_libs/names-generator-1/docker-names-generator.js"></script>
+<script src="site_libs/ol-binding-0.4.3/ol.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -101,6 +101,58 @@ button.code-folding-btn:focus {
 </style>
 
 
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
 
 <div class="container-fluid main-container">
 
@@ -117,18 +169,34 @@ $(document).ready(function () {
 
 
 
-<nav class="navbar navbar-default navbar-fixed-top">
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="index.html">OpenLayers for R</a>
     </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://github.com/crazycapivara/openlayers" title="View Source on Github"><i class="fa fa-github fa-2x"></i></a></li>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="tiles.html">Tiles</a>
+</li>
       </ul>
-    </div>
-  </div>
-</nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/crazycapivara/openlayers">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
 <div class="fluid-row" id="header">
 
@@ -150,14 +218,14 @@ devtools::install_github(&quot;crazycapivara/openlayers&quot;, ref = &quot;devel
 </div>
 <div id="quickstart" class="section level2">
 <h2>Quickstart</h2>
-<pre class="r"><code>library(openlayers)</code></pre>
-<pre><code>## openlayers 0.4.3 wrapping openlayersjs v4.3.1</code></pre>
-<pre class="r"><code>ol() %&gt;%
+<pre class="r"><code>library(openlayers)
+
+ol() %&gt;%
   add_stamen_tiles() %&gt;%
   add_stamen_tiles(&quot;terrain-labels&quot;) %&gt;%
   set_view(lon = 9.5, lat = 51.31667, zoom = 8)</code></pre>
-<div id="htmlwidget-41d1b4663b5ff0a0361e" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-41d1b4663b5ff0a0361e">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addStamenTiles","args":["terrain-labels",{"opacity":1,"name":null}]},{"method":"setView","args":[9.5,51.31667,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-45d8780c8cbebcfcc43b" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-45d8780c8cbebcfcc43b">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addStamenTiles","args":["terrain-labels",{"opacity":1,"name":null}]},{"method":"setView","args":[9.5,51.31667,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="basic-usage" class="section level2">
 <h2>Basic usage</h2>
@@ -168,6 +236,7 @@ devtools::install_github(&quot;crazycapivara/openlayers&quot;, ref = &quot;devel
 <li>interactions,</li>
 <li>…</li>
 </ul>
+<p>typically by using the <code>%&gt;%</code> operator</p>
 <pre class="r"><code>documenta_town &lt;- c(lon = 9.497968, lat = 51.315699)
 
 ol() %&gt;%
@@ -175,8 +244,8 @@ ol() %&gt;%
   add_vector_data(documenta_town,
                   style = marker_style(),
                   popup = &quot;documenta town&quot;)</code></pre>
-<div id="htmlwidget-1cd7aed0c6bfb5cb4617" style="width:100%;height:216px;" class="ol html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1cd7aed0c6bfb5cb4617">{"x":{"calls":[{"method":"addStamenTiles","args":["toner",{"opacity":1,"name":null}]},{"method":"addGeojson","args":[{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[9.497968,51.315699]},"properties":{}}]},{"marker":{"src":"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3NTk5MkNFM0IyREVFMjExQjg1N0I1QzI0RUREQzAxMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxMjM2M0RENTU4OUExMUU0ODVBM0IxRjA4Qzc2NjVCQiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxMjM2M0RENDU4OUExMUU0ODVBM0IxRjA4Qzc2NjVCQiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEOTFCQzg1NTk1NThFNDExQUZDOUQxOTVEQzNGMjAxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NTk5MkNFM0IyREVFMjExQjg1N0I1QzI0RUREQzAxMiIvPiA8L3JkZjpEZXNjcmlwdGlv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","anchor":[0.5,0.8],"color":null}},"documenta town",{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a6f026f1fe60fb777e0c" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a6f026f1fe60fb777e0c">{"x":{"calls":[{"method":"addStamenTiles","args":["toner",{"opacity":1,"name":null}]},{"method":"addGeojson","args":[{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[9.497968,51.315699]},"properties":{}}]},{"marker":{"src":"data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3NTk5MkNFM0IyREVFMjExQjg1N0I1QzI0RUREQzAxMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxMjM2M0RENTU4OUExMUU0ODVBM0IxRjA4Qzc2NjVCQiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxMjM2M0RENDU4OUExMUU0ODVBM0IxRjA4Qzc2NjVCQiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEOTFCQzg1NTk1NThFNDExQUZDOUQxOTVEQzNGMjAxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3NTk5MkNFM0IyREVFMjExQjg1N0I1QzI0RUREQzAxMiIvPiA8L3JkZjpEZXNjcmlwdGlv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","anchor":[0.5,0.8],"color":null}},"documenta town",{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
 <p><code>## to be continued ##</code></p>
 </div>
 

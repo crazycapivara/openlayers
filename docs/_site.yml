@@ -1,0 +1,18 @@
+name: OpenLayers for R
+output_dir: .
+navbar:
+  title: OpenLayers for R
+  left:
+    - text: Tiles
+      href: tiles.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/crazycapivara/openlayers
+output:
+  html_document:
+    mathjax: null
+    self_contained: false
+    lib_dir: libs
+    fig_height: 2.25
+    theme: united
+    css: include/doc_style.css

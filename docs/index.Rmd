@@ -1,5 +1,6 @@
 ---
 title: OpenLayers for R
+pagetitle: OpenLayers for R
 ---
 
 ## Installation
@@ -33,6 +34,8 @@ Call `ol()` to create a map object and add
 * controls,
 * interactions,
 * ...
+
+typically by using the `%>%` operator
 
 ```{r, warning=FALSE}
 documenta_town <- c(lon = 9.497968, lat = 51.315699)

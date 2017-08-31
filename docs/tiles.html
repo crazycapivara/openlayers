@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>OpenLayers for R - Tiles</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="site_libs/ol-4.3.1/ol.css" rel="stylesheet" />
+<script src="site_libs/ol-4.3.1/ol.js"></script>
+<script src="site_libs/names-generator-1/docker-names-generator.js"></script>
+<script src="site_libs/ol-binding-0.4.3/ol.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="include/doc_style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenLayers for R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="tiles.html">Tiles</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/crazycapivara/openlayers">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Tiles</h1>
+
+</div>
+
+
+<div id="osm" class="section level2">
+<h2>OSM</h2>
+<pre class="r"><code>library(openlayers)
+
+ol() %&gt;% add_osm_tiles()</code></pre>
+<div id="htmlwidget-a32d06122d8a95eb54a2" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a32d06122d8a95eb54a2">{"x":{"calls":[{"method":"addOSMTiles","args":[{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="stamen" class="section level2">
+<h2>Stamen</h2>
+<pre class="r"><code>ol() %&gt;% add_stamen_tiles(&quot;watercolor&quot;)</code></pre>
+<div id="htmlwidget-a17dd03d8c666ece111e" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a17dd03d8c666ece111e">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="custom-tiles" class="section level2">
+<h2>Custom tiles</h2>
+<pre class="r"><code>(xyz_url &lt;- get_cartodb_xyz_url())</code></pre>
+<pre><code>## [1] &quot;https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png&quot;</code></pre>
+<pre class="r"><code>ol() %&gt;%
+  add_xyz_tiles(xyz_url, attribution = cartodb_attribution()) %&gt;%
+  set_view(lat = -22.90278, lon = -43.20750, zoom = 8)</code></pre>
+<div id="htmlwidget-445d7c3a71e5fd993937" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-445d7c3a71e5fd993937">{"x":{"calls":[{"method":"addXYZTiles","args":["https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",["&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<\/a>, ","&copy;<a href=\"https://carto.com/attribution\">CARTO<\/a>"],{"opacity":1,"name":null}]},{"method":"setView","args":[-43.2075,-22.90278,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="combining-tiles" class="section level2">
+<h2>Combining tiles</h2>
+<pre class="r"><code>ol() %&gt;%
+  add_stamen_tiles(&quot;watercolor&quot;) %&gt;%
+  add_stamen_tiles(&quot;terrain-labels&quot;) %&gt;%
+  set_view(lat = 51.509865, lon = -0.118092, zoom = 8)</code></pre>
+<div id="htmlwidget-0d11d3725342e5fcb913" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0d11d3725342e5fcb913">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addStamenTiles","args":["terrain-labels",{"opacity":1,"name":null}]},{"method":"setView","args":[-0.118092,51.509865,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>ol() %&gt;%
+  add_stamen_tiles(&quot;watercolor&quot;) %&gt;%
+  add_osm_tiles(options = layer_options(opacity = 0.4)) %&gt;%
+  set_view(lat = 36.72016, lon = -4.42034, zoom = 8)</code></pre>
+<div id="htmlwidget-f269f0e9f8ff237e8f6b" style="width:100%;height:216px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f269f0e9f8ff237e8f6b">{"x":{"calls":[{"method":"addStamenTiles","args":["watercolor",{"opacity":1,"name":null}]},{"method":"addOSMTiles","args":[{"opacity":0.4,"name":null}]},{"method":"setView","args":[-4.42034,36.72016,8]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16}},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

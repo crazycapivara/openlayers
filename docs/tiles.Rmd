@@ -1,0 +1,42 @@
+---
+title: Tiles
+pagetitle: OpenLayers for R - Tiles
+---
+
+## OSM
+
+```{r}
+library(openlayers)
+
+ol() %>% add_osm_tiles()
+```
+
+## Stamen
+
+```{r}
+ol() %>% add_stamen_tiles("watercolor")
+```
+
+## Custom tiles
+
+```{r}
+(xyz_url <- get_cartodb_xyz_url())
+
+ol() %>%
+  add_xyz_tiles(xyz_url, attribution = cartodb_attribution()) %>%
+  set_view(lat = -22.90278, lon = -43.20750, zoom = 8)
+```
+
+## Combining tiles
+
+```{r}
+ol() %>%
+  add_stamen_tiles("watercolor") %>%
+  add_stamen_tiles("terrain-labels") %>%
+  set_view(lat = 51.509865, lon = -0.118092, zoom = 8)
+
+ol() %>%
+  add_stamen_tiles("watercolor") %>%
+  add_osm_tiles(options = layer_options(opacity = 0.4)) %>%
+  set_view(lat = 36.72016, lon = -4.42034, zoom = 8)
+```
