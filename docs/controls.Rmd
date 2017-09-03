@@ -1,0 +1,18 @@
+---
+title: Controls
+---
+```{r, echo = FALSE}
+library(openlayers)
+```
+
+## Overview map
+
+```{r}
+fn <- system.file("geojson/earthquakes_1.0_hour.geojson",
+                  package = "openlayers")
+
+map <- ol() %>% add_osm_tiles() %>%
+  add_geojson(filename = fn, style = circle_style())
+
+map %>% add_overview_map()
+```
