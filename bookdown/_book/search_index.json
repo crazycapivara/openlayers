@@ -1,0 +1,4 @@
+[
+["index.html", "OpenLayers 4 R Quick start 1 Install openlayers 2 Attach the namespace 3 Create a new map object 4 Add tiles 5 Add some features 6 Render the map", " OpenLayers 4 R Stefan Kuethe 2017-09-03 Quick start 1 Install openlayers You can install openlayers 4 R from github with: devtools::install_github(&quot;crazycapivara/openlayers&quot;) 2 Attach the namespace library(openlayers) 3 Create a new map object map &lt;- ol() 4 Add tiles map &lt;- ol() %&gt;% add_osm_tiles() 5 Add some features map &lt;- ol() %&gt;% add_stamen_tiles() %&gt;% add_features(geojsonio::us_cities[1:5, ], style = icon_style()) 6 Render the map map "],
+["another-chapter.html", "Another chapter", " Another chapter … "]
+]

@@ -6,8 +6,9 @@ bookdown::gitbook:
     in_header: include/in_header.html
     before_body: include/before_body.html
   config:
+    search: no
     toc:
-      collapsed: true
+      collapse: true
       #after: |
       #  <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: null
@@ -15,5 +16,8 @@ bookdown::gitbook:
     fontsettings:
       theme: night
       family: serif
+    sharing:
+      github: yes
+      facebook: no
     #toolbar:
     #  position: static

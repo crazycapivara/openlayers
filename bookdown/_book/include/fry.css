@@ -1,0 +1,25 @@
+#header {
+  display: none;
+}
+
+body {
+  font-family: ubuntu;
+}
+
+.into-the-blue {
+  color: #1e6bb8;
+}
+
+.package {
+  font-weight: 700;
+  font-family: Vollkorn, Ubuntu;
+}
+
+h1, h2 {
+  font-family: Vollkorn;
+  font-weight: 300;
+}
+
+._summary {
+font-family: Ubuntu;
+}
