@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  number_sections: false
+  highlight: tango
+  css: include/fry.css
+  include:
+    in_header: include/in_header.html
+    before_body: include/before_body.html
+  config:
+    toc:
+      collapsed: true
+      #after: |
+      #  <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: null
+    download: null
+    fontsettings:
+      theme: night
+      family: serif
+    #toolbar:
+    #  position: static

@@ -1,0 +1,61 @@
+---
+title: "OpenLayers 4 R"
+author: Stefan Kuethe
+date: "`r Sys.Date()`"
+github-repo: crazycapivara/openlayers
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  comment = NULL,
+  eval = FALSE
+)
+```
+
+# Quick start {-}
+
+## 1 Install openlayers {-}
+
+You can install <span class="package">openlayers <span class="into-the-blue">4 R</span></span> from github with:
+
+```{r}
+devtools::install_github("crazycapivara/openlayers")
+```
+
+## 2 Attach the namespace {-}
+
+```{r, eval = TRUE}
+library(openlayers)
+```
+
+## 3 Create a new map object {-}
+
+```{r}
+map <- ol()
+```
+
+## 4 Add tiles {-}
+
+```{r}
+map <- ol() %>%
+  add_osm_tiles()
+```
+
+## 5 Add some features {-}
+
+```{r, message = FALSE}
+map <- ol() %>%
+  add_stamen_tiles() %>%
+  add_features(geojsonio::us_cities[1:5, ],
+               style = icon_style())
+```
+
+## 6 Render the map {-}
+
+```{r}
+map
+```
+
+# Another chapter
+
+...
