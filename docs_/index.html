@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>OpenLayers for R</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300|PT+Sans|Vollkorn|PT+Serif|Open+Sans+Condensed:300">
+
+<link rel="stylesheet"
+      href="highlightjs/styles/dracula.css">
+<link rel="stylesheet"
+      href="highlightjs/styles/gruvbox-dark.css">
+<script src="highlightjs/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- <script src="site_libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="site_libs/ol-4.3.1/ol.css" rel="stylesheet" /> -->
+<style type="text/css">
+  body {
+    font-family: Vollkorn, "Open Sans Condensed", "PT Serif", Vollkorn, "PT Sans", sans-serif, Ubuntu;
+    margin: 0;
+    padding: 0;
+  }
+  code {
+    border-radius: 5px;
+    width: 500px;
+    font-size: 1.2em;
+  }
+
+  h1, h2 {
+    font-weight: 300;
+    _font-size: 2em;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  #header {
+    background-color: #363738;
+    color: white;
+    padding: 10px;
+  }
+
+#header h1 {
+  font-family: Vollkorn;
+}
+
+#main-content {
+  margin: auto;
+  width: 500px;
+}
+
+.into-the-blue {
+  color: #1e6bb8;
+}
+
+.row {
+  height: 2px;
+  background-color: #1e6bb8;
+  margin: auto;
+  width: 80px;
+}
+</style>
+</head>
+<body>
+  <div id="header">
+    <h1>OpenLayers <span class="into-the-blue">4 R</span></h1>
+    <h1>-----</h1>
+  </div>
+  <div id="main-content">
+
+    <h1 class="into-the-blue">Quick start</h1>
+    <div class="row"></div>
+
+    <h2>Install and load openlayers</h2>
+    <pre><code>
+      install.packages("openlayers")
+
+      library(openlayers)
+    </code></pre>
+
+    <h2>Create a new map object</h2>
+    <pre><code>
+      map <- ol()
+    </code></pre>
+
+    <h2>Add tiles</h2>
+    <pre><code>
+      map <- ol() %>%
+        add_osm_tiles()
+    </code></pre>
+
+    <h2>Add some features</h2>
+    <pre><code class="r">
+      map <- ol() %>%
+        add_osm_tiles() %>%
+        add_features(geojsonio::us_cities[1:5, ],
+                     style = icon_style())
+    </code></pre>
+  </div>
+</body>
+</html>
