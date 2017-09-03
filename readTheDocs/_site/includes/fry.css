@@ -1,0 +1,80 @@
+body {
+  font-family: ubuntu;
+  _background: black;
+  _color: white;
+  font-size: 1em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header, .page-header {
+  display: none;
+}
+
+#header_ {
+  background-color: #292a2b;
+  background-color: #363738;
+  color: white;
+  padding: 15px;
+}
+
+.header-title {
+  font-size: 1.4em;
+  _margin-left: 15px;
+  _width: 300px;
+  _text-align: center;
+  float_: left;
+}
+
+#header_ li {
+  display: inline-block;
+  padding-left: 10px;
+  line-height: 20px;
+}
+
+#_TOC {
+  float: left;
+  border: 1px solid #363738;
+}
+
+.main-content {
+  font-size: 1em;
+}
+
+.sourceCode {
+  font-size: 0.7em;
+}
+
+.main-content h1 {
+  color: #2e7bcf;
+  color: #1e6bb8;
+  font-size: 1.2em;
+  border-bottom: 2px solid #363738;
+  _width: 400px;
+  text-align: center;
+}
+
+.main-content h2 {
+  color: #363738;
+}
+
+h1:before, h2:before {
+  color: #700225 !important;
+  color: #2e7bcf !important;
+}
+
+h1:before {
+  content: none !important;
+  _color: grey !important;
+}
+
+_h2:before {
+  _content: "$" !important;
+  color: grey !important;
+}
+
+_h2:after {
+  content: "_";
+}

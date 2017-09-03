@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>OpenLayers for R</title>
+  <meta name="description" content="OpenLayers for R">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="OpenLayers for R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="OpenLayers for R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.9/htmlwidgets.js"></script>
+<link href="libs/ol-4.3.1/ol.css" rel="stylesheet" />
+<script src="libs/ol-4.3.1/ol.js"></script>
+<script src="libs/names-generator-1/docker-names-generator.js"></script>
+<script src="libs/ol-binding-0.4.3/ol.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="includes/fry.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#controls"><i class="fa fa-check"></i><b>1</b> Controls</a><ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#overview-map"><i class="fa fa-check"></i><b>1.1</b> Overview map</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#mouse-position"><i class="fa fa-check"></i><b>1.2</b> Mouse position</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OpenLayers for R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">OpenLayers for R</h1>
+</div>
+<div id="controls" class="section level1">
+<h1><span class="header-section-number">1</span> Controls</h1>
+<p>Get some data …</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fn &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;geojson/earthquakes_1-0_hour.geojson&quot;</span>,
+                  <span class="dt">package =</span> <span class="st">&quot;openlayers&quot;</span>)</code></pre></div>
+<div id="overview-map" class="section level2">
+<h2><span class="header-section-number">1.1</span> Overview map</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map &lt;-<span class="st"> </span><span class="kw">ol</span>() %&gt;%<span class="st"> </span><span class="kw">add_osm_tiles</span>() %&gt;%
+<span class="st">  </span><span class="kw">add_geojson</span>(<span class="dt">filename =</span> fn, <span class="dt">style =</span> <span class="kw">circle_style</span>())
+
+map %&gt;%<span class="st"> </span><span class="kw">add_overview_map</span>(<span class="dt">collapsed =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div id="htmlwidget-be930918176b65298060" style="width:100%;height:288px;" class="ol html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be930918176b65298060">{"x":{"calls":[{"method":"addOSMTiles","args":[{"opacity":1,"name":null}]},{"method":"addGeojson","args":["{\"type\":\"FeatureCollection\",\"metadata\":{\"generated\":1487279393000,\"url\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson\",\"title\":\"USGS Magnitude 1.0+ Earthquakes, Past Hour\",\"status\":200,\"api\":\"1.5.4\",\"count\":4},\"features\":[{\"type\":\"Feature\",\"properties\":{\"mag\":1.02,\"place\":\"4km WNW of Cobb, California\",\"time\":1487279114880,\"updated\":1487279212182,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/nc72764921\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc72764921.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":16,\"net\":\"nc\",\"code\":\"72764921\",\"ids\":\",nc72764921,\",\"sources\":\",nc,\",\"types\":\",geoserve,nearby-cities,origin,phase-data,\",\"nst\":9,\"dmin\":0.005349,\"rms\":0.02,\"gap\":116,\"magType\":\"md\",\"type\":\"earthquake\",\"title\":\"M 1.0 - 4km WNW of Cobb, California\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-122.7741699,38.8346672,1.4]},\"id\":\"nc72764921\"},\n{\"type\":\"Feature\",\"properties\":{\"mag\":1.12,\"place\":\"18km N of Borrego Springs, CA\",\"time\":1487278421680,\"updated\":1487278635739,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/ci37585047\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci37585047.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":19,\"net\":\"ci\",\"code\":\"37585047\",\"ids\":\",ci37585047,\",\"sources\":\",ci,\",\"types\":\",geoserve,nearby-cities,origin,phase-data,scitech-link,\",\"nst\":34,\"dmin\":0.113,\"rms\":0.29,\"gap\":93,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 1.1 - 18km N of Borrego Springs, CA\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-116.3803333,33.4166667,8.51]},\"id\":\"ci37585047\"},\n{\"type\":\"Feature\",\"properties\":{\"mag\":1.71,\"place\":\"4km N of Altadena, CA\",\"time\":1487277701520,\"updated\":1487277926202,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/ci37585039\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci37585039.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"automatic\",\"tsunami\":0,\"sig\":45,\"net\":\"ci\",\"code\":\"37585039\",\"ids\":\",ci37585039,\",\"sources\":\",ci,\",\"types\":\",geoserve,nearby-cities,origin,phase-data,scitech-link,\",\"nst\":10,\"dmin\":0.07492,\"rms\":0.2,\"gap\":120,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 1.7 - 4km N of Altadena, CA\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-118.1286667,34.23,9.57]},\"id\":\"ci37585039\"},\n{\"type\":\"Feature\",\"properties\":{\"mag\":1.1,\"place\":\"10km NNW of Incline Village, Nevada\",\"time\":1487277690694,\"updated\":1487279310353,\"tz\":-480,\"url\":\"https://earthquake.usgs.gov/earthquakes/eventpage/nn00578788\",\"detail\":\"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nn00578788.geojson\",\"felt\":null,\"cdi\":null,\"mmi\":null,\"alert\":null,\"status\":\"reviewed\",\"tsunami\":0,\"sig\":19,\"net\":\"nn\",\"code\":\"00578788\",\"ids\":\",nn00578788,\",\"sources\":\",nn,\",\"types\":\",geoserve,origin,phase-data,\",\"nst\":8,\"dmin\":0.048,\"rms\":0.1738,\"gap\":114.38,\"magType\":\"ml\",\"type\":\"earthquake\",\"title\":\"M 1.1 - 10km NNW of Incline Village, Nevada\"},\"geometry\":{\"type\":\"Point\",\"coordinates\":[-120.0213,39.339,6.6]},\"id\":\"nn00578788\"}],\"bbox\":[-122.7741699,33.4166667,1.4,-116.3803333,39.339,9.57]}",{"circle":{"stroke":{"color":"green","width":2},"fill":{"color":"rgba(0, 0, 255, 0.5)"},"radius":10}},null,{"opacity":1,"name":null}]}],"options":{"minZoom":0,"maxZoom":null,"maxZoomFit":16},"overview_map":{"collapsed":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="mouse-position" class="section level2">
+<h2><span class="header-section-number">1.2</span> Mouse position</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map %&gt;%<span class="st"> </span><span class="kw">add_mouse_position</span>()</code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>

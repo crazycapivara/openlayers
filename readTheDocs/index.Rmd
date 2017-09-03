@@ -1,0 +1,68 @@
+---
+title: OpenLayers for R
+output:
+  #html_document:
+  #knitr::vignette:
+  #bookdown::gitbook:
+  prettydoc::html_pretty:
+  #rmdformats::html_docco:
+    toc: true
+    #toc_float: true
+    mathjax: null
+    fig_height: 3
+    self_contained: false
+    #theme: united
+    theme: architect
+    highlight: github
+    css: includes/fry.css
+---
+
+```{r, echo = FALSE}
+library(openlayers)
+```
+
+# Controls
+
+Get some data ...
+
+```{r}
+fn <- system.file("geojson/earthquakes_1-0_hour.geojson",
+                  package = "openlayers")
+```
+
+## Overview map
+
+```{r}
+map <- ol() %>% add_osm_tiles() %>%
+  add_geojson(filename = fn, style = circle_style())
+
+map %>% add_overview_map(collapsed = FALSE)
+```
+
+## Mouse position
+
+```{r, eval=FALSE}
+map %>% add_mouse_position()
+```
+
+## Full screen
+
+```{r, eval=TRUE}
+map %>% add_full_screen()
+```
+
+# Interactions
+
+...
+
+## Select
+
+...
+
+## Drag and drop
+
+...
+
+## Popup
+
+...

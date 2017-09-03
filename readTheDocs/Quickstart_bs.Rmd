@@ -1,0 +1,66 @@
+---
+title: OpenLayers for R
+output:
+  html_document:
+    toc: true
+    mathjax: null
+    fig_height: 3
+    self_contained: false
+    theme: flatly
+    #highlight: github
+    css: includes/fry.css
+    #include:
+    #  before_body: includes/before_body.html
+    #  in_header: includes/in_header.html
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  #collapse = TRUE,
+  comment = ""
+)
+```
+
+# Quick start
+
+## 1 Install openlayers
+
+You can install openlayers from github with:
+
+```{r, eval = FALSE}
+devtools::install_github("crazycapivara/openlayers")
+```
+
+## 2 Attach the namespace
+
+```{r, echo = TRUE, message = TRUE}
+library(openlayers)
+```
+
+## 3 Create a new map object
+
+```{r, eval = FALSE}
+map <- ol()
+```
+
+## 4 Add tiles
+
+```{r, eval = FALSE}
+map <- ol() %>%
+  add_stamen_tiles()
+```
+
+## 5 Add some features
+
+```{r, eval = TRUE, message = FALSE}
+map <- ol() %>%
+  add_stamen_tiles() %>%
+  add_vector_data(geojsonio::us_cities[1:5, ],
+                  style = icon_style())
+```
+
+## 6 Render the map
+
+```{r, eval = TRUE}
+map
+```
