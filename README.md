@@ -27,20 +27,23 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.3 wrapping openlayersjs v4.3.1
+#> openlayers 0.4.4 wrapping openlayersjs v4.3.1
 ```
 
 ``` r
-ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
+ol() %>%
+  add_stamen_tiles() %>%
+  set_view(9.5, 51.31667, zoom = 10)
 
 require("geojsonio")
 
 features <- us_cities[1:5, ]
 
-ol()  %>% add_stamen_tiles() %>%
+ol()  %>%
+  add_stamen_tiles() %>%
   add_geojson(
     geojson_json(features),
-    style = marker_style(),
+    style = icon_style(),
     popup = features$name
   )
 
@@ -48,9 +51,10 @@ require("sf")
 
 nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
 
-ol() %>% add_stamen_tiles("watercolor") %>%
+ol() %>%
+  add_stamen_tiles("watercolor") %>%
   add_stamen_tiles("terrain-labels") %>%
-  add_vector_data(nc) %>%
+  add_features(nc) %>%
   add_overview_map()
 ```
 
@@ -66,9 +70,9 @@ Code coverage
 package_coverage(function_exclusions = c(
   "layerswitcher_dependencies",
   "make_icon"))
-#> openlayers Coverage: 42.20%
+#> openlayers Coverage: 41.44%
 #> R/plugin-layerswitcher.R: 0.00%
-#> R/methods.R: 10.00%
+#> R/methods.R: 9.09%
 #> R/styles.R: 21.74%
 #> R/ol.R: 75.00%
 #> R/options.R: 87.50%

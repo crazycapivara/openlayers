@@ -40,16 +40,19 @@ library(openlayers)
 ```
 
 ```{r example, eval = FALSE}
-ol() %>% add_stamen_tiles() %>% set_view(9.5, 51.31667, zoom = 10)
+ol() %>%
+  add_stamen_tiles() %>%
+  set_view(9.5, 51.31667, zoom = 10)
 
 require("geojsonio")
 
 features <- us_cities[1:5, ]
 
-ol()  %>% add_stamen_tiles() %>%
+ol()  %>%
+  add_stamen_tiles() %>%
   add_geojson(
     geojson_json(features),
-    style = marker_style(),
+    style = icon_style(),
     popup = features$name
   )
 
@@ -57,9 +60,10 @@ require("sf")
 
 nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
 
-ol() %>% add_stamen_tiles("watercolor") %>%
+ol() %>%
+  add_stamen_tiles("watercolor") %>%
   add_stamen_tiles("terrain-labels") %>%
-  add_vector_data(nc) %>%
+  add_features(nc) %>%
   add_overview_map()
 ```
 
