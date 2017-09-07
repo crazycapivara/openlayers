@@ -23,7 +23,7 @@ get_cartodb_xyz_url <- function(layer = "dark_all"){
 #' @export
 cartodb_attribution <- function(){
   c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
-    '&copy;<a href="https://carto.com/attribution">CARTO</a>')
+    '&copy; <a href="https://carto.com/attribution">CARTO</a>')
 }
 
 add_cartodb_tiles <- function(ol, layer){
