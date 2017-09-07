@@ -3,6 +3,7 @@
 S3method("+",style)
 export("%>%")
 export(add_drag_and_drop)
+export(add_features)
 export(add_full_screen)
 export(add_geojson)
 export(add_layer_switcher)

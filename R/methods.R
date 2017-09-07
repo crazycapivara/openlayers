@@ -128,12 +128,19 @@ require_namespace <- function(name){
 #'   \code{\link[geojsonio]{geojson_json}}
 #' @param ... optional parameters passed to \code{\link{add_geojson}}
 #'
+#' @name add_features
+#'
 #' @export
-add_vector_data <- function(ol, data, ...) {
+add_features <- function(ol, data, ...) {
   require_namespace("geojsonio")
   data <- geojsonio::geojson_json(data)
   add_geojson(ol, data, ...)
 }
 
-## rename function or set an alias
-add_features <- add_vector_data
+#' @rdname add_features
+#'
+#' @export
+add_vector_data <- function(ol, data, ...) {
+  .Deprecated("add_features")
+  add_features(ol, data, ...)
+}
