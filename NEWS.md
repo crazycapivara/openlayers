@@ -1,3 +1,8 @@
+# openlayers 0.4.4
+
+* Renamed `add_vector_data` (will be removed in a future release) to `add_features`
+* Fixed bug in drag and drop caused by new popup parameter
+
 # openlayers 0.4.3
 
 * Added popup support
