@@ -15,4 +15,4 @@ map %>% add_geojson(geojson_json(data), style = style)
 
 style_ <- style + text_style(property = "capital", scale = 2.5)
 
-map  %>% add_vector_data(data, style = style_)
+map  %>% add_features(data, style = style_)
