@@ -439,7 +439,7 @@ var ol = window.ol;
                 console.log("no features found");
                 return;
               }
-              methods.addGeojson.call(map, data, null, {name: getDockerContainerName()});
+              methods.addGeojson.call(map, data, null, null, {name: getDockerContainerName()});
             });
           }
 
