@@ -6,7 +6,7 @@
 #' @docType package
 #' @name openlayers
 #'
-#' @examples \dontrun {
+#' @examples \dontrun{
 #'   ol() %>% add_osm_tiles()
 #'
 #'   ol() %>% add_stamen_tiles() %>%

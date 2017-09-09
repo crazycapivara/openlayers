@@ -10,7 +10,7 @@ Makes the open-source JavaScript library \href{https://openlayers.org/}{OpenLaye
 available within R via the htmlwidgets package.
 }
 \examples{
-\dontrun {
+\dontrun{
   ol() \%>\% add_osm_tiles()
 
   ol() \%>\% add_stamen_tiles() \%>\%
