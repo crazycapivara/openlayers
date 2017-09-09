@@ -6,5 +6,15 @@
 \alias{openlayers-package}
 \title{openlayers}
 \description{
-openlayers
+Makes the open-source JavaScript library \href{https://openlayers.org/}{OpenLayers}
+available within R via the htmlwidgets package.
+}
+\examples{
+\dontrun {
+  ol() \%>\% add_osm_tiles()
+
+  ol() \%>\% add_stamen_tiles() \%>\%
+    add_features(geojsonio::us_cities[1:5, ])
+}
+
 }
