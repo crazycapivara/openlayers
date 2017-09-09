@@ -4,7 +4,8 @@
 \alias{ol_options}
 \title{Map options}
 \usage{
-ol_options(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...)
+ol_options(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16,
+  collapsible_attribution = FALSE, ...)
 }
 \arguments{
 \item{min_zoom}{minimal zoom of the map}
@@ -12,6 +13,8 @@ ol_options(min_zoom = 0, max_zoom = NULL, max_zoom_fit = 16, ...)
 \item{max_zoom}{maximal zoom of the map or \code{NULL} (no limit)}
 
 \item{max_zoom_fit}{maximal zoom when fitting the view to the extend of the data source}
+
+\item{collapsible_attribution}{collapsible attribution?}
 
 \item{...}{hidden options, e. g. pass \code{renderer = "webgl"} to use
 webgl as display engine (should not be used when viewing output directly in RStudio)}
