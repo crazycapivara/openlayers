@@ -10,6 +10,7 @@ body {
 
 .main-content {
   width: 600px;
+  width: 100%;
 }
 
 /* syntax highlighting */
@@ -34,7 +35,7 @@ code span.st {
 /* syntax highlighting END */
 
 h1 {
-  font-family: "Chelsea Market", sans-serif;
+  font-family: "Open Sans Condensed", "Chelsea Market", sans-serif;
 }
 
 .main-content h1 {
@@ -64,4 +65,10 @@ h1 {
 
 .into-the-blue {
   color: #4286f4;
+}
+
+@media (min-width: 800px) {
+  .main-content {
+    width: 600px;
+  }
 }
