@@ -226,6 +226,15 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Tile(options));
   };
 
+  methods.addWMS = function(wms_url, params) {
+    var source = new ol.source.ImageWMS({
+      url: wms_url,
+      params: params,
+      hidpi: false
+    });
+    this.addLayer(new ol.layer.Image({ source: source }));
+  };
+
   var callbacks = {};
 
   callbacks.renderFeatureProperties = function(properties) {
