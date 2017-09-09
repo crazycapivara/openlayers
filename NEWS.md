@@ -1,3 +1,11 @@
+# openlayers 0.4.5
+
+* Added wms support
+  - `add_wms_tiles`
+* Added more parameter to `ol_options`
+  - `collapsible_attribution`: fixed or collapsible attribution
+  - `zoom_control`: show or hide zoom control 
+                       
 # openlayers 0.4.4
 
 * Renamed `add_vector_data` (will be removed in a future release) to `add_features`
