@@ -1,0 +1,29 @@
+---
+title: OpenLayers 4 R
+author: Stefan Kuethe
+---
+
+```{r, echo = FALSE}
+library(covr)
+knitr::opts_chunk$set(
+  eval = FALSE
+)
+```
+
+# OpenLayers <span class="into-the-blue">4 R</span> is easy to install
+
+```{r}
+require("devtools")
+
+install_github("crazycapivara/openlayers")
+```
+
+# And fun to use
+
+```{r}
+require("geojsonio")
+
+ol() %>%
+  add_stamen_tiles() %>%
+  add_features(us_cities)
+```
