@@ -226,19 +226,23 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  methods.addWMSTiles = function(wms_url, params) {
+  methods.addWMSTiles = function(wms_url, params, attributions) {
     var source = new ol.source.TileWMS({
         url: wms_url,
         params: params,
+        attributions: attributions || undefined,
         hidpi: false
     });
     this.addLayer(new ol.layer.Tile({ source: source }));
   };
 
-  methods.addWMS = function(wms_url, params) {
+  // not used at the moment,
+  // same as above for servers providing single images
+  methods.addWMS = function(wms_url, params, attributions) {
     var source = new ol.source.ImageWMS({
       url: wms_url,
       params: params,
+      attributions: attributions || undefined,
       hidpi: false
     });
     this.addLayer(new ol.layer.Image({ source: source }));

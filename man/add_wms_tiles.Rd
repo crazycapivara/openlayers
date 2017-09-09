@@ -4,12 +4,16 @@
 \alias{add_wms_tiles}
 \title{Add wms tile layer}
 \usage{
-add_wms_tiles(ol, url, layers)
+add_wms_tiles(ol, url, layers, attribution = NULL)
 }
 \arguments{
 \item{ol}{map widget}
 
+\item{url}{url of the wms service}
+
 \item{layers}{layers}
+
+\item{attribution}{attribution}
 }
 \description{
 Add wms tile layer
@@ -17,9 +21,11 @@ Add wms tile layer
 \examples{
 \dontrun{
   wms_url <- "https://ahocevar.com/geoserver/wms"
+  layers <- c("ne:NE1_HR_LC_SR_W_DR", "topp:states")
 
   ol() \%>\%
-    add_wms_tiles(wms_url, "ne:NE1_HR_LC_SR_W_DR")
+    add_wms_tiles(wms_url, layers) \%>\%
+    set_view(-99.74, 32.45, zoom = 3)
 }
 
 }
