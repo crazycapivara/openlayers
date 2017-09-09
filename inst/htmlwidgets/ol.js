@@ -21,6 +21,7 @@ var ol = window.ol;
     maxZoom: undefined,
     maxZoomFit: 16,
     collapsibleAttribution: false,
+    zoomControl: true,
     // TODO: use base64
     markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
   };
@@ -370,6 +371,7 @@ var ol = window.ol;
           map = new ol.Map({
             target: el.id,
             controls: ol.control.defaults({
+              zoom: olWidget.options.zoomControl,
               attributionOptions:  /** @type {olx.control.AttributionOptions} */ ({
                 collapsible: olWidget.options.collapsibleAttribution
               })

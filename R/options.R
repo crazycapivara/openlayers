@@ -4,6 +4,7 @@
 #' @param max_zoom maximal zoom of the map or \code{NULL} (no limit)
 #' @param max_zoom_fit maximal zoom when fitting the view to the extend of the data source
 #' @param collapsible_attribution collapsible attribution?
+#' @param zoom_control show zoom control?
 #' @param ... hidden options, e. g. pass \code{renderer = "webgl"} to use
 #'   webgl as display engine (should not be used when viewing output directly in RStudio)
 #'
@@ -11,12 +12,14 @@
 ol_options <- function(min_zoom = 0,
                        max_zoom = NULL,
                        max_zoom_fit = 16,
-                       collapsible_attribution = FALSE, ...) {
+                       collapsible_attribution = FALSE,
+                       zoom_control = TRUE, ...) {
   x <- list(
     minZoom = min_zoom,
     maxZoom = max_zoom,
     maxZoomFit = max_zoom_fit,
-    collapsibleAttribution = collapsible_attribution
+    collapsibleAttribution = collapsible_attribution,
+    zoomControl = zoom_control
   )
   c(x, list(...))
 }
