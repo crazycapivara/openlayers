@@ -10,7 +10,6 @@ body {
 
 .main-content {
   width: 600px;
-  width: 100%;
 }
 
 /* syntax highlighting */
@@ -63,12 +62,12 @@ h1 {
   padding: 20px;
 }
 
-.into-the-blue {
+.into-the-blue, a {
   color: #4286f4;
 }
 
-@media (min-width: 800px) {
+@media (max-width: 600px) {
   .main-content {
-    width: 600px;
+    width: 100%;
   }
 }

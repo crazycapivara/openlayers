@@ -25,5 +25,6 @@ require("geojsonio")
 
 ol() %>%
   add_stamen_tiles() %>%
-  add_features(us_cities)
+  add_features(us_cities) %>%
+  add_drag_and_drop()
 ```
