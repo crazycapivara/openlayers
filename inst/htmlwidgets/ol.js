@@ -226,14 +226,16 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  methods.addWMSTiles = function(wms_url, params, attributions) {
+  methods.addWMSTiles = function(wms_url, params, attributions, options) {
+    debug.log(params);
     var source = new ol.source.TileWMS({
         url: wms_url,
         params: params,
         attributions: attributions || undefined,
         hidpi: false
     });
-    this.addLayer(new ol.layer.Tile({ source: source }));
+    options = getTileOptions(options, source);
+    this.addLayer(new ol.layer.Tile(options));
   };
 
   // not used at the moment,
