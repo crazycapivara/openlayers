@@ -1,0 +1,19 @@
+.book.font-family-0 {
+  font-family: Vollkorn, serif;
+}
+
+.book.font-family-1 {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+h1, h2 {
+  font-weight: 300;
+}
+
+nav, .book-header h1 {
+  font-family: "PT Sans", Vollkorn, sans-serif;
+}
+
+.into-the-blue, a {
+  color: #4286f4;
+}

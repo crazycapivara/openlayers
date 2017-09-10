@@ -1,0 +1,3 @@
+[
+["preface.html", "OpenLayers 4 R Preface OpenLayers 4 R is easy to install And fun to use", " OpenLayers 4 R Stefan Kuethe Preface OpenLayers 4 R is easy to install require(&quot;devtools&quot;) install_github(&quot;crazycapivara/openlayers&quot;) And fun to use require(&quot;geojsonio&quot;) ol() %&gt;% add_stamen_tiles() %&gt;% add_features(us_cities) %&gt;% add_drag_and_drop() "]
+]
