@@ -2,7 +2,7 @@
 
 * Added wms support
   - `add_wms_tiles`
-* Added more parameter to `ol_options`
+* Added more parameters to `ol_options`
   - `collapsible_attribution`: fixed or collapsible attribution
   - `zoom_control`: show or hide zoom control 
                        
