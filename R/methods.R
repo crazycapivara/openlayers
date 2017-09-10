@@ -117,7 +117,7 @@ require_namespace <- function(name){
   }
 }
 
-#' Add (vector) features to the map
+#' Add vector layer to the map
 #'
 #' This function is just a shorthand to \code{\link{add_geojson}} using
 #' \pkg{geojsonio} to convert any data object to geojson.

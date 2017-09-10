@@ -3,7 +3,7 @@
 \name{add_features}
 \alias{add_features}
 \alias{add_vector_data}
-\title{Add (vector) features to the map}
+\title{Add vector layer to the map}
 \usage{
 add_features(ol, data, ...)
 
