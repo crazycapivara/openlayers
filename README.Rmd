@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=master)](https://travis-ci.org/crazycapivara/openlayers) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=develop)](https://travis-ci.org/crazycapivara/openlayers)
 
-[OpenLayers](https://openlayers.org/) is an open-source JavaScript library _making it easy to put a dynamic map in any web page_. The goal of the openlayers R package is to make this functionality available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still a beta version (check [NEWS](NEWS.md) file for available functionality).
+[OpenLayers](https://openlayers.org/) is an open-source JavaScript library _making it easy to put a dynamic map in any web page_. The goal of the openlayers R package is to make this functionality available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Check [NEWS](NEWS.md) file for available functionality.
 
 ## Installation
 
@@ -44,21 +44,21 @@ ol() %>%
   add_stamen_tiles() %>%
   set_view(9.5, 51.31667, zoom = 10)
 
+# --- Points ---
 require("geojsonio")
 
-features <- us_cities[1:5, ]
+cities <- us_cities[1:5, ]
 
 ol()  %>%
   add_stamen_tiles() %>%
-  add_geojson(
-    geojson_json(features),
-    style = icon_style(),
-    popup = features$name
-  )
+  add_features(cities, style = icon_style(),
+               popup = cities$name)
 
+# --- Polygons ---
 require("sf")
 
-nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
+nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"),
+             quiet = TRUE)
 
 ol() %>%
   add_stamen_tiles("watercolor") %>%

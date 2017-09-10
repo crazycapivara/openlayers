@@ -5,7 +5,7 @@ An R Interface to OpenLayers
 
 [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=master)](https://travis-ci.org/crazycapivara/openlayers) [![Travis-CI Build Status](https://travis-ci.org/crazycapivara/openlayers.svg?branch=develop)](https://travis-ci.org/crazycapivara/openlayers)
 
-[OpenLayers](https://openlayers.org/) is an open-source JavaScript library *making it easy to put a dynamic map in any web page*. The goal of the openlayers R package is to make this functionality available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Please note this package is still a beta version (check [NEWS](NEWS.md) file for available functionality).
+[OpenLayers](https://openlayers.org/) is an open-source JavaScript library *making it easy to put a dynamic map in any web page*. The goal of the openlayers R package is to make this functionality available within R via the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package. Check [NEWS](NEWS.md) file for available functionality.
 
 Installation
 ------------
@@ -27,7 +27,7 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.4 wrapping openlayersjs v4.3.1
+#> openlayers 0.4.5 wrapping openlayersjs v4.3.1
 ```
 
 ``` r
@@ -35,21 +35,21 @@ ol() %>%
   add_stamen_tiles() %>%
   set_view(9.5, 51.31667, zoom = 10)
 
+# --- Points ---
 require("geojsonio")
 
-features <- us_cities[1:5, ]
+cities <- us_cities[1:5, ]
 
 ol()  %>%
   add_stamen_tiles() %>%
-  add_geojson(
-    geojson_json(features),
-    style = icon_style(),
-    popup = features$name
-  )
+  add_features(cities, style = icon_style(),
+               popup = cities$name)
 
+# --- Polygons ---
 require("sf")
 
-nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE)
+nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"),
+             quiet = TRUE)
 
 ol() %>%
   add_stamen_tiles("watercolor") %>%
@@ -70,12 +70,13 @@ Code coverage
 package_coverage(function_exclusions = c(
   "layerswitcher_dependencies",
   "make_icon"))
-#> openlayers Coverage: 41.44%
+#> openlayers Coverage: 41.38%
 #> R/plugin-layerswitcher.R: 0.00%
+#> R/wms.R: 0.00%
 #> R/methods.R: 9.09%
 #> R/styles.R: 21.74%
 #> R/ol.R: 75.00%
-#> R/options.R: 87.50%
+#> R/options.R: 90.00%
 #> R/controls.R: 100.00%
 #> R/interactions.R: 100.00%
 #> R/utils.R: 100.00%
