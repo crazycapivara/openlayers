@@ -11,27 +11,27 @@
 #' @inheritParams add_geojson
 #'
 #' @examples \dontrun{
-#'  # mapbox
-#'  key <- "your_access_token"
-#'  url <- paste0(
-#'    "https://{a-d}.tiles.mapbox.com/v4/",
-#'    "mapbox.mapbox-streets-v7/",
-#'    "{z}/{x}/{y}.vector.pbf",
-#'    "?access_token=", key
-#'  )
-#'  attribution <- "Add mapbox attribution here"
+#'   # mapbox
+#'   key <- "your_access_token"
+#'   url <- paste0(
+#'     "https://{a-d}.tiles.mapbox.com/v4/",
+#'     "mapbox.mapbox-streets-v7/",
+#'     "{z}/{x}/{y}.vector.pbf",
+#'     "?access_token=", key
+#'   )
+#'   attribution <- "Add mapbox attribution here"
 #'
-#'  ol() %>%
-#'    add_mapbox_vector_tiles(url, attribution)
+#'   ol() %>%
+#'     add_mapbox_vector_tiles(url, attribution)
 #'
-#'  # style the tiles
-#'  ol() %>%
-#'    add_mapbox_vector_tiles(
-#'      url,
-#'      attribution,
-#'      style = stroke_style(color = "green") + fill_style()
-#'    ) %>%
-#'    set_view(zoom = 14)
+#'   # style the tiles
+#'   ol() %>%
+#'     add_mapbox_vector_tiles(
+#'       url,
+#'       attribution,
+#'       style = stroke_style(color = "green") + fill_style()
+#'     ) %>%
+#'     set_view(zoom = 14)
 #' }
 #'
 #' @export
