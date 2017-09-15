@@ -248,7 +248,8 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Image({ source: source }));
   };
 
-  methods.addMVT = function(url, attribution) {
+  // mapbox vector tile (MVT)
+  methods.addMVT = function(url, attribution, style) {
     var source = new ol.source.VectorTile({
       format: new ol.format.MVT(),
       //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
@@ -256,9 +257,11 @@ var ol = window.ol;
       attributions: attribution
     });
     var layer = new ol.layer.VectorTile({ source: source });
-
+    if (style) {
+      layer.setStyle(styleIt(style));
+    }
     // ---
-    if(olWidget.options.debugMVT) {
+    if (olWidget.options.debugMVT) {
       layer.setStyle(function(feature, resolution){
         debug.log(feature.getProperties());
         return new ol.style.Style({

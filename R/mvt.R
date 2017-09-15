@@ -8,6 +8,7 @@
 #' @param ol map widget
 #' @param url url of the mvt service
 #' @param attribution attribution
+#' @inheritParams add_geojson
 #'
 #' @examples \dontrun{
 #'   url <- "http://tile.mapzen.com/mapzen/vector/v1/water/{z}/{x}/{y}.mvt?api_key=<api_key>"
@@ -18,6 +19,6 @@
 #' }
 #'
 #' @export
-add_mapbox_vector_tiles <- function(ol, url, attribution = NULL) {
-  invoke_method(ol, "addMVT", url, attribution)
+add_mapbox_vector_tiles <- function(ol, url, attribution = NULL, style = NULL) {
+  invoke_method(ol, "addMVT", url, attribution, style)
 }

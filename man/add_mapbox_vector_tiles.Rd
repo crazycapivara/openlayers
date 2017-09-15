@@ -4,7 +4,7 @@
 \alias{add_mapbox_vector_tiles}
 \title{Add mapbox vector tiles (mvt) to the map}
 \usage{
-add_mapbox_vector_tiles(ol, url, attribution = NULL)
+add_mapbox_vector_tiles(ol, url, attribution = NULL, style = NULL)
 }
 \arguments{
 \item{ol}{map widget}
@@ -12,6 +12,8 @@ add_mapbox_vector_tiles(ol, url, attribution = NULL)
 \item{url}{url of the mvt service}
 
 \item{attribution}{attribution}
+
+\item{style}{style object or \code{NULL} (use default style)}
 }
 \description{
 If you want to create and serve your own vector tiles
