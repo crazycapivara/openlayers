@@ -250,6 +250,16 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Image({ source: source }));
   };
 
+  methods.addMVT = function(url, attribution) {
+    var source = new ol.source.VectorTile({
+      format: new ol.format.MVT(),
+      //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
+      url: url,
+      attributions: attribution
+    });
+    this.addLayer(new ol.layer.VectorTile({ source: source }));
+  };
+
   var callbacks = {};
 
   callbacks.renderFeatureProperties = function(properties) {
