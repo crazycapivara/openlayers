@@ -203,14 +203,12 @@ var ol = window.ol;
     return options;
   };
 
-  // TODO: use 'helpMe.addTileLayer' method!
   methods.addStamenTiles = function(layer, options) {
     var source = new ol.source.Stamen({ layer: layer });
     options = getTileOptions(options, source);
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  // TODO: use 'helpMe.addTileLayer' method!
   methods.addOSMTiles = function(options) {
     var source = new ol.source.OSM();
     options = getTileOptions(options, source);
@@ -257,7 +255,20 @@ var ol = window.ol;
       url: url,
       attributions: attribution
     });
-    this.addLayer(new ol.layer.VectorTile({ source: source }));
+    var layer = new ol.layer.VectorTile({ source: source });
+
+    // ---
+    if(olWidget.options.debugMVT) {
+      layer.setStyle(function(feature, resolution){
+        debug.log(feature.getProperties());
+        return new ol.style.Style({
+          stroke: new ol.style.Stroke({ color: "red" })
+        });
+      });
+    }
+    // ---
+
+    this.addLayer(layer);
   };
 
   var callbacks = {};
@@ -288,6 +299,7 @@ var ol = window.ol;
     container.innerHTML = properties ? callbacks.renderFeatureProperties(properties) : null;
   };
 
+  // TODO: remove?
   var addSelectListener = function(options) {
     return function(e) {
       // not implemented yet
