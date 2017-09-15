@@ -253,6 +253,7 @@ var ol = window.ol;
     var source = new ol.source.VectorTile({
       format: new ol.format.MVT(),
       //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
+      //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 16, tileSize: [256, 256] }),
       url: url,
       attributions: attribution
     });
