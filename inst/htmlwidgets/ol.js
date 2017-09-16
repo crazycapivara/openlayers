@@ -224,10 +224,11 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  methods.addWMSTiles = function(wms_url, params, attributions, options) {
+  methods.addWMSTiles = function(url, params, attributions, options) {
+    params.TILED = true;
     debug.log(params);
     var source = new ol.source.TileWMS({
-        url: wms_url,
+        url: url,
         params: params,
         attributions: attributions || undefined,
         hidpi: false
@@ -238,9 +239,9 @@ var ol = window.ol;
 
   // not used at the moment,
   // same as above for servers providing single images
-  methods.addWMS = function(wms_url, params, attributions) {
+  methods.addWMS = function(url, params, attributions) {
     var source = new ol.source.ImageWMS({
-      url: wms_url,
+      url: url,
       params: params,
       attributions: attributions || undefined,
       hidpi: false

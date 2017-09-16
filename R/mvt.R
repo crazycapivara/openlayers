@@ -38,3 +38,11 @@
 add_mapbox_vector_tiles <- function(ol, url, attribution = NULL, style = NULL) {
   invoke_method(ol, "addMVT", url, attribution, style)
 }
+
+#' Mapbox attribution
+#'
+#' @export
+mapbox_attribution <- function() {
+  c("&copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a>, ",
+    "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>")
+}
