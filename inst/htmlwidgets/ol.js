@@ -250,7 +250,7 @@ var ol = window.ol;
   };
 
   // mapbox vector tile (MVT)
-  methods.addMVT = function(url, attribution, style) {
+  methods.addMVT = function(url, attribution, style, options) {
     var source = new ol.source.VectorTile({
       format: new ol.format.MVT(),
       //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
@@ -258,7 +258,9 @@ var ol = window.ol;
       url: url,
       attributions: attribution
     });
-    var layer = new ol.layer.VectorTile({ source: source });
+    //var layer = new ol.layer.VectorTile({ source: source });
+    options = getTileOptions(options, source);
+    var layer = new ol.layer.VectorTile(options);
     if (style) {
       layer.setStyle(styleIt(style));
     }
@@ -272,7 +274,6 @@ var ol = window.ol;
       });
     }
     // ---
-
     this.addLayer(layer);
   };
 

@@ -35,8 +35,8 @@
 #' }
 #'
 #' @export
-add_mapbox_vector_tiles <- function(ol, url, attribution = NULL, style = NULL) {
-  invoke_method(ol, "addMVT", url, attribution, style)
+add_mapbox_vector_tiles <- function(ol, url, attribution = NULL, style = NULL, options = layer_options()) {
+  invoke_method(ol, "addMVT", url, attribution, style, options)
 }
 
 #' Mapbox attribution
