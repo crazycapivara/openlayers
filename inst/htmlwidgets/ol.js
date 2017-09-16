@@ -228,10 +228,10 @@ var ol = window.ol;
     params.TILED = true;
     debug.log(params);
     var source = new ol.source.TileWMS({
-        url: url,
-        params: params,
-        attributions: attributions || undefined,
-        hidpi: false
+      url: url,
+      params: params,
+      attributions: attributions || undefined,
+      hidpi: false
     });
     options = getTileOptions(options, source);
     this.addLayer(new ol.layer.Tile(options));
