@@ -249,12 +249,13 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Image({ source: source }));
   };
 
-  // mapbox vector tile (MVT)
-  methods.addMVT = function(url, attribution, style, options) {
+  // supported formats:
+  // MVT (mapbox vector tile), GeoJSON and TopoJSON
+  methods.addVectorTiles = function(url, attribution, style, options, format) {
+    format = format || "MVT";
     var source = new ol.source.VectorTile({
-      format: new ol.format.MVT(),
+      format: new ol.format[format](),
       //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
-      //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 16, tileSize: [256, 256] }),
       url: url,
       attributions: attribution
     });
@@ -265,7 +266,7 @@ var ol = window.ol;
       layer.setStyle(styleIt(style));
     }
     // ---
-    if (olWidget.options.debugMVT) {
+    if (olWidget.options.debugVT) {
       layer.setStyle(function(feature, resolution){
         debug.log(feature.getProperties());
         return new ol.style.Style({
@@ -274,6 +275,18 @@ var ol = window.ol;
       });
     }
     // ---
+    this.addLayer(layer);
+  };
+
+  methods.addGeojsonVT = function(url) {
+    var format = new ol.format["TopoJSON"]();
+    var tileGrid = ol.tilegrid.createXYZ({maxZoom: 19});
+    var source = new ol.source.VectorTile({
+      format: format,
+      //tileGrid: tileGrid,
+      url: url
+    });
+    var layer =  new ol.layer.VectorTile({ source: source });
     this.addLayer(layer);
   };
 
