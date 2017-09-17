@@ -62,7 +62,7 @@ Style methods to create style objects corresponding to
   or vectors of length equal to the number of features
 }
 \examples{
-  style = stroke_style() + fill_style()
+  style <- stroke_style() + fill_style()
 
-  point_style = circle_style(stroke_style(color = "blue"), fill = NULL)
+  point_style <- circle_style(stroke_style(color = "blue"), fill = NULL)
 }

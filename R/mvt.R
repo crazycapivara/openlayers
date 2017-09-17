@@ -1,12 +1,9 @@
 ## mapbox vector tiles format
 
-#' Add mapbox vector tiles (mvt) to the map
-#'
-#' If you want to create and serve your own vector tiles
-#' you may check \href{http://t-rex.tileserver.ch/}{t-rex}.
+#' @describeIn add_vector_tiles Add mapbox vector tiles (mvt) to the map
 #'
 #' @param ol map widget
-#' @param url url of the mvt service
+#' @param url url of the vector tiles service
 #' @param attribution attribution
 #' @inheritParams add_geojson
 #'
