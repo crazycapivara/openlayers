@@ -1,7 +1,9 @@
 # openlayers 0.4.6
 
-* Added support for mapbox vector tiles (mvt)
-  - `add_mapbox_vector_tiles`
+* Added support for vector tiles, supported formats:
+  - mvt (mapbox vector tiles): `add_mapbox_vector_tiles`
+  - topojson: `add_topojson_vector_tiles`
+  - geojson: `add_geojson_vector_tiles`
 
 # openlayers 0.4.5
 
