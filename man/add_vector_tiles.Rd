@@ -4,12 +4,16 @@
 \alias{add_mapbox_vector_tiles}
 \alias{add_vector_tiles}
 \alias{add_topojson_vector_tiles}
+\alias{add_geojson_vector_tiles}
 \title{Add vector tiles to the map}
 \usage{
 add_mapbox_vector_tiles(ol, url, attribution = NULL, style = NULL,
   options = layer_options())
 
 add_topojson_vector_tiles(ol, url, attribution = NULL, style = NULL,
+  options = layer_options())
+
+add_geojson_vector_tiles(ol, url, attribution = NULL, style = NULL,
   options = layer_options())
 }
 \arguments{
@@ -32,6 +36,8 @@ you may check \href{http://t-rex.tileserver.ch/}{t-rex}.
 \item \code{add_mapbox_vector_tiles}: Add mapbox vector tiles (mvt) to the map
 
 \item \code{add_topojson_vector_tiles}: Add topojson vector tiles to the map
+
+\item \code{add_geojson_vector_tiles}: Add geojson vector tiles to the map
 }}
 
 \examples{
