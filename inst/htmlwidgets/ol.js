@@ -120,12 +120,15 @@ var ol = window.ol;
   };
 
   freakyStyley.stroke = function(options, feature) {
-    return options ? new ol.style.Stroke(options) : undefined;
+    return options ? new ol.style.Stroke({
+      color: this.getOptionValue(feature, options, "color"),
+      width: options.width
+    }) : undefined;
   };
 
   freakyStyley.circle = function(options, feature) {
     return new ol.style.Circle({
-      stroke: this.stroke(options.stroke),
+      stroke: this.stroke(options.stroke, feature),
       fill: this.fill(options.fill, feature),
       radius: this.getOptionValue(feature, options, "radius")
     });
