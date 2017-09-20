@@ -58,7 +58,7 @@ Style methods to create style objects corresponding to
 \href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
 }
 \note{
-\code{color} (in \code{fill_style}), \code{radius} and \code{text} can be single values applied to all features
+\code{color}, \code{icon_color}, \code{radius} and \code{text} can be single values applied to all features
   or vectors of length equal to the number of features
 }
 \examples{
