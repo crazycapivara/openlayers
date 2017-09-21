@@ -1,3 +1,8 @@
+# openlayers 0.4.7
+
+* `add_<format>_vector_tiles` functions (as introduced in v0.4.6) were replaced by the generic function `add_vector_tiles`, which by default guesses the `format` parameter 
+* the stroke color in `stroke_style` can now also be a vector of length equal to the number of features
+
 # openlayers 0.4.6
 
 * Added support for vector tiles, supported formats:
