@@ -10,6 +10,9 @@
 add_mapbox_vector_tiles(ol, url, attribution = NULL, style = NULL,
   options = layer_options())
 
+add_vector_tiles(ol, url, attribution = NULL, style = NULL,
+  options = layer_options(), format = NULL)
+
 add_topojson_vector_tiles(ol, url, attribution = NULL, style = NULL,
   options = layer_options())
 
