@@ -27,7 +27,7 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.6 wrapping openlayersjs v4.3.1
+#> openlayers 0.4.7 wrapping openlayersjs v4.3.1
 ```
 
 ``` r
@@ -48,7 +48,7 @@ ol()  %>%
 # --- Polygons ---
 require("sf")
 
-nc = st_read(system.file("gpkg/nc.gpkg", package = "sf"),
+nc <- st_read(system.file("gpkg/nc.gpkg", package = "sf"),
              quiet = TRUE)
 
 ol() %>%
@@ -70,9 +70,10 @@ Code coverage
 package_coverage(function_exclusions = c(
   "layerswitcher_dependencies",
   "make_icon"))
-#> openlayers Coverage: 40.34%
+#> openlayers Coverage: 37.21%
 #> R/mvt.R: 0.00%
 #> R/plugin-layerswitcher.R: 0.00%
+#> R/vector_tiles.R: 0.00%
 #> R/wms.R: 0.00%
 #> R/methods.R: 9.09%
 #> R/styles.R: 21.74%
