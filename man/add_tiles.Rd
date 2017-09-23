@@ -40,7 +40,9 @@ Add tile layers to the map
 \dontrun{
   xyz_url <- get_cartodb_xyz_url()
   attribution <- cartodb_attribution()
-  ol() \%>\% add_xyz_tiles(xyz_url, attribution)
+
+  ol() \%>\%
+    add_xyz_tiles(xyz_url, attribution)
 }
 
 }

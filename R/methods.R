@@ -74,7 +74,9 @@ add_stamen_tiles <- function(ol, layer = "watercolor", options = layer_options()
 #' @examples \dontrun{
 #'   xyz_url <- get_cartodb_xyz_url()
 #'   attribution <- cartodb_attribution()
-#'   ol() %>% add_xyz_tiles(xyz_url, attribution)
+#'
+#'   ol() %>%
+#'     add_xyz_tiles(xyz_url, attribution)
 #' }
 #'
 #' @export
@@ -98,8 +100,11 @@ add_geojson_ds <- function(ol, url){
 #'
 #' @examples \dontrun{
 #'   require("geojsonio")
+#'
 #'   geojson <- geojson_json(us_cities[1:10, ])
-#'   ol() %>% add_geojson(geojson)
+#'
+#'   ol() %>%
+#'     add_geojson(geojson)
 #' }
 #'
 #' @export
