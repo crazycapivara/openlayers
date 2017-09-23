@@ -63,8 +63,12 @@ guess_vt_format <- function(url) {
 #'       url,
 #'       attribution,
 #'       style = stroke_style(color = "green") + fill_style()
-#'      ) %>%
-#'      set_view(zoom = 14)
+#'     ) %>%
+#'     set_view(zoom = 14)
+#'
+#'   # use javascript style function
+#'   mapbox_style <- system.file("javascript/mvt_style_function.js", package = "openlayers") %>%
+#'     read_js_function()
 #' }
 #'
 #' @export
