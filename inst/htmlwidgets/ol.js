@@ -14,8 +14,22 @@ var ol = window.ol;
     if (olWidget.options.debugVT) {
       layer.setStyle(function(feature, resolution) {
         console.log(feature.getProperties());
+        // mapzen
+        var color;
+        var kind = feature.get("kind");
+        switch(kind) {
+          case "major_road":
+            color = "blue";
+            break;
+          case "minor_road":
+            color = "green";
+            break;
+          default:
+            color = "red";
+            break;
+        }
         return new ol.style.Style({
-          stroke: new ol.style.Stroke({ color: "red" })
+          stroke: new ol.style.Stroke({ color: color, width: 2 })
         });
       });
     }
