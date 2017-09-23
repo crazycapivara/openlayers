@@ -296,7 +296,8 @@ var ol = window.ol;
     options = getTileOptions(options, source);
     var layer = new ol.layer.VectorTile(options);
     if (style) {
-      layer.setStyle(styleIt(style));
+      var style_ = typeof(style) === "function" ? style : styleIt(style);
+      layer.setStyle(style_);
     }
     debug.vectorTiles(layer);
     this.addLayer(layer);
