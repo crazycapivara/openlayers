@@ -10,6 +10,17 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
+  debug.vectorTiles = function(layer) {
+    if (olWidget.options.debugVT) {
+      layer.setStyle(function(feature, resolution) {
+        console.log(feature.getProperties());
+        return new ol.style.Style({
+          stroke: new ol.style.Stroke({ color: "red" })
+        });
+      });
+    }
+  };
+
   var olWidget = window.olWidget = {};
 
   olWidget.element = null;
@@ -268,28 +279,7 @@ var ol = window.ol;
     if (style) {
       layer.setStyle(styleIt(style));
     }
-    // ---
-    if (olWidget.options.debugVT) {
-      layer.setStyle(function(feature, resolution){
-        debug.log(feature.getProperties());
-        return new ol.style.Style({
-          stroke: new ol.style.Stroke({ color: "red" })
-        });
-      });
-    }
-    // ---
-    this.addLayer(layer);
-  };
-
-  methods.addGeojsonVT = function(url) {
-    var format = new ol.format["TopoJSON"]();
-    var tileGrid = ol.tilegrid.createXYZ({maxZoom: 19});
-    var source = new ol.source.VectorTile({
-      format: format,
-      //tileGrid: tileGrid,
-      url: url
-    });
-    var layer =  new ol.layer.VectorTile({ source: source });
+    debug.vectorTiles(layer);
     this.addLayer(layer);
   };
 
