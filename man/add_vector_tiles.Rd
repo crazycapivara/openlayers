@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_tiles.R
 \name{add_vector_tiles}
 \alias{add_vector_tiles}
-\title{Add vector tiles to the map}
+\title{Add vector tile layer to the map}
 \usage{
 add_vector_tiles(ol, url, attribution = NULL, style = NULL,
   options = layer_options(), format = NULL)

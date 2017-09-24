@@ -2,7 +2,7 @@
 % Please edit documentation in R/vector_tiles.R
 \name{guess_vt_format}
 \alias{guess_vt_format}
-\title{Guess vector tiles format}
+\title{Guess format of vector tiles}
 \usage{
 guess_vt_format(url)
 }
@@ -10,5 +10,5 @@ guess_vt_format(url)
 \item{url}{url of the vt service}
 }
 \description{
-Guess vector tiles format
+Guess format of vector tiles
 }

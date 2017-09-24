@@ -1,4 +1,4 @@
-#' Guess vector tiles format
+#' Guess format of vector tiles
 #'
 #' @param url url of the vt service
 #'
@@ -13,7 +13,7 @@ guess_vt_format <- function(url) {
   "MVT"
 }
 
-#' Add vector tiles to the map
+#' Add vector tile layer to the map
 #'
 #' If you want to create and serve your own vector tiles
 #' you may check \href{http://t-rex.tileserver.ch/}{t-rex}.
