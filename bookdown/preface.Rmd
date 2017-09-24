@@ -32,3 +32,100 @@ ol() %>%
   add_features(us_cities) %>%
   add_drag_and_drop()
 ```
+
+# Basic usage
+
+# Map
+
+## Creation
+
+```{r}
+map <- ol()
+```
+
+## Options
+
+```{r}
+options <- ol_options(collapsible_attribution = TRUE,
+                      max_zoom = 10)
+
+map <- ol(options = options)
+```
+
+# Raster layers
+
+## Tiles
+
+### OSM tiles
+
+```{r}
+ol() %>%
+  add_osm_tiles()
+```
+
+### Stamen tiles
+
+```{r}
+ol() %>%
+  add_stamen_tiles("watercolor")
+```
+
+### Custom tiles
+
+```{r}
+url <- get_cartodb_xyz_url("dark_nolabels")
+
+ol() %>%
+  add_xyz_tiles(url, cartodb_attribution())
+```
+
+### Combining tiles
+
+```{r}
+ol() %>%
+  add_stamen_tiles("watercolor") %>%
+  add_stamen_tiles("terrain-labels") %>%
+  set_view()
+```
+
+## WMS Tiles
+
+```{r}
+url <- "http://ows.terrestris.de/osm/service"
+layers <- "TOPO-WMS"
+
+ol() %>%
+  add_wms_tiles(url, layers) %>%
+  set_view(zoom = 5)
+```
+
+
+# Vector layers
+
+## Circle
+
+## Polygon
+
+## Polyline
+
+## Vector Tiles
+
+```{r}
+# Mapbox example
+
+token <- "your_access_token"
+mapbox <- paste0("https://{a-d}.tiles.mapbox.com/v4/",
+                 "mapbox.mapbox-streets-v7/",
+                 "{z}/{x}/{y}.vector.pbf",
+                 "?access_token=", token)
+
+ol() %>%
+  add_vector_tiles(mapbox, mapbox_attribution())
+```
+
+
+# Styles
+
+# Controls
+
+# Interactions
