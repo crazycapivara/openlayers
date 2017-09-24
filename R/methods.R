@@ -14,9 +14,9 @@ get_stamen_xyz_url <- function(layer = "toner"){
 #' @return cartodb xyz url for given layer
 #'
 #' @export
-get_cartodb_xyz_url <- function(layer = "dark_all"){
+get_cartodb_xyz_url <- function(layer = "dark_all") { # nocov start
   sprintf("https://cartodb-basemaps-{a-c}.global.ssl.fastly.net/%s/{z}/{x}/{y}.png", layer)
-}
+} # nocov end
 
 #' Cartodb attribution
 #'
