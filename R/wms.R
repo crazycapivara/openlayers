@@ -1,10 +1,10 @@
-#' Add wms tile layer
+#' Add wms tile layer to the map
 #'
 #' @param ol map widget
-#' @param url url of the wms service
+#' @param url url of the wms
 #' @param layers layers
 #' @param attribution attribution
-#' @param wms_options named list of wms options like \code{STYLE}, ...
+#' @param wms_options named list of wms options like \code{STYLES}, ...
 #' @param options layer options
 #'
 #' @examples \dontrun{

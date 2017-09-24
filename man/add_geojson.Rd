@@ -26,8 +26,11 @@ Add vector layer to the map
 \examples{
 \dontrun{
   require("geojsonio")
+
   geojson <- geojson_json(us_cities[1:10, ])
-  ol() \%>\% add_geojson(geojson)
+
+  ol() \%>\%
+    add_geojson(geojson)
 }
 
 }

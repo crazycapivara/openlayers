@@ -10,11 +10,11 @@
 #' @return style object
 #'
 #' @note
-#'   \code{color} (in \code{fill_style}), \code{radius} and \code{text} can be single values applied to all features
+#'   \code{color}, \code{icon_color}, \code{radius} and \code{text} can be single values applied to all features
 #'   or vectors of length equal to the number of features
 #'
 #' @examples
-#'   style = stroke_style() + fill_style()
+#'   style <- stroke_style() + fill_style()
 #'
-#'   point_style = circle_style(stroke_style(color = "blue"), fill = NULL)
+#'   point_style <- circle_style(stroke_style(color = "blue"), fill = NULL)
 NULL

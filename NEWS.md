@@ -1,3 +1,15 @@
+# openlayers 0.4.7
+
+* `add_<format>_vector_tiles` functions (as introduced in v0.4.6) were replaced by the generic function `add_vector_tiles`, which by default guesses the `format` parameter 
+* the stroke color in `stroke_style` can now also be a vector of length equal to the number of features
+
+# openlayers 0.4.6
+
+* Added support for vector tiles, supported formats:
+  - mvt (mapbox vector tiles): `add_mapbox_vector_tiles`
+  - topojson: `add_topojson_vector_tiles`
+  - geojson: `add_geojson_vector_tiles`
+
 # openlayers 0.4.5
 
 * Added wms support
@@ -24,7 +36,7 @@
 * Added `name` and `type` parameters to `layer_options` 
 * Added `ol-layerswitcher` plugin
   - `add_layer_switcher`
-  - to add layers to the menu just set the `name` parameter of the layer
+  - in order to add layers to the menu just set the `name` parameter of the layer
   - set `type` parameter to `"base"` for base layers
   - layers dropped to the map get random names based on the names-generator from _docker_
 * Added horizontal and vertical text offset (parameters) to `text_style`
@@ -56,7 +68,7 @@
 # openlayers 0.2.2
 
 * Added missing function docs
-* Added functions to add controls to map
+* Added functions to add controls to the map
   - `add_scale_line`
   - `add_overview_map`
   - `add_mouse_control`
@@ -66,7 +78,7 @@
 
 * Added appendix `_style` to all style functions
   - `style <- stroke_style(color = "blue") + fill_style(color = "yellow")`
-* Added possibility to pass vectors of length equal to the number of features to style functions
+* Added possibility to pass vectors of length equal to the number of features to some style functions
   - `style <- fill_style(color = c("green", "blue", "red"))`
 * Added documentation to all style functions and some other functions
 * Added opacity parameter to `add_geojson` function

@@ -4,8 +4,8 @@
 \alias{stroke_style}
 \alias{fill_style}
 \alias{circle_style}
-\alias{marker_style}
 \alias{icon_style}
+\alias{marker_style}
 \alias{text_style}
 \alias{style_methods}
 \title{Create styles}
@@ -16,9 +16,9 @@ fill_style(color = "rgba(0, 0, 255, 0.5)")
 
 circle_style(stroke = stroke_style(), fill = fill_style(), radius = 10)
 
-marker_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
-
 icon_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
+
+marker_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
 text_style(text = NULL, property = NULL, scale = 1.5, color = "black",
   stroke = NULL, offset_xy = c(0, 0))
@@ -58,11 +58,11 @@ Style methods to create style objects corresponding to
 \href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
 }
 \note{
-\code{color} (in \code{fill_style}), \code{radius} and \code{text} can be single values applied to all features
+\code{color}, \code{icon_color}, \code{radius} and \code{text} can be single values applied to all features
   or vectors of length equal to the number of features
 }
 \examples{
-  style = stroke_style() + fill_style()
+  style <- stroke_style() + fill_style()
 
-  point_style = circle_style(stroke_style(color = "blue"), fill = NULL)
+  point_style <- circle_style(stroke_style(color = "blue"), fill = NULL)
 }

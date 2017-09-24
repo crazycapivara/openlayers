@@ -2,7 +2,7 @@
 % Please edit documentation in R/wms.R
 \name{add_wms_tiles}
 \alias{add_wms_tiles}
-\title{Add wms tile layer}
+\title{Add wms tile layer to the map}
 \usage{
 add_wms_tiles(ol, url, layers, attribution = NULL, wms_options = NULL,
   options = layer_options())
@@ -10,18 +10,18 @@ add_wms_tiles(ol, url, layers, attribution = NULL, wms_options = NULL,
 \arguments{
 \item{ol}{map widget}
 
-\item{url}{url of the wms service}
+\item{url}{url of the wms}
 
 \item{layers}{layers}
 
 \item{attribution}{attribution}
 
-\item{wms_options}{named list of wms options like \code{STYLE}, ...}
+\item{wms_options}{named list of wms options like \code{STYLES}, ...}
 
 \item{options}{layer options}
 }
 \description{
-Add wms tile layer
+Add wms tile layer to the map
 }
 \examples{
 \dontrun{

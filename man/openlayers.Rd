@@ -7,7 +7,7 @@
 \title{openlayers}
 \description{
 Makes the open-source JavaScript library \href{https://openlayers.org/}{OpenLayers}
-available within R via the htmlwidgets package.
+available within R via the \pkg{htmlwidgets} package.
 }
 \examples{
 \dontrun{

@@ -10,6 +10,36 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
+  debug.vectorTiles = function(layer) {
+    if (olWidget.options.debugVT) {
+      layer.setStyle(function(feature, resolution) {
+        console.log(feature.getProperties());
+        // mapzen
+        var color;
+        var kind = feature.get("kind");
+        switch(kind) {
+          case "major_road":
+            color = "blue";
+            break;
+          case "minor_road":
+            color = "green";
+            break;
+          default:
+            color = "red";
+            break;
+        }
+        // mapbox
+        var class_ = feature.get("class");
+        if (class_ === "primary") { color = "blue"; }
+        else if (class_ === "secondary") { color = "green"; }
+        else if (class_ === "street") { color = "yellow"; }
+        return new ol.style.Style({
+          stroke: new ol.style.Stroke({ color: color, width: 2 })
+        });
+      });
+    }
+  };
+
   var olWidget = window.olWidget = {};
 
   olWidget.element = null;
@@ -120,12 +150,15 @@ var ol = window.ol;
   };
 
   freakyStyley.stroke = function(options, feature) {
-    return options ? new ol.style.Stroke(options) : undefined;
+    return options ? new ol.style.Stroke({
+      color: this.getOptionValue(feature, options, "color"),
+      width: options.width
+    }) : undefined;
   };
 
   freakyStyley.circle = function(options, feature) {
     return new ol.style.Circle({
-      stroke: this.stroke(options.stroke),
+      stroke: this.stroke(options.stroke, feature),
       fill: this.fill(options.fill, feature),
       radius: this.getOptionValue(feature, options, "radius")
     });
@@ -203,14 +236,12 @@ var ol = window.ol;
     return options;
   };
 
-  // TODO: use 'helpMe.addTileLayer' method!
   methods.addStamenTiles = function(layer, options) {
     var source = new ol.source.Stamen({ layer: layer });
     options = getTileOptions(options, source);
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  // TODO: use 'helpMe.addTileLayer' method!
   methods.addOSMTiles = function(options) {
     var source = new ol.source.OSM();
     options = getTileOptions(options, source);
@@ -226,13 +257,14 @@ var ol = window.ol;
     this.addLayer(new ol.layer.Tile(options));
   };
 
-  methods.addWMSTiles = function(wms_url, params, attributions, options) {
+  methods.addWMSTiles = function(url, params, attributions, options) {
+    params.TILED = true;
     debug.log(params);
     var source = new ol.source.TileWMS({
-        url: wms_url,
-        params: params,
-        attributions: attributions || undefined,
-        hidpi: false
+      url: url,
+      params: params,
+      attributions: attributions || undefined,
+      hidpi: false
     });
     options = getTileOptions(options, source);
     this.addLayer(new ol.layer.Tile(options));
@@ -240,14 +272,35 @@ var ol = window.ol;
 
   // not used at the moment,
   // same as above for servers providing single images
-  methods.addWMS = function(wms_url, params, attributions) {
+  methods.addWMS = function(url, params, attributions) {
     var source = new ol.source.ImageWMS({
-      url: wms_url,
+      url: url,
       params: params,
       attributions: attributions || undefined,
       hidpi: false
     });
     this.addLayer(new ol.layer.Image({ source: source }));
+  };
+
+  // supported formats:
+  // MVT (mapbox vector tile), GeoJSON and TopoJSON
+  methods.addVectorTiles = function(url, attribution, style, options, format) {
+    format = format || "MVT";
+    var source = new ol.source.VectorTile({
+      format: new ol.format[format](),
+      //tileGrid: ol.tilegrid.createXYZ({ maxZoom: 22 }),
+      url: url,
+      attributions: attribution
+    });
+    //var layer = new ol.layer.VectorTile({ source: source });
+    options = getTileOptions(options, source);
+    var layer = new ol.layer.VectorTile(options);
+    if (style) {
+      var style_ = typeof(style) === "function" ? style : styleIt(style);
+      layer.setStyle(style_);
+    }
+    debug.vectorTiles(layer);
+    this.addLayer(layer);
   };
 
   var callbacks = {};
@@ -278,6 +331,7 @@ var ol = window.ol;
     container.innerHTML = properties ? callbacks.renderFeatureProperties(properties) : null;
   };
 
+  // TODO: remove?
   var addSelectListener = function(options) {
     return function(e) {
       // not implemented yet
