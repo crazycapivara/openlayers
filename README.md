@@ -70,13 +70,12 @@ Code coverage
 package_coverage(function_exclusions = c(
   "layerswitcher_dependencies",
   "make_icon"))
-#> openlayers Coverage: 37.21%
-#> R/mvt.R: 0.00%
+#> openlayers Coverage: 42.19%
 #> R/plugin-layerswitcher.R: 0.00%
-#> R/vector_tiles.R: 0.00%
 #> R/wms.R: 0.00%
-#> R/methods.R: 9.09%
-#> R/styles.R: 21.74%
+#> R/methods.R: 9.52%
+#> R/styles.R: 20.83%
+#> R/vector_tiles.R: 54.55%
 #> R/ol.R: 75.00%
 #> R/options.R: 90.00%
 #> R/controls.R: 100.00%
