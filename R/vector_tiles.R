@@ -52,7 +52,7 @@ guess_vt_format <- function(url) {
 #'     "{z}/{x}/{y}.vector.pbf",
 #'     "?access_token=", key
 #'   )
-#'   attribution <- "Add mapbox attribution here"
+#'   attribution <- "Add mapbox attribution"
 #'
 #'   ol() %>%
 #'     add_vector_tiles(mapbox, attribution)
@@ -60,7 +60,7 @@ guess_vt_format <- function(url) {
 #'   # style the tiles
 #'   ol() %>%
 #'     add_vector_tiles(
-#'       url,
+#'       mapbox,
 #'       attribution,
 #'       style = stroke_style(color = "green") + fill_style()
 #'     ) %>%
