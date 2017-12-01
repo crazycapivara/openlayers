@@ -9,4 +9,4 @@ style_func <- system.file("javascript/another_style_function.js", package = "ope
 message(style_func)
 
 # zoom in and out to show and hide text content
-ol() %>% add_stamen_tiles %>% add_geojson(quason, style = style_func)
+ol() %>% add_stamen_tiles() %>% add_geojson(quason, style = style_func)
