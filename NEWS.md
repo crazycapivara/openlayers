@@ -1,3 +1,7 @@
+# openlayers 0.4.8
+
+* Upgrade to `OpenLayers` v4.5.0
+
 # openlayers 0.4.7
 
 * `add_<format>_vector_tiles` functions (as introduced in v0.4.6) were replaced by the generic function `add_vector_tiles`, which by default guesses the `format` parameter 
@@ -50,7 +54,7 @@
 * Added drag and drop functionality
   - `add_drag_and_drop`
 * Changed default marker icon
-* Added `make_icon` function to create marker icons from images, so that they can be used in `marker_style`
+* Added `make_icon` function to create marker icons from images, so that they can be used in `icon_style`
 * Improved shiny integration by passing data back to R:
   - feature properties on select event
   - coordinates on map click event
