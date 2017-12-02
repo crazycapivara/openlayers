@@ -27,20 +27,12 @@ you may check \href{http://t-rex.tileserver.ch/}{t-rex}.
 }
 \examples{
 \dontrun{
-  # osrm
-  osrm <- "http://router.project-osrm.org/tile/v1/car/tile({x},{y},{z}).mvt"
-
-  ol() \%>\%
-    add_osm_tiles() \%>\%
-    add_vector_tiles(osrm, "Add osrm attribution") \%>\%
-    set_view(zoom = 16)
-
   # mapzen
   key <- "your_api_key"
   mapzen <- paste0(
     "https://tile.mapzen.com/mapzen/vector/v1/",
     "roads/{z}/{x}/{y}.topojson",
-    "?api_key=", key)
+    "?api_key=", key
   )
 
   ol() \%>\%

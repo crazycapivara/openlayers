@@ -24,20 +24,12 @@ guess_vt_format <- function(url) {
 #' @param format format of the vector tiles, \code{MVT} (mapbox vector tiles),
 #'   \code{TopoJSON}, \code{GeoJSON} or \code{NULL} (guess format)
 #' @examples \dontrun{
-#'   # osrm
-#'   osrm <- "http://router.project-osrm.org/tile/v1/car/tile({x},{y},{z}).mvt"
-#'
-#'   ol() %>%
-#'     add_osm_tiles() %>%
-#'     add_vector_tiles(osrm, "Add osrm attribution") %>%
-#'     set_view(zoom = 16)
-#'
 #'   # mapzen
 #'   key <- "your_api_key"
 #'   mapzen <- paste0(
 #'     "https://tile.mapzen.com/mapzen/vector/v1/",
 #'     "roads/{z}/{x}/{y}.topojson",
-#'     "?api_key=", key)
+#'     "?api_key=", key
 #'   )
 #'
 #'   ol() %>%
