@@ -10,33 +10,35 @@ var ol = window.ol;
     if (this.active) console.log.apply(console, arguments);
   };
 
+  // vector tiles (used in vector tiles debug mode)
+  var vt = {};
+
+  vt.defaultColor = "#990000";
+
+  vt.mapzenAndMapboxColors = {
+    // mapzen (kind)
+    major_road: "blue",
+    minor_road: "green",
+    // mapbox (class)
+    primary: "blue",
+    secondary: "green",
+    street: "yellow",
+    pedestrian: "grey"
+  };
+
   debug.vectorTiles = function(layer) {
     if (olWidget.options.debugVT) {
+      //layer.setStyle(freakyStyley.getStyleFunction_("class", vt.mapzenAndMapboxColors));
+      // start style function
       layer.setStyle(function(feature, resolution) {
         console.log(feature.getProperties());
-        // mapzen
-        var color;
-        var kind = feature.get("kind");
-        switch(kind) {
-          case "major_road":
-            color = "blue";
-            break;
-          case "minor_road":
-            color = "green";
-            break;
-          default:
-            color = "red";
-            break;
-        }
-        // mapbox
-        var class_ = feature.get("class");
-        if (class_ === "primary") { color = "blue"; }
-        else if (class_ === "secondary") { color = "green"; }
-        else if (class_ === "street") { color = "yellow"; }
+        var key = feature.get("kind") || feature.get("class");
+        var color = vt.mapzenAndMapboxColors[key] || vt.defaultColor;
         return new ol.style.Style({
           stroke: new ol.style.Stroke({ color: color, width: 2 })
         });
       });
+      // end
     }
   };
 
@@ -137,6 +139,16 @@ var ol = window.ol;
 
   // style helpers as a homage to the RHCP
   var freakyStyley = {};
+
+  // unused at the moment, should/can be used to style vector tiles
+  freakyStyley.getStyleFunction_ = function(property, colors) {
+    return function(feature, resolution) {
+      var color = colors[feature.get(property)] || "black";
+      return new ol.style.Style({
+          stroke: new ol.style.Stroke({ color: color, width: 2 })
+        });
+    };
+  };
 
   freakyStyley.getOptionValue = function(feature, style, option) {
     return style[option] instanceof Array ?
