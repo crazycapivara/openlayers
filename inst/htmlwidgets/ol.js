@@ -307,7 +307,12 @@ var ol = window.ol;
     //var layer = new ol.layer.VectorTile({ source: source });
     options = getTileOptions(options, source);
     var layer = new ol.layer.VectorTile(options);
-    if (style) {
+    // new freature start
+    if (style && style.property) {
+      layer.setStyle(freakyStyley.getStyleFunction_(style.property, style.colors));
+    }
+    // end
+    else if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
       layer.setStyle(style_);
     }
