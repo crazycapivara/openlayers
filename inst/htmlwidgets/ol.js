@@ -29,16 +29,14 @@ var ol = window.ol;
   debug.vectorTiles = function(layer) {
     if (olWidget.options.debugVT) {
       //layer.setStyle(freakyStyley.getStyleFunction_("class", vt.mapzenAndMapboxColors));
-      // start style function
-      layer.setStyle(function(feature, resolution) {
+      layer.setStyle(function(feature, resolution) { // style function start
         console.log(feature.getProperties());
         var key = feature.get("kind") || feature.get("class");
         var color = vt.mapzenAndMapboxColors[key] || vt.defaultColor;
         return new ol.style.Style({
           stroke: new ol.style.Stroke({ color: color, width: 2 })
         });
-      });
-      // end
+      }); // style function end
     }
   };
 
@@ -140,7 +138,8 @@ var ol = window.ol;
   // style helpers as a homage to the RHCP
   var freakyStyley = {};
 
-  // unused at the moment, should/can be used to style vector tiles
+  // should/can be used to style vector tiles
+  // (used as 'hidden' feature in 'addVectorTiles')
   freakyStyley.getStyleFunction_ = function(property, colors) {
     return function(feature, resolution) {
       var color = colors[feature.get(property)] || "black";
@@ -307,11 +306,11 @@ var ol = window.ol;
     //var layer = new ol.layer.VectorTile({ source: source });
     options = getTileOptions(options, source);
     var layer = new ol.layer.VectorTile(options);
-    // new freature start
+    // hidden feature start
     if (style && style.property) {
       layer.setStyle(freakyStyley.getStyleFunction_(style.property, style.colors));
     }
-    // end
+    // hidden feature end
     else if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
       layer.setStyle(style_);
