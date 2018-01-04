@@ -387,7 +387,9 @@ var ol = window.ol;
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type,
-      popupProperty: options.popup_property
+      popupProperty: options.popup_property,
+      minResolution: options.minResolution || undefined,
+      maxResolution: options.maxResolution || undefined
     });
     layer.set("title", layer.get("name"));
     if (style) {
