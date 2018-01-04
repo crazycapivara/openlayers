@@ -309,8 +309,7 @@ var ol = window.ol;
     // hidden feature start
     if (style && style.property) {
       layer.setStyle(freakyStyley.getStyleFunction_(style.property, style.colors));
-    }
-    // hidden feature end
+    } // hidden feature end
     else if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
       layer.setStyle(style_);
