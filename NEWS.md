@@ -1,3 +1,10 @@
+# openlayers 0.4.9
+
+* Upgrade to `OpenLayers` v4.6.4
+* Added support for `minResolution`, `maxResolution` and `renderMode` options in `addGeojson`
+  - options are passed via the `options` parameter in the R functions `add_geojson` and `add_features`
+* Added support for styling vector tiles by property
+
 # openlayers 0.4.8
 
 * Upgrade to `OpenLayers` v4.5.0
