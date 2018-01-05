@@ -384,6 +384,7 @@ var ol = window.ol;
     });
     var layer = new ol.layer.Vector({
       source: dataSource,
+      renderMode: options.renderMode || undefined, // 'vector' or 'image'
       opacity: options.opacity || 1, // TODO: set default in olWidget.options
       name: options.docker ? getDockerContainerName() : options.name || undefined,
       type: options.type,
@@ -406,6 +407,7 @@ var ol = window.ol;
     this.getView().fit(dataSource.getExtent(), {
       maxZoom: olWidget.options.maxZoomFit
     });
+    debug.log("properties:", layer.getProperties());
     debug.log("zoom:", this.getView().getZoom());
     debug.log("resolution:", this.getView().getResolution());
   };
