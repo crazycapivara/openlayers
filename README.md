@@ -27,7 +27,7 @@ Here we go with some basic examples:
 
 ``` r
 library(openlayers)
-#> openlayers 0.4.8 wrapping openlayersjs v4.5.0
+#> openlayers 0.4.9 wrapping openlayersjs v4.6.4
 ```
 
 ``` r
@@ -67,11 +67,8 @@ Code coverage
 -------------
 
 ``` r
-package_coverage(function_exclusions = c(
-  "layerswitcher_dependencies",
-  "make_icon"))
-#> openlayers Coverage: 42.19%
-#> R/plugin-layerswitcher.R: 0.00%
+package_coverage(function_exclusions = c("make_icon"))
+#> openlayers Coverage: 49.64%
 #> R/wms.R: 0.00%
 #> R/methods.R: 9.52%
 #> R/styles.R: 20.83%
@@ -79,6 +76,8 @@ package_coverage(function_exclusions = c(
 #> R/ol.R: 75.00%
 #> R/options.R: 90.00%
 #> R/controls.R: 100.00%
+#> R/dependencies.R: 100.00%
 #> R/interactions.R: 100.00%
+#> R/plugin-layerswitcher.R: 100.00%
 #> R/utils.R: 100.00%
 ```

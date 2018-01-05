@@ -74,7 +74,5 @@ A detailed documentation of the package is still under development, but all func
 ## Code coverage
 
 ```{r code-coverage, eval = TRUE}
-package_coverage(function_exclusions = c(
-  "layerswitcher_dependencies",
-  "make_icon"))
+package_coverage(function_exclusions = c("make_icon"))
 ```
