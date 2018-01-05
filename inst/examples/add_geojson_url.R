@@ -1,6 +1,6 @@
 library(openlayers)
 
-geojson_url <- 'https://openlayers.org/en/v4.2.0/examples/data/geojson/countries.geojson'
+geojson_url <- 'https://openlayers.org/en/v4.6.4/examples/data/geojson/countries.geojson'
 
 colors <- substr(rainbow(178), 1, 7)
 
