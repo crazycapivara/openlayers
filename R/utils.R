@@ -10,3 +10,8 @@ invoke_method <- function(ol, method_name, ...) {
 camel_case <- function(x) {
   gsub("_(\\w?)", "\\U\\1", x, perl = TRUE)
 }
+
+camel_case_keys <- function(x) {
+  names(x) <- names(x) %>% camel_case()
+  x
+}
