@@ -109,11 +109,11 @@ add_geojson_ds <- function(ol, url){
 #'
 #' @export
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
-                        popup = NULL, options = layer_options()){
+                        popup = NULL, options = layer_options()) {
   if(!is.null(filename)){
     data <- readr::read_file(filename)
   }
-  invoke_method(ol, "addGeojson", data, style, popup, options)
+  invoke_method(ol, "addGeojson", data, style, popup, camel_case_keys(options))
 }
 
 require_namespace <- function(name){
