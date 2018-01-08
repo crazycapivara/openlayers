@@ -382,6 +382,11 @@ var ol = window.ol;
     var dataSource = new ol.source.Vector({
       features: features
     });
+    options = options || {};
+    options.source = dataSource;
+    options.name = options.docker ? getDockerContainerName() : options.name || undefined;
+    var layer = new ol.layer.Vector(options);
+    /*
     var layer = new ol.layer.Vector({
       source: dataSource,
       renderMode: options.renderMode || undefined, // 'vector' or 'image'
@@ -392,6 +397,7 @@ var ol = window.ol;
       minResolution: options.minResolution || undefined,
       maxResolution: options.maxResolution || undefined
     });
+    */
     layer.set("title", layer.get("name"));
     if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
@@ -557,7 +563,7 @@ var ol = window.ol;
             methods[call.method].apply(map, call.args);
           }
 
-          debug.log(helpMe.getLayers(map));
+          debug.log("layers:", helpMe.getLayers(map));
         }, // renderValue end
 
         resize: function(width, height) {
