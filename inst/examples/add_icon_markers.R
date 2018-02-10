@@ -2,7 +2,7 @@ library(openlayers)
 library(geojsonio)
 
 features <- us_cities[1:10, ]
-colors = ifelse(features$capital, "red", "blue")
+colors <- ifelse(features$capital, "red", "blue")
 
 ol() %>% add_stamen_tiles() %>% add_stamen_tiles("terrain-labels") %>%
   add_features(features,
