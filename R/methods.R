@@ -145,7 +145,7 @@ add_features <- function(ol, data, ...) {
 #' @rdname add_features
 #'
 #' @export
-add_vector_data <- function(ol, data, ...) {
+add_vector_data <- function(ol, data, ...) { # nocov start
   .Deprecated("add_features")
   add_features(ol, data, ...)
-}
+} # nocov end
