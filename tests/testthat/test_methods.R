@@ -37,3 +37,15 @@ test_that("set view", {
   expect_equal(call$method, method_expected)
   expect_equal(call$args[[3]], zoom_expected)
 })
+
+test_that("add geojson", {
+  # when
+  features <- geojsonio::us_cities[1, ]
+  map <- ol() %>% add_features(features)
+  # then
+  no_features_expected <- "1"
+  # assert
+  call <- get_call(map)
+  no_features <- attributes(call$args[[1]])$no_features
+  expect_equal(no_features_expected, no_features)
+})
