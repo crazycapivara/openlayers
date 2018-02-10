@@ -41,14 +41,14 @@ ol <- function(width = "100%", height = NULL, elementId = NULL, options = ol_opt
 #' @name ol-shiny
 #'
 #' @export
-olOutput <- function(outputId, width = '100%', height = '400px') {
+olOutput <- function(outputId, width = '100%', height = '400px') { # nocov start
   htmlwidgets::shinyWidgetOutput(outputId, 'ol', width, height, package = 'openlayers')
-}
+} # nocov end
 
 #' @rdname ol-shiny
 #'
 #' @export
-renderOl <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderOl <- function(expr, env = parent.frame(), quoted = FALSE) { # nocov start
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, olOutput, env, quoted = TRUE)
-}
+} # nocov end
