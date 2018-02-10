@@ -6,6 +6,6 @@
 #' @param filename filename of icon
 #'
 #' @export
-make_icon <- function(filename) {
+make_icon <- function(filename) { # nocov start
   paste("data:image/png;base64,", base64enc::base64encode(filename))
-}
+} # nocov end
