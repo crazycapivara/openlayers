@@ -1,6 +1,5 @@
 # resolution example
 
-# TODO: parse options parameters so that 'max_resoltion' can be used!
 ol(options = list(debug = TRUE)) %>%
   add_stamen_tiles() %>%
   add_stamen_tiles("terrain-labels", options = layer_options(max_resolution = 13000))
