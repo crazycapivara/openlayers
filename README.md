@@ -53,7 +53,8 @@ nc <- st_read(system.file("gpkg/nc.gpkg", package = "sf"),
 
 ol() %>%
   add_stamen_tiles("watercolor") %>%
-  add_stamen_tiles("terrain-labels") %>%
+  add_stamen_tiles("terrain-labels",
+                   options = layer_options(max_resolution = 13000)) %>%
   add_features(nc) %>%
   add_overview_map()
 ```
@@ -67,17 +68,17 @@ Code coverage
 -------------
 
 ``` r
-package_coverage(function_exclusions = c("make_icon"))
-#> openlayers Coverage: 49.64%
-#> R/wms.R: 0.00%
-#> R/methods.R: 9.52%
+package_coverage()
+#> openlayers Coverage: 61.65%
 #> R/styles.R: 20.83%
 #> R/vector_tiles.R: 54.55%
-#> R/ol.R: 75.00%
+#> R/methods.R: 64.71%
+#> R/wms.R: 66.67%
 #> R/options.R: 90.00%
 #> R/controls.R: 100.00%
 #> R/dependencies.R: 100.00%
 #> R/interactions.R: 100.00%
+#> R/ol.R: 100.00%
 #> R/plugin-layerswitcher.R: 100.00%
 #> R/utils.R: 100.00%
 ```
