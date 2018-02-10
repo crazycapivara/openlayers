@@ -21,10 +21,10 @@ get_cartodb_xyz_url <- function(layer = "dark_all") { # nocov start
 #' Cartodb attribution
 #'
 #' @export
-cartodb_attribution <- function() {
+cartodb_attribution <- function() { # nocov start
   c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
     '&copy; <a href="https://carto.com/attribution">CARTO</a>')
-}
+} # nocov end
 
 add_cartodb_tiles <- function(ol, layer) {
   stop("needs to be implemented, just do it")
