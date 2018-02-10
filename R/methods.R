@@ -1,6 +1,6 @@
 ## TODO: obsolete, because stamen tiles can be added via 'add_stamen_tiles'
 ## only useful, because 'https' layers sometimes do not show up in RStudio
-get_stamen_xyz_url <- function(layer = "toner"){
+get_stamen_xyz_url <- function(layer = "toner") {
   sprintf("http://{a-c}.tile.stamen.com/%s/{z}/{x}/{y}.png", layer)
 }
 
@@ -21,12 +21,12 @@ get_cartodb_xyz_url <- function(layer = "dark_all") { # nocov start
 #' Cartodb attribution
 #'
 #' @export
-cartodb_attribution <- function(){
+cartodb_attribution <- function() {
   c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
     '&copy; <a href="https://carto.com/attribution">CARTO</a>')
 }
 
-add_cartodb_tiles <- function(ol, layer){
+add_cartodb_tiles <- function(ol, layer) {
   stop("needs to be implemented, just do it")
 }
 
@@ -38,7 +38,7 @@ add_cartodb_tiles <- function(ol, layer){
 #' @param zoom zoom level
 #'
 #' @export
-set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4){
+set_view <- function(ol, lon = 9.5, lat = 51.31667, zoom = 4) {
   invoke_method(ol, "setView", lon, lat, zoom)
 }
 
@@ -52,8 +52,8 @@ NULL
 #' @describeIn add_tiles Add osm tile layer to the map
 #'
 #' @export
-add_osm_tiles <- function(ol, options = layer_options()){
-  invoke_method(ol, "addOSMTiles", options)
+add_osm_tiles <- function(ol, options = layer_options()) {
+  invoke_method(ol, "addOSMTiles", camel_case_keys(options))
 }
 
 #' @describeIn add_tiles Add stamen tile layer to the map
@@ -61,8 +61,8 @@ add_osm_tiles <- function(ol, options = layer_options()){
 #' @param layer stamen layer name
 #'
 #' @export
-add_stamen_tiles <- function(ol, layer = "watercolor", options = layer_options()){
-  invoke_method(ol, "addStamenTiles", layer, options)
+add_stamen_tiles <- function(ol, layer = "watercolor", options = layer_options()) {
+  invoke_method(ol, "addStamenTiles", layer, camel_case_keys(options))
 }
 
 #' @describeIn add_tiles Add custom tile layer to the map
@@ -80,12 +80,12 @@ add_stamen_tiles <- function(ol, layer = "watercolor", options = layer_options()
 #' }
 #'
 #' @export
-add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, options = layer_options()){
-  invoke_method(ol, "addXYZTiles", xyz_url, attribution, options)
+add_xyz_tiles <- function(ol, xyz_url, attribution = NULL, options = layer_options()) {
+  invoke_method(ol, "addXYZTiles", xyz_url, attribution, camel_case_keys(options))
 }
 
 # TODO: useful ? export : remove
-add_geojson_ds <- function(ol, url){
+add_geojson_ds <- function(ol, url) {
   invoke_method(ol, "addGeojsonFromUrl", url)
 }
 
@@ -110,14 +110,14 @@ add_geojson_ds <- function(ol, url){
 #' @export
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
                         popup = NULL, options = layer_options()) {
-  if(!is.null(filename)){
+  if(!is.null(filename)) {
     data <- readr::read_file(filename)
   }
   invoke_method(ol, "addGeojson", data, style, popup, camel_case_keys(options))
 }
 
-require_namespace <- function(name){
-  if(!requireNamespace(name, quietly = TRUE)){
+require_namespace <- function(name) {
+  if(!requireNamespace(name, quietly = TRUE)) {
     stop(sprintf("please install %s\n", name), call. = FALSE)
   }
 }
