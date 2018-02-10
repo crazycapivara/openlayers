@@ -386,18 +386,6 @@ var ol = window.ol;
     options.source = dataSource;
     options.name = options.docker ? getDockerContainerName() : options.name || undefined;
     var layer = new ol.layer.Vector(options);
-    /*
-    var layer = new ol.layer.Vector({
-      source: dataSource,
-      renderMode: options.renderMode || undefined, // 'vector' or 'image'
-      opacity: options.opacity || 1, // TODO: set default in olWidget.options
-      name: options.docker ? getDockerContainerName() : options.name || undefined,
-      type: options.type,
-      popupProperty: options.popup_property,
-      minResolution: options.minResolution || undefined,
-      maxResolution: options.maxResolution || undefined
-    });
-    */
     layer.set("title", layer.get("name"));
     if (style) {
       var style_ = typeof(style) === "function" ? style : styleIt(style);
