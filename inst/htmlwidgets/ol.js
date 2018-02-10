@@ -15,6 +15,7 @@ var ol = window.ol;
 
   vt.defaultColor = "#990000";
 
+  // TODO: remove mapzen because service is shut down!
   vt.mapzenAndMapboxColors = {
     // mapzen (kind)
     major_road: "blue",
@@ -26,6 +27,7 @@ var ol = window.ol;
     pedestrian: "grey"
   };
 
+  // TODO: remove mapzen because service is shut down!
   debug.vectorTiles = function(layer) {
     if (olWidget.options.debugVT) {
       //layer.setStyle(freakyStyley.getStyleFunction_("class", vt.mapzenAndMapboxColors));
