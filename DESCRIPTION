@@ -1,7 +1,7 @@
 Package: openlayers
 Title: An R Interface to 'OpenLayers'
 Version: 0.4.9
-Date: 2018-01-05
+Date: 2018-02-11
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Description: Makes the open-source JavaScript library 'OpenLayers' <https://openlayers.org/> available
@@ -10,7 +10,7 @@ Description: Makes the open-source JavaScript library 'OpenLayers' <https://open
 URL: https://github.com/crazycapivara/openlayers/
 BugReports: https://github.com/crazycapivara/openlayers/issues/
 Depends:
-    R (>= 3.3.2)
+    R (>= 3.3)
 Imports:
     htmlwidgets,
     htmltools,
