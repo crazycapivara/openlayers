@@ -1,5 +1,3 @@
-## mapbox vector tiles format
-
 #' Mapbox attribution
 #'
 #' @export
