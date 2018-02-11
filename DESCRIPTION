@@ -5,7 +5,7 @@ Date: 2018-02-11
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Description: Makes the open-source JavaScript library 'OpenLayers' <https://openlayers.org/> available
-  within R via the htmlwidgets package. So it is fun to create interactive maps and
+  within R via the 'htmlwidgets' package. So it is fun to create interactive maps and
   use them in Shiny apps or RMarkdown documents.
 URL: https://github.com/crazycapivara/openlayers/
 BugReports: https://github.com/crazycapivara/openlayers/issues/
