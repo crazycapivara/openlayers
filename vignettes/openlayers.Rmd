@@ -1,0 +1,119 @@
+---
+author: "Stefan Küthe"
+title: "Introduction to openlayers for R"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{openlayers}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(openlayers)
+knitr::opts_chunk$set(
+  eval = FALSE,
+  message = FALSE
+)
+```
+
+Openlayers for R makes the open-source JavaScript library [OpenLayers](https://openlayers.org) available within R via the [htmlwidgets](http://www.htmlwidgets.org) package. So it is fun to create interactive maps and use them in Shiny apps or RMarkdown documents.
+
+## The map widget
+
+Basically you create a map widget and add tiles, features, controls and interactions to it.
+
+```{r}
+# Create a default map widget
+map <- ol()
+
+# Pass some options
+map <- ol(options = ol_options(max_zoom = 16))
+```
+
+## Basic tiles
+
+```{r, eval=FALSE}
+# OSM
+ol() %>% add_osm_tiles()
+
+# Stamen
+ol() %>% add_stamen_tiles("watercolor")
+
+# Custom provider
+provider <- "http://cartodb-basemaps-{a-c}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+
+ol() %>% add_xyz_tiles(provider, attribution = "Add attribution here ...")
+
+# Combining tiles
+ol() %>%
+  add_stamen_tiles() %>%
+  add_stamen_tiles("terrain-labels",
+                   options = layer_options(max_resolution = 13000))
+```
+
+## WMS tiles
+
+```{r, eval=FALSE}
+ol() %>%
+  add_stamen_tiles() %>%
+  add_wms_tiles("http://ows.terrestris.de/osm/service",
+                layers = "TOPO-WMS",
+                attribution = "Do not forget to insert the attribution!",
+                options = layer_options(opacity = 0.5))
+```
+
+## Vector tiles
+
+```{r}
+# Mapbox example
+
+token <- "your_access_token"
+mapbox <- paste0("https://{a-d}.tiles.mapbox.com/v4/",
+                 "mapbox.mapbox-streets-v7/",
+                 "{z}/{x}/{y}.vector.pbf",
+                 "?access_token=", token)
+
+ol() %>% add_vector_tiles(mapbox, mapbox_attribution())
+```
+
+## Features
+
+```{r, eval=FALSE}
+require("geojsonio")
+require("sf")
+
+# Points
+point_features <- us_cities[1:5, ]
+
+ol() %>% add_stamen_tiles() %>%
+  add_features(point_features)
+
+# Lines
+line_feature <- point_features[, c("long", "lat")] %>%
+  as.matrix() %>% st_linestring()
+
+ol() %>% add_osm_tiles() %>%
+  add_features(point_features) %>%
+  add_features(line_feature)
+
+# Polygons
+nc <- st_read(system.file("gpkg/nc.gpkg", package = "sf"),
+              quiet = TRUE)
+
+ol() %>% add_osm_tiles() %>%
+  add_features(nc)
+```
+
+## Controls
+
+```{r, eval=FALSE}
+# Overview map
+ol() %>% add_osm_tiles() %>%
+  add_overview_map(collapsed = FALSE)
+
+## ... ##
+```
+
+## Interactions
+
+...
