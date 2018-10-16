@@ -1,9 +1,12 @@
 .legend {
+  line-height: 18px;
+  padding: 10px;
+}
+
+.legend-overlay {
   position: absolute;
   bottom: .5em;
   left: .5em;
-  line-height: 18px;
-  padding: 10px;
   border-radius: 5px;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
