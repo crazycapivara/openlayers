@@ -436,6 +436,17 @@ var ol = window.ol;
     return overlay;
   };
 
+  methods.addLegend = function(colors, labels, title, style) {
+    var el = window.el_legend = document.createElement("div");
+    el.setAttribute("class", "legend");
+    document.getElementsByClassName("ol-overlaycontainer")[0].append(el);
+    if (style) el.setAttribute("style", style);
+    el.innerHTML = title ? "<b>" + title + "</b></br><br>" : "";
+    for (var i = 0; i < colors.length; i++) {
+      el.innerHTML += "<i style='background:" + colors[i] + " ;'></i>" + labels[i] + "</br>";
+    }
+  };
+
   HTMLWidgets.widget({
     name: 'ol',
     type: 'output',
