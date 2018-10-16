@@ -6,7 +6,11 @@ nc$color <- ifelse(nc$AREA > 0.2, "green", "yellow")
 
 map <- ol() %>%
   add_stamen_tiles() %>%
-  add_features(data = nc, style = fill_style(nc$color) + stroke_style("blue", 1), popup = nc$AREA)
+  add_features(
+    data = nc,
+    style = fill_style(nc$color) + stroke_style("blue", 1),
+    popup = nc$AREA
+  )
 
 map %>%
   add_legend(
