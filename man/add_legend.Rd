@@ -9,7 +9,7 @@ add_legend(ol, colors, labels, title = NULL, style = NULL, overlay = TRUE)
 \arguments{
 \item{ol}{map widget}
 
-\item{colors}{colors vector of colors}
+\item{colors}{vector of colors}
 
 \item{labels}{vector of text labels corresponding to the colors}
 

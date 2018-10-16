@@ -1,7 +1,7 @@
 #' Add legend to the map
 #'
 #' @param ol map widget
-#' @param colors colors vector of colors
+#' @param colors vector of colors
 #' @param labels vector of text labels corresponding to the colors
 #' @param title title of the legend or \code{NULL} (no title)
 #' @param style list of css style definition applied to the legend (container)
