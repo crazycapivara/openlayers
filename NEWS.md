@@ -1,3 +1,8 @@
+# openlayers 0.5.0
+
+* Added legend support
+  - `add_legend`
+
 # openlayers 0.4.9
 
 * Upgrade to `OpenLayers` v4.6.4
