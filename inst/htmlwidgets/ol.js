@@ -436,6 +436,28 @@ var ol = window.ol;
     return overlay;
   };
 
+  var legendElement = function() {
+    var el = window.el_legend = document.createElement("div");
+    el.setAttribute("class", "legend legend-overlay");
+    document.getElementsByClassName("ol-overlaycontainer")[0].append(el);
+    return el;
+  };
+
+  var legendElement_ = function() {
+    var el = window.el_legend = helpMe.addContainer("legend");
+    el.setAttribute("class", "legend");
+    return el;
+  };
+
+  methods.addLegend = function(colors, labels, title, style, overlay) {
+    var el = overlay ? legendElement() : legendElement_();
+    if (style) Object.assign(el.style, style); // el.setAttribute("style", style);
+    el.innerHTML = title ? "<b>" + title + "</b></br><br>" : "";
+    for (var i = 0; i < colors.length; i++) {
+      el.innerHTML += "<i style='background:" + colors[i] + ";'></i>" + labels[i] + "</br>";
+    }
+  };
+
   HTMLWidgets.widget({
     name: 'ol',
     type: 'output',
