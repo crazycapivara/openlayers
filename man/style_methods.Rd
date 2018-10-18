@@ -54,8 +54,7 @@ positive offsets will shift the text right and down}
 style object
 }
 \description{
-Style methods to create style objects corresponding to
-\href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
+Style methods to create style objects corresponding to openlayers style classes.
 }
 \note{
 \code{color}, \code{icon_color}, \code{radius} and \code{text} can be single values applied to all features
