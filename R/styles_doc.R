@@ -1,7 +1,6 @@
 #' Create styles
 #'
-#' Style methods to create style objects corresponding to
-#' \href{http://openlayers.org/en/latest/apidoc/ol.style.html}{openlayers style classes}.
+#' Style methods to create style objects corresponding to openlayers style classes.
 #'
 #' @name style_methods
 #'
