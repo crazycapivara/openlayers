@@ -1,3 +1,7 @@
+# openlayers 0.5.1
+
+* Fixed bug when `ol` widget is rendered in shiny via `renderUI`: issue #13
+
 # openlayers 0.5.0
 
 * Added legend support
