@@ -593,4 +593,6 @@ var getDockerContainerName = (function() {
 
 if (typeof module === "object") {
   module.exports.getDockerContainerName = getDockerContainerName;
+} else {
+  window.getDockerContainerName = getDockerContainerName;
 }
