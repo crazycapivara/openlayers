@@ -344,8 +344,9 @@ var ol = window.ol;
   // Move to 'helpMe'
   var displayFeatureProperties = function(properties) {
     var containerId = "selected-feature";
-    var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
-    container.innerHTML = properties ? callbacks.renderFeatureProperties(properties) : null;
+    // var container = document.getElementById(containerId) || helpMe.addContainer(containerId);
+    var container = document.getElementById(containerId) || propertiesElement();
+    container.innerHTML = properties ? callbacks.renderFeatureProperties(properties) : "";
   };
 
   // TODO: remove?
@@ -424,7 +425,7 @@ var ol = window.ol;
   // offset and position are optional
   methods.addOverlay = function(containerId, offset, position) {
     var el = helpMe.addContainer(containerId);
-    el.setAttribute("style", "background: white; padding: 10px; border-radius: 10px;");
+    // el.setAttribute("style", "background: white; padding: 10px; border-radius: 10px;");
     var overlay = new ol.Overlay({
       element: el,
       positioning: 'bottom-center',
@@ -456,6 +457,15 @@ var ol = window.ol;
     for (var i = 0; i < colors.length; i++) {
       el.innerHTML += "<i style='background:" + colors[i] + ";'></i>" + labels[i] + "</br>";
     }
+  };
+
+  // TODO: same as for legend: refactor it!
+  var propertiesElement = function() {
+    var el = window.el_properties = document.createElement("div");
+    el.id = "selected-feature";
+    // el.setAttribute("class", "properties-overlay");
+    document.getElementsByClassName("ol-overlaycontainer")[0].append(el);
+    return el;
   };
 
   HTMLWidgets.widget({
