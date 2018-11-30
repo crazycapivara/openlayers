@@ -1,7 +1,7 @@
 Package: openlayers
 Title: An R Interface to 'OpenLayers'
-Version: 0.5.1
-Date: 2018-10-29
+Version: 0.5.2
+Date: 2018-11-30
 Authors@R: person("Stefan", "Kuethe", email = "crazycapivara@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Kuethe <crazycapivara@gmail.com>
 Description: Makes the open-source JavaScript library 'OpenLayers' <https://openlayers.org/> available
