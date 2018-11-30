@@ -1,3 +1,7 @@
+# openlayers 0.5.2
+
+* Fixed bug [#18](https://github.com/crazycapivara/openlayers/issues/13): Display properties as overlay
+
 # openlayers 0.5.1
 
 * Fixed bug when `ol` widget is rendered in shiny via `renderUI`: [issue #13](https://github.com/crazycapivara/openlayers/issues/13)
