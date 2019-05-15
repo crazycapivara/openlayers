@@ -380,6 +380,24 @@ var ol = window.ol;
     });
   };
 
+  methods.addDraw = function(type) {
+	  type = ["Circle", "Point", "Polygon", "LineString"].includes(type) ? type : "Point";
+    var source = olWidget.drawSource = new ol.source.Vector();
+    source.on("addfeature", function(e) {
+      console.log("Feature added!");
+    });
+	  var layer = new ol.layer.Vector({
+	    source: source,
+	    name: "draw-this"
+    });
+    var draw = new ol.interaction.Draw({
+      source: source,
+      type: type
+    });
+    this.addInteraction(draw);
+    this.addLayer(layer);
+  };
+
   methods.addGeojson = function(data, style, popup, options) {
     var features = helpMe.getFeaturesFromGeojson(data);
     var dataSource = new ol.source.Vector({
@@ -532,6 +550,9 @@ var ol = window.ol;
             // popup support
             // TODO: move to separate function?
             map.forEachFeatureAtPixel(e.pixel, function(feature, layer) {
+              if (layer === null) {
+                return;
+              }
               debug.log("layer name:", layer.get("name"));
               var popupProperty = layer.get("popupProperty");
               if(popupProperty) {

@@ -23,3 +23,12 @@ add_drag_and_drop <- function(ol) {
   ol$x$enable_drag_and_drop <- TRUE
   ol
 }
+
+#' Add draw interaction to the map
+#' @param ol map widget
+#' @param type feature type; one of \code{Circle}, \code{Polygon}, \code{Point}, \code{LineString}
+#' @export
+add_draw <- function(ol, type = "Circle") {
+  ol$x$draw <- TRUE
+  invoke_method(ol, "addDraw", type)
+}
