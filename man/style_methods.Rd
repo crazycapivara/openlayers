@@ -14,14 +14,15 @@ stroke_style(color = "green", width = 2)
 
 fill_style(color = "rgba(0, 0, 255, 0.5)")
 
-circle_style(stroke = stroke_style(), fill = fill_style(), radius = 10)
+circle_style(stroke = stroke_style(), fill = fill_style(),
+  radius = 10)
 
 icon_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
 marker_style(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL)
 
-text_style(text = NULL, property = NULL, scale = 1.5, color = "black",
-  stroke = NULL, offset_xy = c(0, 0))
+text_style(text = NULL, property = NULL, scale = 1.5,
+  color = "black", stroke = NULL, offset_xy = c(0, 0))
 }
 \arguments{
 \item{color}{stroke or fill color}

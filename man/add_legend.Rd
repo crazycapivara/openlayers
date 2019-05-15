@@ -4,7 +4,8 @@
 \alias{add_legend}
 \title{Add legend to the map}
 \usage{
-add_legend(ol, colors, labels, title = NULL, style = NULL, overlay = TRUE)
+add_legend(ol, colors, labels, title = NULL, style = NULL,
+  overlay = TRUE)
 }
 \arguments{
 \item{ol}{map widget}
