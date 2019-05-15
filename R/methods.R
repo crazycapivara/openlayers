@@ -22,8 +22,10 @@ get_cartodb_xyz_url <- function(layer = "dark_all") { # nocov start
 #'
 #' @export
 cartodb_attribution <- function() { # nocov start
-  c('&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
-    '&copy; <a href="https://carto.com/attribution">CARTO</a>')
+  c(
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, ',
+    '&copy; <a href="https://carto.com/attribution">CARTO</a>'
+  )
 } # nocov end
 
 add_cartodb_tiles <- function(ol, layer) {
@@ -110,14 +112,14 @@ add_geojson_ds <- function(ol, url) {
 #' @export
 add_geojson <- function(ol, data = NULL, filename = NULL, style = NULL,
                         popup = NULL, options = layer_options()) {
-  if(!is.null(filename)) {
+  if (!is.null(filename)) {
     data <- readr::read_file(filename)
   }
   invoke_method(ol, "addGeojson", data, style, popup, camel_case_keys(options))
 }
 
 require_namespace <- function(name) {
-  if(!requireNamespace(name, quietly = TRUE)) {
+  if (!requireNamespace(name, quietly = TRUE)) {
     stop(sprintf("please install %s\n", name), call. = FALSE)
   }
 }

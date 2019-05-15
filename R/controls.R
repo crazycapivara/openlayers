@@ -17,8 +17,8 @@ NULL
 #' }
 #'
 #' @export
-add_scale_line <- function(ol, units = "metric"){
-  ol$x$scale_line = list(units = units)
+add_scale_line <- function(ol, units = "metric") {
+  ol$x$scale_line <- list(units = units)
   ol
 }
 
@@ -31,8 +31,8 @@ add_scale_line <- function(ol, units = "metric"){
 #' }
 #'
 #' @export
-add_mouse_position <- function(ol, projection = "EPSG:4326"){
-  ol$x$mouse_position = list(projection = projection)
+add_mouse_position <- function(ol, projection = "EPSG:4326") {
+  ol$x$mouse_position <- list(projection = projection)
   ol
 }
 
@@ -41,7 +41,7 @@ add_mouse_position <- function(ol, projection = "EPSG:4326"){
 #' @param collapsed start the overview map collapsed?
 #'
 #' @export
-add_overview_map <- function(ol, collapsed = TRUE){
+add_overview_map <- function(ol, collapsed = TRUE) {
   ol$x$overview_map <- list(collapsed = collapsed)
   ol
 }
