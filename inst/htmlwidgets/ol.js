@@ -58,6 +58,19 @@ var ol = window.ol;
     markerIcon: "http://openlayers.org/en/v4.2.0/examples/data/icon.png"
   };
 
+  olWidget.getDrawFeatures = function() {
+    if (olWidget.drawSource !== undefined) {
+      return olWidget.drawSource.getFeatures().map(function(f) {
+        var g = f.getGeometry();
+        if (olWidget.drawSource.type === "Circle") {
+          var center = g.getCenter();
+          return center.concat(g.getRadius());
+        }
+        return g.getCoordinates();
+      });
+    }
+  };
+
   // help(ers) as an homage to the Beatles
   var helpMe = {};
 
@@ -383,6 +396,7 @@ var ol = window.ol;
   methods.addDraw = function(type) {
 	  type = ["Circle", "Point", "Polygon", "LineString"].includes(type) ? type : "Point";
     var source = olWidget.drawSource = new ol.source.Vector();
+    olWidget.drawSource.type = type;
     source.on("addfeature", function(e) {
       console.log("Feature added!");
     });
