@@ -394,15 +394,15 @@ var ol = window.ol;
   };
 
   methods.addDraw = function(type) {
-	  type = ["Circle", "Point", "Polygon", "LineString"].includes(type) ? type : "Point";
+    type = ["Circle", "Point", "Polygon", "LineString"].includes(type) ? type : "Point";
     var source = olWidget.drawSource = new ol.source.Vector();
     olWidget.drawSource.type = type;
     source.on("addfeature", function(e) {
       console.log("Feature added!");
     });
-	  var layer = new ol.layer.Vector({
-	    source: source,
-	    name: "draw-this"
+    var layer = new ol.layer.Vector({
+      source: source,
+      name: "draw-this"
     });
     var draw = new ol.interaction.Draw({
       source: source,
