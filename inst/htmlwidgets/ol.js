@@ -59,16 +59,23 @@ var ol = window.ol;
   };
 
   olWidget.getDrawFeatures = function() {
-    if (olWidget.drawSource !== undefined) {
-      return olWidget.drawSource.getFeatures().map(function(f) {
-        var g = f.getGeometry();
-        if (olWidget.drawSource.type === "Circle") {
-          var center = g.getCenter();
-          return center.concat(g.getRadius());
-        }
-        return g.getCoordinates();
-      });
+    if (olWidget.drawSource === undefined) {
+      return;
     }
+
+    return olWidget.drawSource.getFeatures().map(function(f) {
+      var g = f.getGeometry();
+      var drawType = olWidget.drawSource.type;
+      if (drawType === "Circle") {
+        return JSON.stringify(g.getCenter().concat(g.getRadius()));
+      }
+
+      if (drawType === "Polygon") {
+        return JSON.stringify(g.getCoordinates()[0]);
+      }
+
+      return JSON.stringify(g.getCoordinates());
+    });
   };
 
   // help(ers) as an homage to the Beatles
@@ -399,6 +406,10 @@ var ol = window.ol;
     olWidget.drawSource.type = type;
     source.on("addfeature", function(e) {
       console.log("Feature added!");
+      if (HTMLWidgets.shinyMode) {
+        console.log("Shiny mode");
+        Shiny.onInputChange(olWidget.element.id + "_draw", olWidget.getDrawFeatures());
+      }
     });
     var layer = new ol.layer.Vector({
       source: source,
