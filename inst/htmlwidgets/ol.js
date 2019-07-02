@@ -400,8 +400,9 @@ var ol = window.ol;
     });
   };
 
-  methods.addDraw = function(type) {
+  methods.addDraw = function(type, freehand) {
     type = ["Circle", "Point", "Polygon", "LineString"].includes(type) ? type : "Point";
+    freehand = [false, true].includes(freehand) ? freehand: false;
     var source = olWidget.drawSource = new ol.source.Vector();
     olWidget.drawSource.type = type;
     source.on("addfeature", function(e) {
@@ -417,7 +418,8 @@ var ol = window.ol;
     });
     var draw = new ol.interaction.Draw({
       source: source,
-      type: type
+      type: type,
+      freehand: freehand
     });
     this.addInteraction(draw);
     this.addLayer(layer);
