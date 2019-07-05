@@ -4,12 +4,14 @@
 \alias{add_draw}
 \title{Add draw interaction to the map}
 \usage{
-add_draw(ol, type = "Circle")
+add_draw(ol, type = "Circle", freehand = TRUE)
 }
 \arguments{
 \item{ol}{map widget}
 
 \item{type}{feature type; one of \code{Circle}, \code{Polygon}, \code{Point}, \code{LineString}}
+
+\item{freehand}{logical; specifying whether or not freehand mode should be used}
 }
 \description{
 Add draw interaction to the map

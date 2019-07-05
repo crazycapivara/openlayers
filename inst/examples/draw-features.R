@@ -12,7 +12,7 @@ parse_polygons <- function(x) {
 }
 
 # shiny gadget
-draw_features <- function(draw_type = "Polygon") {
+draw_features <- function(draw_type = "Polygon", freehand = TRUE) {
   # View
   ui <- miniPage(
     gadgetTitleBar("Draw features"),
@@ -25,7 +25,7 @@ draw_features <- function(draw_type = "Polygon") {
     output$map <- renderOl({
       ol() %>%
         add_stamen_tiles() %>%
-        add_draw(draw_type)
+        add_draw(draw_type, freehand)
     })
 
     observeEvent(input$done, {
