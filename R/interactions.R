@@ -29,7 +29,7 @@ add_drag_and_drop <- function(ol) {
 #' @param type feature type; one of \code{Circle}, \code{Polygon}, \code{Point}, \code{LineString}
 #' @param freehand logical; specifying whether or not freehand mode should be used
 #' @export
-add_draw <- function(ol, type = "Circle", freehand = TRUE) {
+add_draw <- function(ol, type = "Circle", freehand = FALSE) {
   ol$x$draw <- TRUE
   invoke_method(ol, "addDraw", type, freehand)
 }

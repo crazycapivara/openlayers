@@ -12,7 +12,7 @@ parse_polygons <- function(x) {
 }
 
 # shiny gadget
-draw_features <- function(draw_type = "Polygon", freehand = TRUE) {
+draw_features <- function(draw_type = "Polygon", freehand = FALSE) {
   # View
   ui <- miniPage(
     gadgetTitleBar("Draw features"),
