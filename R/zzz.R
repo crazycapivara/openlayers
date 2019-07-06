@@ -1,4 +1,4 @@
-.onAttach <- function(libname, pkgname){ # nocov start
+.onAttach <- function(libname, pkgname) { # nocov start
   fn <- system.file("htmlwidgets/ol.yaml", package = "openlayers")
   ol_js_version <- yaml::yaml.load_file(fn)$dependencies[[1]]$version
   packageStartupMessage(

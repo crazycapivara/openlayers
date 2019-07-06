@@ -15,11 +15,11 @@ ol <- function(width = "100%", height = NULL, elementId = NULL, options = ol_opt
 
   # create widget
   htmlwidgets::createWidget(
-    'ol',
+    "ol",
     structure(x),
     width = width,
     height = height,
-    package = 'openlayers',
+    package = "openlayers",
     elementId = elementId
   )
 }
@@ -41,14 +41,16 @@ ol <- function(width = "100%", height = NULL, elementId = NULL, options = ol_opt
 #' @name ol-shiny
 #'
 #' @export
-olOutput <- function(outputId, width = '100%', height = '400px') { # nocov start
-  htmlwidgets::shinyWidgetOutput(outputId, 'ol', width, height, package = 'openlayers')
+olOutput <- function(outputId, width = "100%", height = "400px") { # nocov start
+  htmlwidgets::shinyWidgetOutput(outputId, "ol", width, height, package = "openlayers")
 } # nocov end
 
 #' @rdname ol-shiny
 #'
 #' @export
 renderOl <- function(expr, env = parent.frame(), quoted = FALSE) { # nocov start
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) {
+    expr <- substitute(expr)
+  } # force quoted
   htmlwidgets::shinyRenderWidget(expr, olOutput, env, quoted = TRUE)
 } # nocov end

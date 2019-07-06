@@ -11,7 +11,8 @@ add_osm_tiles(ol, options = layer_options())
 
 add_stamen_tiles(ol, layer = "watercolor", options = layer_options())
 
-add_xyz_tiles(ol, xyz_url, attribution = NULL, options = layer_options())
+add_xyz_tiles(ol, xyz_url, attribution = NULL,
+  options = layer_options())
 }
 \arguments{
 \item{ol}{map widget}

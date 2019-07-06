@@ -11,7 +11,7 @@ read_js_function <- function(filename) {
 ## NEW style approach
 ## usage: style <- stroke_style() + fill_style()
 
-set_style_class <- function(x){
+set_style_class <- function(x) {
   structure(x, class = c("list", "style"))
 }
 
@@ -29,7 +29,7 @@ style_ <- function(...) {
 #' @param width stroke width in pixels
 #'
 #' @export
-stroke_style <- function(color = "green", width = 2){
+stroke_style <- function(color = "green", width = 2) {
   style_(stroke = list(
     color = color,
     width = width
@@ -39,7 +39,7 @@ stroke_style <- function(color = "green", width = 2){
 #' @rdname style_methods
 #'
 #' @export
-fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
+fill_style <- function(color = "rgba(0, 0, 255, 0.5)") {
   style_(fill = list(
     color = color
   ))
@@ -52,7 +52,7 @@ fill_style <- function(color = "rgba(0, 0, 255, 0.5)"){
 #' @param fill fill style or \code{NULL} (do not fill)
 #'
 #' @export
-circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 10){
+circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 10) {
   style_(circle = c(
     stroke,
     fill,
@@ -69,8 +69,8 @@ circle_style <- function(stroke = stroke_style(), fill = fill_style(), radius = 
 #'
 #' @export
 ## https://github.com/openstreetmap/map-icons/
-icon_style <- function(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL){
-  if(is.null(src)){
+icon_style <- function(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL) {
+  if (is.null(src)) {
     src <- system.file("icons/gps.png", package = utils::packageName()) %>%
       make_icon()
   }
@@ -99,31 +99,31 @@ marker_style <- function(src = NULL, anchor = c(0.5, 0.8), icon_color = NULL) {
 #'
 #' @export
 text_style <- function(text = NULL, property = NULL, scale = 1.5,
-                       color = "black", stroke = NULL, offset_xy = c(0, 0)){
+                       color = "black", stroke = NULL, offset_xy = c(0, 0)) {
   style_(text = c(
-      list(
-        text = text,
-        property = property,
-        scale = scale,
-        offsetX = offset_xy[1],
-        offsetY = offset_xy[2]
-      ),
-      fill_style(color = color),
-      stroke
+    list(
+      text = text,
+      property = property,
+      scale = scale,
+      offsetX = offset_xy[1],
+      offsetY = offset_xy[2]
+    ),
+    fill_style(color = color),
+    stroke
   ))
 }
 
-style_array <- function(style, resolution, default_style = NULL){
+style_array <- function(style, resolution, default_style = NULL) {
   stop("needs to be implemented, just do it")
 }
 
 ## TODO: obsolete ? remove func : add docs and export it
-style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10){
+style_that <- function(stroke_color = "blue", stroke_width = 1.5, fill_color = NULL, radius = 10) {
   stroke <- stroke_style(stroke_color, stroke_width)
-  if(!is.null(fill_color)){
+  if (!is.null(fill_color)) {
     fill <- fill_style(fill_color)
-  } else{
-    fill = NULL
+  } else {
+    fill <- NULL
   }
   circle <- circle_style(stroke, fill, radius)
   stroke + fill + circle
